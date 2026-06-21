@@ -774,7 +774,6 @@ function renderKPIs(arr){
     <div class="kpi ${+avgSuccess>=7?"green":+avgSuccess>=5?"amber":"red"} animate-in animate-delay-4"><div class="kl">Success Confidence</div><div class="kv kpi-val-anim" data-target="${avgSuccess}" data-float="1">${avgSuccess}</div><div class="ks">Out of 10 (Q32)</div></div>`;
   setTimeout(animateKPIs, 50);
 }
-}
 
 /* ── Render all charts ── */
 function renderAll(arr){
