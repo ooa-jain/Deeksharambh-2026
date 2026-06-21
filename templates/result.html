@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Deeksharambh Story · JAIN University</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+:root{
+  --navy:#0d2147;--navy-deep:#0a1628;--navy-mid:#112a5e;
+  --gold:#e6b324;--gold-l:#fff8e1;--gold-d:#8a6000;
+  --bg:#f7f6ff;--card:#fff;--text:#1a1a2e;--muted:#64637a;
+  --border:rgba(13,33,71,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  padding-top:70px;padding-bottom:4rem;
+  background-image:linear-gradient(rgba(13,33,71,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(13,33,71,0.05) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+
+/* ── NAVBAR ── */
+.navbar-fixed{
+  position:fixed;top:0;left:0;right:0;
+  background:#fff;border-bottom:1px solid #e0e0e0;
+  height:70px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;z-index:1000;box-shadow:0 2px 8px rgba(13,33,71,0.08);
+}
+.navbar-fixed .nav-left{display:flex;align-items:center;gap:20px}
+.navbar-fixed .nav-logo{height:46px;object-fit:contain}
+.navbar-fixed .nav-divider{width:1px;height:30px;background:#e0e0e0}
+.navbar-fixed .nav-text{font-size:14px;font-weight:700;color:var(--navy);letter-spacing:1.2px;text-transform:uppercase}
+.nav-home{
+  font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;
+  padding:8px 16px;border:1.5px solid var(--border);border-radius:8px;
+  transition:all .15s;
+}
+.nav-home:hover{border-color:var(--navy);color:var(--navy)}
+
+/* ── WRAP ── */
+.wrap{width:100%;max-width:min(95%,880px);margin:0 auto;padding:1.25rem 1rem}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(160deg,#0a1628 0%,#0d2147 45%,#112a5e 100%);
+  border-radius:24px;overflow:hidden;margin-bottom:1.5rem;
+  box-shadow:0 12px 48px rgba(10,22,40,0.45);
+  color:#fff;padding:2.5rem 2rem;text-align:center;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;
+  border-radius:50%;border:1px solid rgba(230,179,36,0.1);pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-50px;left:-50px;width:160px;height:160px;
+  border-radius:50%;border:1px solid rgba(230,179,36,0.08);pointer-events:none;
+}
+.gold-line{height:3px;background:linear-gradient(90deg,transparent,#e6b324,transparent);margin-bottom:1.5rem;border-radius:2px;max-width:280px;margin-left:auto;margin-right:auto}
+.hero .ty-em{font-size:64px;margin-bottom:14px;line-height:1}
+.hero h1{font-size:32px;font-weight:700;margin-bottom:10px;letter-spacing:-0.4px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .ty-s{font-size:14px;opacity:.85;line-height:1.7;max-width:480px;margin:0 auto 1.5rem}
+
+.already-taken{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);
+  border-radius:12px;padding:11px 20px;font-size:13px;
+  margin-top:0.5rem;backdrop-filter:blur(4px);
+}
+.already-taken .dot{width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.6);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.submitted-meta{font-size:11px;opacity:.7;margin-top:14px;letter-spacing:1.5px;text-transform:uppercase}
+
+/* ── AVATAR TAGLINE ── */
+.avatar-tagline{
+  text-align:center;font-size:22px;font-weight:700;color:var(--navy);
+  margin:0 0 1.5rem 0;letter-spacing:-0.3px;
+}
+.avatar-tagline-sub{
+  display:block;font-size:12px;font-weight:500;color:var(--muted);
+  letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;
+}
+
+/* ── SCORECARD ── */
+.scorecard{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
+.scorecard-card{
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  padding:1.2rem 1rem;text-align:center;
+  box-shadow:0 4px 14px rgba(13,33,71,0.06);
+  position:relative;overflow:hidden;
+}
+.scorecard-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),#f5d76e);
+}
+.scorecard-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.score-val{font-size:36px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:.35rem;letter-spacing:-.5px}
+.score-max{font-size:16px;font-weight:600;color:var(--muted);margin-left:2px}
+.scorecard-foot{font-size:11px;color:var(--muted);line-height:1.3}
+
+/* ── PROFILE CARD ── */
+.profile-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.25rem 1.5rem;
+  margin-bottom:1.5rem;box-shadow:0 2px 16px rgba(13,33,71,0.07);
+}
+.profile-card h3{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--navy);margin-bottom:12px;opacity:0.7;
+  display:flex;align-items:center;gap:8px;
+}
+.profile-card h3::after{content:"";flex:1;height:1px;background:var(--border)}
+.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.profile-grid > div .lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.profile-grid > div .val{font-size:14px;font-weight:600;color:var(--navy);line-height:1.4}
+
+/* ── SECTION CARD ── */
+.section-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.4rem 1.5rem;
+  margin-bottom:1rem;box-shadow:0 2px 16px rgba(13,33,71,0.07);
+  break-inside:avoid;
+}
+.section-card .sec-eye{
+  display:inline-flex;align-items:center;
+  background:var(--gold-l);color:var(--gold-d);
+  border-radius:20px;padding:4px 13px;
+  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  margin-bottom:6px;border:1px solid rgba(230,179,36,0.25);
+}
+.section-card .sec-title{font-size:19px;font-weight:700;letter-spacing:-0.3px;margin-bottom:14px}
+
+.q-row{padding:11px 0;border-bottom:1px solid var(--border)}
+.q-row:last-child{border-bottom:none}
+.q-num{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--gold-d);margin-bottom:2px;
+}
+.q-text{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px;line-height:1.45}
+.q-ans{font-size:13px;color:var(--text);line-height:1.6}
+.q-ans em{color:var(--muted);font-style:normal}
+.score-mini{display:inline-flex;align-items:baseline;gap:4px;font-size:18px;font-weight:800;color:var(--navy)}
+.score-mini .max{font-size:13px;font-weight:600;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  display:inline-flex;align-items:center;
+  padding:5px 12px;border:1.5px solid var(--border);
+  border-radius:16px;font-size:12.5px;
+  background:var(--bg);color:var(--text);line-height:1.3;
+}
+.chip.on{
+  border-color:var(--navy);background:var(--navy);color:#fff;font-weight:600;
+}
+.matrix-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+.matrix-table td{padding:7px 10px;border-bottom:1px solid var(--border)}
+.matrix-table tr:last-child td{border-bottom:none}
+.matrix-table td:first-child{font-weight:500;color:var(--text)}
+.matrix-table td:last-child{text-align:right;color:var(--navy);font-weight:600;white-space:nowrap}
+
+/* ── AVATAR SECTION (AT END) ── */
+.avatar-section{
+  background:linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%);
+  color:#fff;border-radius:24px;
+  padding:2.5rem 2rem;margin:2rem 0 1.5rem;
+  text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 12px 36px rgba(13,33,71,0.3);
+  break-inside:avoid;
+}
+.avatar-section::before{
+  content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;
+  border-radius:50%;border:1px solid rgba(230,179,36,0.15);pointer-events:none;
+}
+.avatar-section::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;
+  border-radius:50%;border:1px solid rgba(230,179,36,0.1);pointer-events:none;
+}
+.avatar-section .gold-line{margin-bottom:1.5rem}
+.avatar-section .sec-eye{
+  background:rgba(230,179,36,0.18);color:#f5d76e;
+  border:1px solid rgba(230,179,36,0.4);margin-bottom:10px;
+}
+.avatar-section h2{font-size:24px;font-weight:700;margin-bottom:6px;letter-spacing:-0.3px}
+.avatar-section .sec-sub{font-size:13.5px;opacity:.85;margin-bottom:1.75rem;line-height:1.5;max-width:380px;margin-left:auto;margin-right:auto}
+.avatar-big{font-size:96px;line-height:1;margin-bottom:14px;position:relative;z-index:1}
+.avatar-name{font-size:28px;font-weight:700;margin-bottom:14px;position:relative;z-index:1;letter-spacing:-0.3px}
+.avatar-label{
+  display:inline-block;
+  background:rgba(230,179,36,0.18);
+  border:2px solid var(--gold);color:var(--gold);
+  padding:9px 26px;border-radius:24px;
+  font-size:13px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;position:relative;z-index:1;
+}
+.avatar-youare{
+  display:inline-block;
+  background:rgba(230,179,36,0.18);
+  border:2px solid var(--gold);
+  color:#f5d76e;
+  padding:10px 28px;
+  border-radius:24px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  position:relative;
+  z-index:1;
+  margin-top:6px;
+}
+
+/* ── PDF BUTTON ── */
+.pdf-download-btn{
+  position:relative;padding:14px 28px;
+  border:2px solid var(--navy);border-radius:12px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+  color:#fff;font-size:15px;font-weight:600;
+  cursor:pointer;font-family:inherit;
+  display:inline-flex;align-items:center;gap:10px;
+  box-shadow:0 4px 15px rgba(13,33,71,0.25);
+  min-width:200px;justify-content:center;
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+  overflow:hidden;
+}
+.pdf-download-btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(13,33,71,0.4);border-color:var(--gold)}
+.pdf-download-btn:active{transform:translateY(-1px)}
+.pdf-icon{font-size:18px;line-height:1}
+
+.pdf-actions{display:flex;justify-content:center;margin-top:2rem;gap:12px;flex-wrap:wrap}
+.retake-btn{
+  font-family:inherit;font-size:13px;font-weight:600;
+  color:var(--muted);background:transparent;border:1.5px solid var(--border);
+  border-radius:10px;padding:12px 22px;cursor:pointer;
+  transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+}
+.retake-btn:hover{border-color:var(--navy);color:var(--navy)}
+
+footer{text-align:center;padding-top:2rem;font-size:11px;color:var(--muted);opacity:.7;letter-spacing:.5px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  .scorecard{grid-template-columns:repeat(2,1fr)}
+  .profile-grid{grid-template-columns:1fr;gap:10px}
+  .hero{padding:2rem 1.25rem}
+  .hero h1{font-size:24px}
+  .hero .ty-em{font-size:54px}
+  .navbar-fixed{padding:0 1rem}
+  .navbar-fixed .nav-text{font-size:11px;letter-spacing:.8px}
+  .avatar-big{font-size:72px}
+  .avatar-name{font-size:22px}
+  .section-card{padding:1.1rem 1rem}
+  .pdf-download-btn{width:100%}
+}
+@media(max-width:480px){
+  .scorecard{grid-template-columns:1fr 1fr}
+}
+
+/* ── PRINT ── */
+@media print{
+  body{background:#fff}
+  .navbar-fixed,.pdf-actions{display:none !important}
+  .section-card,.avatar-section,.profile-card,.scorecard{break-inside:avoid;box-shadow:none}
+}
+
+/* ── PDF EXPORT-ONLY STYLES ── */
+#pdfExportRoot{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+#pdfExportRoot .pd-section-title{
+  background:var(--navy);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:8px 14px;border-radius:6px;margin:14px 0 8px;
+}
+#pdfExportRoot .pd-q{
+  display:grid;grid-template-columns:46px 1fr;
+  gap:8px;padding:7px 0;border-bottom:1px solid rgba(13,33,71,0.08);
+  break-inside:avoid;
+}
+#pdfExportRoot .pd-q:last-child{border-bottom:none}
+#pdfExportRoot .pd-qn{
+  font-size:10px;font-weight:700;color:var(--gold);text-align:right;
+  letter-spacing:.8px;padding-top:2px;
+}
+#pdfExportRoot .pd-ql{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
+#pdfExportRoot .pd-qv{font-size:11.5px;color:var(--text);line-height:1.55}
+#pdfExportRoot .pd-qv em{color:var(--muted)}
+#pdfExportRoot .pd-sc{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px;
+}
+#pdfExportRoot .pd-sc-card{
+  background:var(--gold-l);border:1px solid rgba(230,179,36,.35);
+  border-radius:8px;padding:10px 8px;text-align:center;
+}
+#pdfExportRoot .pd-sc-l{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold-d);margin-bottom:4px}
+#pdfExportRoot .pd-sc-v{font-size:18px;font-weight:800;color:var(--navy)}
+#pdfExportRoot .pd-avatar{
+  background:linear-gradient(135deg,#0d2147,#1a3a7a);color:#fff;
+  border-radius:14px;padding:22px;text-align:center;margin-top:16px;
+  break-inside:avoid;
+}
+#pdfExportRoot .pd-avatar-e{font-size:64px;margin-bottom:8px}
+#pdfExportRoot .pd-avatar-n{font-size:20px;font-weight:700;margin-bottom:6px}
+#pdfExportRoot .pd-avatar-l{
+  display:inline-block;border:2px solid var(--gold);color:var(--gold);
+  padding:6px 18px;border-radius:20px;font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar-fixed">
+  <div class="nav-left">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" class="nav-logo" alt="JAIN University"
+         onerror="this.style.display='none'">
+    <div class="nav-divider"></div>
+    <div class="nav-text">Freshers 2026</div>
+  </div>
+  <a href="/" class="nav-home">Home</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="gold-line"></div>
+    <div class="ty-em">🎓</div>
+    <h1>Your <em>story</em> is written!</h1>
+    <div class="ty-s">Thank you for being part of Deeksharambh 2026. Your anonymous feedback shapes the next batch's first week. Welcome to the JAIN family! ❤️</div>
+
+    <div class="already-taken">
+      <span class="dot"></span>
+      <span><strong>You've already submitted</strong> · Response ID: <strong>{{ response_id or '—' }}</strong></span>
+    </div>
+
+    {% if submitted_at %}
+    <div class="submitted-meta">Submitted on {{ submitted_at }}</div>
+    {% endif %}
+  </section>
+
+  {% if response %}
+    {% if avatar_text %}
+    <!-- ── AVATAR TAGLINE (top, brief) ── -->
+    <div class="avatar-tagline">
+      {{ avatar_text }}
+      <span class="avatar-tagline-sub">— you are a JAIN star</span>
+    </div>
+    {% endif %}
+
+    <!-- ── SCORECARD ── -->
+    <div class="scorecard">
+      <div class="scorecard-card">
+        <div class="scorecard-label">Overall Vibe</div>
+        <div class="score-val">{{ response.get('q2') if response.get('q2') is not none else '—' }}<span class="score-max">/10</span></div>
+        <div class="scorecard-foot">Your vibe score</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-label">Ease of Transition</div>
+        <div class="score-val">{{ response.get('q5') if response.get('q5') is not none else '—' }}<span class="score-max">/5</span></div>
+        <div class="scorecard-foot">Settling-in ease</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-label">Belonging</div>
+        <div class="score-val">{{ response.get('q29') if response.get('q29') is not none else '—' }}<span class="score-max">/10</span></div>
+        <div class="scorecard-foot">How at home you feel</div>
+      </div>
+      <div class="scorecard-card">
+        <div class="scorecard-label">NPS Score</div>
+        <div class="score-val">{{ response.get('q34') if response.get('q34') is not none else '—' }}<span class="score-max">/10</span></div>
+        <div class="scorecard-foot">Likelihood to recommend</div>
+      </div>
+    </div>
+
+    <!-- ── PROFILE ── -->
+    <div class="profile-card">
+      <h3>Your Profile</h3>
+      <div class="profile-grid">
+        <div>
+          <div class="lbl">School</div>
+          <div class="val">{{ response.get('school') or '—' }}</div>
+        </div>
+        <div>
+          <div class="lbl">Programme</div>
+          <div class="val">{{ response.get('program') or '—' }}</div>
+        </div>
+        <div>
+          <div class="lbl">Level</div>
+          <div class="val">{{ response.get('ugpg') or '—' }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 1: VIBE CHECK ── -->
+    <div class="section-card">
+      <div class="sec-eye">🔥 Section 1 of 9</div>
+      <div class="sec-title">The Vibe Check</div>
+
+      <div class="q-row">
+        <div class="q-num">Q1</div>
+        <div class="q-text">Words describing your Deeksharambh experience</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q1') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q2</div>
+        <div class="q-text">Rate the overall vibe of Deeksharambh 2026</div>
+        <div class="q-ans">
+          {% if response.get('q2') is not none %}
+            <span class="score-mini">{{ response.get('q2') }}<span class="max">/10</span></span>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q3</div>
+        <div class="q-text">Did you feel welcomed during Deeksharambh?</div>
+        <div class="q-ans">{{ response.get('q3') or '—' }}</div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q4</div>
+        <div class="q-text">During Deeksharambh 2026, I felt:</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q4') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q5a</div>
+        <div class="q-text">Sessions that sparked your interest the most</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q5a') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q5b</div>
+        <div class="q-text">Sessions that felt least connecting for you</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q5b') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: TRANSITION ── -->
+    <div class="section-card">
+      <div class="sec-eye">🧭 Section 2 of 9</div>
+      <div class="sec-title">Settling In — Ease of Transition</div>
+
+      <div class="q-row">
+        <div class="q-num">Q5</div>
+        <div class="q-text">Overall, how easy was it to transition into JAIN University life?</div>
+        <div class="q-ans">
+          {% if response.get('q5_label') %}{{ response.get('q5_label') }}
+          {% elif response.get('q5') is not none %}{{ response.get('q5') }} / 5
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q7</div>
+        <div class="q-text">What challenges did you face during initial onboarding?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q7') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 3: FOOTSTEPS ── -->
+    <div class="section-card">
+      <div class="sec-eye">👣 Section 3 of 9</div>
+      <div class="sec-title">Footsteps — Pre-Arrival Module</div>
+
+      <div class="q-row">
+        <div class="q-num">Q8</div>
+        <div class="q-text">Did Footsteps help you understand:</div>
+        <div class="q-ans">
+          {% if response.get('q8') %}
+            <table class="matrix-table">
+              {% for row, col in (response.get('q8') or {}).items() %}
+                <tr><td>{{ row }}</td><td>{{ col }}</td></tr>
+              {% endfor %}
+            </table>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q9</div>
+        <div class="q-text">Which Footsteps content did you find most useful?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q9') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q10</div>
+        <div class="q-text">If Footsteps was a Netflix show, would you binge-watch Season 2? 📺</div>
+        <div class="q-ans">
+          {% if response.get('q10_label') %}{{ response.get('q10_label') }}
+          {% elif response.get('q10') is not none %}{{ response.get('q10') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 4: ORIENTATION ── -->
+    <div class="section-card">
+      <div class="sec-eye">🎯 Section 4 of 9</div>
+      <div class="sec-title">Orientation Experience</div>
+
+      <div class="q-row">
+        <div class="q-num">Q11</div>
+        <div class="q-text">Which sessions had the biggest impact on you?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q11') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q12</div>
+        <div class="q-text">Which sessions need the most improvement?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q12') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q13</div>
+        <div class="q-text">The Orientation Programme helped me:</div>
+        <div class="q-ans">
+          {% if response.get('q13') %}
+            <table class="matrix-table">
+              {% for row, col in (response.get('q13') or {}).items() %}
+                <tr><td>{{ row }}</td><td>{{ col }}</td></tr>
+              {% endfor %}
+            </table>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q14</div>
+        <div class="q-text">How much did sessions encourage hands-on or interactive activities?</div>
+        <div class="q-ans">
+          {% if response.get('q14_label') %}{{ response.get('q14_label') }}
+          {% elif response.get('q14') is not none %}{{ response.get('q14') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q15</div>
+        <div class="q-text">Engagement level of the sessions</div>
+        <div class="q-ans">
+          {% if response.get('q15_label') %}{{ response.get('q15_label') }}
+          {% elif response.get('q15') is not none %}{{ response.get('q15') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 5: BRIDGE COURSE ── -->
+    <div class="section-card">
+      <div class="sec-eye">🌉 Section 5 of 9</div>
+      <div class="sec-title">Bridge Course</div>
+
+      <div class="q-row">
+        <div class="q-num">Q16</div>
+        <div class="q-text">How confident did the Bridge Course make you feel?</div>
+        <div class="q-ans">
+          {% if response.get('q16') is not none %}
+            <span class="score-mini">{{ response.get('q16') }}<span class="max">/5</span></span>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q17</div>
+        <div class="q-text">Bridge Course areas you engaged with</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q17') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q18</div>
+        <div class="q-text">How ready do you feel for classes?</div>
+        <div class="q-ans">{{ response.get('q18') or '—' }}</div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q19</div>
+        <div class="q-text">Most helpful aspects of the programme</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q19') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 6: NEP ── -->
+    <div class="section-card">
+      <div class="sec-eye">📜 Section 6 of 9</div>
+      <div class="sec-title">NEP 2020</div>
+
+      <div class="q-row">
+        <div class="q-num">Q20</div>
+        <div class="q-text">Your NEP awareness before Deeksharambh</div>
+        <div class="q-ans">
+          {% if response.get('q20_label') %}{{ response.get('q20_label') }}
+          {% elif response.get('q20') is not none %}{{ response.get('q20') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q21</div>
+        <div class="q-text">Your NEP clarity after Deeksharambh</div>
+        <div class="q-ans">{{ response.get('q21') or '—' }}</div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q22</div>
+        <div class="q-text">Your digital / tech confidence</div>
+        <div class="q-ans">
+          {% if response.get('q22_label') %}{{ response.get('q22_label') }}
+          {% elif response.get('q22') is not none %}{{ response.get('q22') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 7: GEN Z LENS ── -->
+    <div class="section-card">
+      <div class="sec-eye">🎬 Section 7 of 9</div>
+      <div class="sec-title">The Gen Z Lens</div>
+
+      <div class="q-row">
+        <div class="q-num">Q23a</div>
+        <div class="q-text">University — what you expected</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q23a') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q23b</div>
+        <div class="q-text">University — what you actually found</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q23b') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q24</div>
+        <div class="q-text">Your Deeksharambh as a movie genre</div>
+        <div class="q-ans">{{ response.get('q24') or '—' }}</div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q25</div>
+        <div class="q-text">Your first week in one word</div>
+        <div class="q-ans">
+          {% if response.get('q25_label') %}{{ response.get('q25_label') }}
+          {% elif response.get('q25') is not none %}{{ response.get('q25') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 8: BELONGING ── -->
+    <div class="section-card">
+      <div class="sec-eye">🤝 Section 8 of 9</div>
+      <div class="sec-title">Belonging &amp; Surprises</div>
+
+      <div class="q-row">
+        <div class="q-num">Q26</div>
+        <div class="q-text">Biggest surprise about JAIN</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q26') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q27</div>
+        <div class="q-text">Moments that made you smile</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q27') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q28</div>
+        <div class="q-text">Moments that stressed you out</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q28') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q29</div>
+        <div class="q-text">How much do you feel you belong?</div>
+        <div class="q-ans">
+          {% if response.get('q29') is not none %}
+            <span class="score-mini">{{ response.get('q29') }}<span class="max">/10</span></span>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q30</div>
+        <div class="q-text">Friends made during Deeksharambh</div>
+        <div class="q-ans">{{ response.get('q30') or '—' }}</div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q31</div>
+        <div class="q-text">Knows who to contact for help</div>
+        <div class="q-ans">{{ response.get('q31') or '—' }}</div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q32</div>
+        <div class="q-text">Confidence in academic success</div>
+        <div class="q-ans">
+          {% if response.get('q32') is not none %}
+            <span class="score-mini">{{ response.get('q32') }}<span class="max">/10</span></span>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q33</div>
+        <div class="q-text">Academic expectations ahead</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q33') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION 9: NPS & SCORE ── -->
+    <div class="section-card">
+      <div class="sec-eye">⭐ Section 9 of 9</div>
+      <div class="sec-title">NPS &amp; Final Verdict</div>
+
+      <div class="q-row">
+        <div class="q-num">Q34</div>
+        <div class="q-text">How likely are you to recommend JAIN?</div>
+        <div class="q-ans">
+          {% if response.get('q34') is not none %}
+            <span class="score-mini">{{ response.get('q34') }}<span class="max">/10</span></span>
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q35</div>
+        <div class="q-text">Your overall Deeksharambh experience</div>
+        <div class="q-ans">
+          {% if response.get('q35_label') %}{{ response.get('q35_label') }}
+          {% elif response.get('q35') is not none %}{{ response.get('q35') }}
+          {% else %}<em>—</em>{% endif %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q36</div>
+        <div class="q-text">The main reason(s) for your NPS rating</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q36') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q37</div>
+        <div class="q-text">What should we definitely continue next year?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q37') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q38</div>
+        <div class="q-text">What should we stop doing?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q38') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q39</div>
+        <div class="q-text">What should we introduce next year?</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q39') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+
+      <div class="q-row">
+        <div class="q-num">Q40</div>
+        <div class="q-text">Overall, Deeksharambh 2026 left me feeling:</div>
+        <div class="q-ans chips">
+          {% for item in (response.get('q40') or []) %}<span class="chip on">{{ item }}</span>{% else %}<em>—</em>{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BONUS: JAIN AVATAR (AT END) ── -->
+    <section class="avatar-section">
+      <div class="gold-line"></div>
+      <div class="sec-eye">🌟 Bonus</div>
+      <h2>Your JAIN Avatar</h2>
+      <div class="sec-sub">Who are you going to be at JAIN? Pick one that resonates.</div>
+      <div class="avatar-big" id="avatarEmoji">🎓</div>
+      <div class="avatar-name" id="avatarName">{{ avatar_text or 'A JAIN Star ⭐' }}</div>
+      <div class="avatar-youare" id="avatarYouAre">YOU ARE {{ (avatar_text or 'A JAIN STAR')|upper }}</div>
+    </section>
+
+    <!-- ── PDF DOWNLOAD BUTTON ── -->
+    <div class="pdf-actions">
+      <button id="pdfBtn" class="pdf-download-btn" onclick="downloadPDF()">
+        <span class="pdf-icon">📄</span>
+        <span class="pdf-text">Download as PDF</span>
+      </button>
+      <button class="retake-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    </div>
+
+  {% else %}
+    <!-- response not found -->
+    <div class="section-card" style="text-align:center;padding:3rem 1rem">
+      <div class="sec-eye" style="margin-bottom:1rem">⚠️ Notice</div>
+      <div class="sec-title" style="margin-bottom:.5rem">Response not found</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem">We couldn't find your submission in our records. It may have been removed by an admin.</p>
+      <a href="/" style="display:inline-block;padding:11px 26px;background:var(--navy);color:#fff;border-radius:10px;text-decoration:none;font-weight:600">Take the Survey Again</a>
+    </div>
+  {% endif %}
+
+  <footer>Deeksharambh 2026 · JAIN (Deemed-to-be University) · Anonymous &amp; Confidential</footer>
+</div>
+
+<script>
+// Map the chosen avatar name → emoji (the form only stored the text label)
+const AVATAR_MAP = {
+  "Future CEO": "😎",
+  "Startup Founder": "🚀",
+  "Academic Achiever": "🎓",
+  "Change Maker": "🌎",
+  "AI Innovator": "🤖",
+  "Creative Maverick": "🎨",
+  "Corporate Leader": "💼",
+  "The Rule Changer": "⚖️",
+  "Sports Star": "🏅",
+  "Still Figuring It Out": "❤️"
+};
+
+(function setAvatarEmoji(){
+  const nameEl = document.getElementById('avatarName');
+  const emojiEl = document.getElementById('avatarEmoji');
+  if (!nameEl || !emojiEl) return;
+  const name = (nameEl.textContent || '').trim();
+  emojiEl.textContent = AVATAR_MAP[name] || '🎓';
+})();
+
+// ── PDF DOWNLOAD ──
+async function downloadPDF(){
+  const btn = document.getElementById('pdfBtn');
+  if (!btn) return;
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="pdf-icon">⏳</span><span class="pdf-text">Generating PDF...</span>';
+
+  if (typeof html2pdf === 'undefined') {
+    console.warn('html2pdf not available; falling back to window.print()');
+    setTimeout(() => { btn.disabled = false; btn.innerHTML = originalHTML; window.print(); }, 200);
+    return;
+  }
+
+  // The simplest, most reliable way to make a non-blank PDF is to clone the
+  // on-screen result content (which we KNOW renders correctly) and pass
+  // that clone to html2canvas. The chosen avatar and every answer are
+  // already in the visible DOM, so the PDF will match exactly.
+  const source = document.querySelector('.wrap');
+  if (!source) {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+    return;
+  }
+
+  const clone = source.cloneNode(true);
+  // Remove elements that shouldn't appear in the PDF
+  clone.querySelectorAll('.pdf-actions, .navbar-fixed, .retake-btn, #pdfBtn, #fullAnswerSummary, .spinner').forEach(el => el.remove());
+  // Defensive: pull back anything parked far off-screen so html2canvas does not
+  // allocate an oversized (blank) canvas.
+  clone.querySelectorAll('*').forEach(el => {
+    const l = el.style && el.style.left;
+    if (l && parseInt(l, 10) <= -9999) { el.style.position = 'static'; el.style.left = '0'; el.style.display = 'none'; }
+  });
+  clone.id = 'pdfExportRoot';
+  clone.style.cssText = 'position:fixed;top:0;left:0;width:760px;background:#0b1027;color:#fff;padding:0;margin:0;box-sizing:border-box;z-index:99999;pointer-events:none;visibility:visible;opacity:1;overflow:hidden;';
+
+  // Attach a tall <style> block to the clone so the PDF picks up the same
+  // navy hero, gold avatar block, chip styles, etc. — but tuned for print
+  // (dark text on white for the body, navy gradient kept on the hero and
+  // avatar so they stay branded).
+  const styleEl = document.createElement('style');
+  styleEl.textContent = `
+    #pdfExportRoot { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important; }
+    #pdfExportRoot > * { background: #ffffff !important; color: #1a1a2e !important; box-shadow: none !important; }
+    #pdfExportRoot .ty-hero { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
+    #pdfExportRoot .ty-hero * { color: #fff !important; }
+    #pdfExportRoot .avatar-section { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
+    #pdfExportRoot .avatar-section * { color: #fff !important; }
+    #pdfExportRoot .avatar-youare { background: rgba(230,179,36,0.18) !important; border: 2px solid #e6b324 !important; color: #f5d76e !important; }
+    #pdfExportRoot .chip, #pdfExportRoot .pill { background: rgba(13,33,71,0.06) !important; color: #1a1a2e !important; border: 1px solid rgba(13,33,71,0.18) !important; }
+    #pdfExportRoot h1, #pdfExportRoot h2, #pdfExportRoot h3, #pdfExportRoot h4, #pdfExportRoot .sec-eye, #pdfExportRoot .q-num, #pdfExportRoot .lbl { color: #0d2147 !important; }
+    #pdfExportRoot .section-card, #pdfExportRoot .q-row, #pdfExportRoot .scorecard { page-break-inside: avoid; break-inside: avoid; }
+  `;
+  clone.insertBefore(styleEl, clone.firstChild);
+
+  document.body.appendChild(clone);
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  const opt = {
+    margin: [8, 6, 8, 6],
+    filename: 'Deeksharambh-2026-Response.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, windowWidth: 760, letterRendering: true, scrollX: 0, scrollY: 0 },
+    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
+    pagebreak: { mode: ['css', 'legacy'], avoid: ['.ty-hero', '.section-card', '.avatar-section', '.q-row', '.scorecard'] }
+  };
+
+  try {
+    await html2pdf().set(opt).from(clone).save();
+    btn.innerHTML = '<span class="pdf-icon">✓</span><span class="pdf-text">Downloaded!</span>';
+  } catch (err) {
+    console.error('PDF generation error:', err);
+    try { window.print(); } catch(e) {}
+  } finally {
+    clone.remove();
+    btn.disabled = false;
+    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+  }
+}
+</script>
+</body>
+</html>

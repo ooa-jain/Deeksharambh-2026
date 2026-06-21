@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Deeksharambh 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2147;--navy-d:#0a1628;--navy-m:#112a5e;
+  --gold:#e6b324;--gold-l:#fff8e1;--gold-d:#8a6000;
+  --c2:#1D9E75;--c2l:#E1F5EE;--c2d:#0F6E56;
+  --c3:#D85A30;--c3l:#FAECE7;--amber:#BA7517;--ambl:#FEF3D7;
+  --bg:#f5f4fb;--card:#fff;--text:#1a1a2e;--muted:#64637a;
+  --border:rgba(13,33,71,0.1);--shadow:0 2px 16px rgba(13,33,71,0.07);
+  --grid:rgba(13,33,71,0.03);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+
+/* ── TOPBAR ── */
+.topbar{background:linear-gradient(135deg,#0a1628 0%,#0d2147 50%,#112a5e 100%);box-shadow:0 4px 24px rgba(10,22,40,0.35);position:sticky;top:0;z-index:100}
+.topbar-inner{padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid rgba(230,179,36,0.15)}
+.tb-brand{display:flex;align-items:center;gap:12px}
+.tb-logo-wrap{background:#fff;border-radius:7px;padding:4px 10px;height:36px;display:flex;align-items:center}
+.tb-logo-wrap img{height:26px;object-fit:contain}
+.tb-logo-fallback{font-size:11px;font-weight:700;color:var(--navy);white-space:nowrap}
+.tb-title h1{font-size:14px;font-weight:600;color:#fff;letter-spacing:-0.2px}
+.tb-title p{font-size:11px;color:rgba(255,255,255,0.5);margin-top:1px}
+.tb-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tb-select{padding:6px 12px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:#fff;font-size:12px;font-family:inherit;cursor:pointer;appearance:none;padding-right:24px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23fff' d='M5 7L1 3h8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+.tb-select option{color:var(--text);background:#fff}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .14s;border:none}
+.btn-outline{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2)}
+.btn-outline:hover{background:rgba(255,255,255,0.16)}
+.btn-gold{background:var(--gold);color:var(--navy);font-weight:700}
+.btn-gold:hover{background:#f0c842;transform:translateY(-1px);box-shadow:0 4px 14px rgba(230,179,36,0.4)}
+.btn-red{background:rgba(216,90,48,0.15);color:#ff9077;border:1px solid rgba(216,90,48,0.3)}
+.btn-red:hover{background:rgba(216,90,48,0.25)}
+.live-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.3);border-radius:20px;padding:5px 12px;font-size:11px;color:#4ade80;white-space:nowrap}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── TABS ── */
+.topbar-tabs{padding:0 20px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.topbar-tabs::-webkit-scrollbar{display:none}
+.ttab{padding:9px 16px;font-size:12px;font-weight:500;cursor:pointer;color:rgba(255,255,255,0.5);border:none;background:transparent;font-family:inherit;white-space:nowrap;border-bottom:2px solid transparent;transition:all .14s}
+.ttab:hover{color:rgba(255,255,255,0.85)}
+.ttab.on{color:#f0c842;border-bottom-color:var(--gold)}
+
+/* ── MAIN ── */
+.main{max-width:1200px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.loading{text-align:center;padding:6rem 2rem;color:var(--muted)}
+.spin{display:inline-block;width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── KPI STRIP ── */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:1.5rem}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;box-shadow:var(--shadow);position:relative;overflow:hidden;cursor:default}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.kpi.navy::before{background:var(--navy)}.kpi.green::before{background:var(--c2)}.kpi.amber::before{background:var(--amber)}.kpi.red::before{background:var(--c3)}.kpi.gold::before{background:var(--gold)}
+.kl{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.kv{font-size:28px;font-weight:700;color:var(--navy);line-height:1}
+.kpi.green .kv{color:var(--c2)}.kpi.amber .kv{color:var(--amber)}.kpi.red .kv{color:var(--c3)}.kpi.gold .kv{color:var(--gold-d)}
+.ks{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* ── PANELS ── */
+.panel{display:none}.panel.on{display:block;animation:up .25s ease}
+@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── GRID LAYOUTS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:12px;box-shadow:var(--shadow)}
+.ct{font-size:13px;font-weight:700;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
+.ct-sub{font-size:11px;color:var(--muted);font-weight:400;margin-left:auto}
+
+/* ── BAR CHART ── */
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bar-label{font-size:12px;color:var(--text);min-width:160px;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.bar-track{flex:1;background:rgba(13,33,71,0.06);border-radius:6px;height:22px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width .6s ease;display:flex;align-items:center;padding-left:8px;font-size:10px;font-weight:600;color:#fff;min-width:4px}
+.bar-num{font-size:11px;color:var(--muted);min-width:32px;text-align:right;font-weight:600}
+.bar-pct{font-size:11px;color:var(--muted);min-width:36px;text-align:right}
+
+/* ── DISTRIBUTION ── */
+.dist{display:flex;gap:6px;align-items:flex-end;height:90px;padding:4px 0}
+.dc{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.dw{width:100%;background:rgba(13,33,71,0.06);border-radius:5px;height:70px;display:flex;align-items:flex-end;overflow:hidden}
+.df{width:100%;border-radius:5px 5px 0 0;transition:height .5s ease}
+.dn{font-size:10px;font-weight:700;color:var(--muted)}.dl{font-size:9px;color:var(--muted)}
+
+/* ── MATRIX ── */
+.mtable{width:100%;border-collapse:collapse;font-size:12px}
+.mtable th{padding:8px 6px;text-align:center;font-weight:700;color:var(--muted);font-size:10px;letter-spacing:.5px;text-transform:uppercase;border-bottom:1.5px solid var(--border)}
+.mtable th:first-child{text-align:left}
+.mtable td{padding:10px 6px;text-align:center;border-bottom:1px solid var(--border);font-size:11px}
+.mtable tr:last-child td{border-bottom:none}
+.mtable td:first-child{text-align:left;font-weight:500;font-size:12px}
+.phi{color:var(--c2);font-weight:700}.pmi{color:var(--amber);font-weight:600}.plo{color:var(--c3)}
+
+/* ── NPS ── */
+.nps-buckets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1rem}
+.nb{border-radius:12px;padding:1rem;text-align:center}
+.np{background:var(--c2l);border:1px solid rgba(29,158,117,0.2)}
+.na{background:var(--ambl);border:1px solid rgba(186,117,23,0.2)}
+.nd{background:var(--c3l);border:1px solid rgba(216,90,48,0.2)}
+.nbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.np .nbl{color:var(--c2d)}.na .nbl{color:var(--amber)}.nd .nbl{color:var(--c3)}
+.nbv{font-size:28px;font-weight:700;line-height:1}.np .nbv{color:var(--c2)}.na .nbv{color:var(--amber)}.nd .nbv{color:var(--c3)}
+.nbs{font-size:11px;color:var(--muted);margin-top:3px}
+.nps-big{text-align:center;padding:.75rem 0;border:1px solid var(--border);border-radius:12px;margin-bottom:1rem}
+.nsv{font-size:52px;font-weight:700;line-height:1}.nsl{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* ── SCHOOL GRID ── */
+.school-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.school-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;display:flex;justify-content:space-between;align-items:center;transition:border-color .14s}
+.school-card:hover{border-color:var(--navy)}
+.school-name{font-size:12px;font-weight:500;color:var(--text)}.school-count{font-size:16px;font-weight:700;color:var(--navy)}
+
+/* ── EMPTY STATE ── */
+.empty{text-align:center;padding:3rem;color:var(--muted)}
+.empty-em{font-size:40px;margin-bottom:10px}
+.empty-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.empty-sub{font-size:13px}
+
+/* ── SECTION HEADER ── */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.section-icon{font-size:18px}
+.section-title{font-size:16px;font-weight:700;color:var(--text)}
+.section-count{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:2px 10px;margin-left:auto}
+
+/* ── STUDENT TABLE ── */
+.student-table{width:100%;border-collapse:collapse;font-size:12px}
+.student-table th{padding:10px 8px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:var(--muted);background:var(--bg);border-bottom:2px solid var(--border);white-space:nowrap}
+.student-table th:first-child,.student-table td:first-child{text-align:center;width:36px}
+.student-table td{padding:9px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
+.student-table tr:hover td{background:rgba(13,33,71,0.02)}
+
+/* ── TONE BADGE ── */
+.tone-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.tone-pos{background:var(--c2l);color:var(--c2d)}.tone-neg{background:var(--c3l);color:var(--c3)}.tone-mix{background:var(--gold-l);color:var(--gold-d)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes countUp{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.animate-in{animation:fadeInUp .45s cubic-bezier(.22,1,.36,1) both}
+.animate-delay-1{animation-delay:.07s}.animate-delay-2{animation-delay:.14s}.animate-delay-3{animation-delay:.21s}.animate-delay-4{animation-delay:.28s}
+.kpi-val-anim{animation:countUp .5s cubic-bezier(.22,1,.36,1) both}
+.card{transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:0 6px 28px rgba(13,33,71,0.12);transform:translateY(-1px)}
+
+/* ── SECTION HEADER ── */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--border)}
+.section-icon{font-size:22px}
+.section-title{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.section-count{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:3px 12px;margin-left:auto}
+
+/* ── CAROUSEL ── */
+.carousel-wrap{position:relative;overflow:hidden;border-radius:16px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:12px}
+.carousel-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform}
+.carousel-slide{min-width:100%;padding:1.5rem 1.5rem 1.25rem;flex-shrink:0;box-sizing:border-box}
+.carousel-slide-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
+.carousel-nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.5rem;border-top:1px solid var(--border);background:rgba(13,33,71,0.02)}
+.carousel-dots{display:flex;gap:5px}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(13,33,71,0.15);cursor:pointer;transition:all .2s}
+.carousel-dot.active{width:18px;border-radius:4px;background:var(--navy)}
+.carousel-btn{background:none;border:1.5px solid var(--border);border-radius:8px;padding:5px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);font-family:inherit;transition:all .14s}
+.carousel-btn:hover:not(:disabled){background:var(--navy);color:#fff;border-color:var(--navy)}
+.carousel-btn:disabled{opacity:.35;cursor:not-allowed}
+.carousel-counter{font-size:11px;color:var(--muted);font-weight:500}
+
+/* ── INSIGHT BADGE ── */
+.insight-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:.75rem}
+.ins-chip{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;border:1.5px solid transparent}
+.ins-pos{background:var(--c2l);color:var(--c2d);border-color:rgba(29,158,117,0.2)}
+.ins-amber{background:var(--ambl);color:var(--amber);border-color:rgba(186,117,23,0.2)}
+.ins-neg{background:var(--c3l);color:var(--c3);border-color:rgba(216,90,48,0.2)}
+.ins-navy{background:rgba(13,33,71,0.07);color:var(--navy);border-color:rgba(13,33,71,0.12)}
+
+/* ── STAT ROW ── */
+.stat-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1rem}
+.stat-box{flex:1;min-width:100px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;text-align:center}
+.stat-box .sv{font-size:26px;font-weight:700;color:var(--navy);line-height:1}
+.stat-box .sl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ── MINI SPARKLINE ── */
+.sparkline-wrap{display:flex;align-items:flex-end;gap:3px;height:40px;margin-top:8px}
+.spark-bar{flex:1;background:var(--navy);border-radius:3px 3px 0 0;opacity:.7;transition:opacity .2s;min-width:4px}
+.spark-bar:hover{opacity:1}
+
+/* ── HEATMAP ── */
+.heatmap-grid{display:grid;gap:3px;margin-top:6px}
+.hm-cell{border-radius:5px;height:28px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;cursor:default;transition:transform .15s}
+.hm-cell:hover{transform:scale(1.05)}
+
+@media(max-width:640px){.g2,.g3{grid-template-columns:1fr}.nps-buckets{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.bar-label{min-width:110px;max-width:130px}.stat-row{gap:6px}.carousel-slide{padding:1rem .9rem .85rem}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="tb-brand">
+      <div class="tb-logo-wrap">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="JAIN"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="tb-logo-fallback" style="display:none">JAIN University</span>
+      </div>
+      <div class="tb-title">
+        <h1>Deeksharambh 2026 — Admin Dashboard</h1>
+        <p>JAIN (Deemed-to-be University) · Office of Academics</p>
+      </div>
+    </div>
+    <div class="tb-actions">
+      <select class="tb-select" id="schoolFilter" onchange="handleSchoolChange()">
+        <option value="all">All Schools</option>
+      </select>
+      <select class="tb-select" id="ugpgFilter" onchange="applyFilter()">
+        <option value="all">UG + PG</option>
+        <option value="UG">UG Only</option>
+        <option value="PG">PG Only</option>
+      </select>
+      <button class="btn btn-outline" onclick="loadData()">↺ Refresh</button>
+      <button class="btn btn-gold" onclick="exportExcel()">⬇ Export Excel</button>
+      <div class="live-pill"><span class="live-dot"></span><span id="respCount">—</span> responses</div>
+      <a href="{{ url_for('admin_logout') }}" class="btn btn-red">Sign out</a>
+    </div>
+  </div>
+  <div class="topbar-tabs">
+    <button class="ttab on"  onclick="showPanel('p-overview',this)">📊 Overview</button>
+    <button class="ttab" id="tab-responses" onclick="showPanel('p-responses',this)">👥 Student List</button>
+    <button class="ttab" onclick="showPanel('p-vibe',this)">🔥 Vibe Check</button>
+    <button class="ttab" onclick="showPanel('p-transition',this)">🧭 Transition</button>
+    <button class="ttab" onclick="showPanel('p-footsteps',this)">👣 Footsteps</button>
+    <button class="ttab" onclick="showPanel('p-orientation',this)">🎯 Orientation</button>
+    <button class="ttab" onclick="showPanel('p-bridge',this)">🌉 Bridge Course</button>
+    <button class="ttab" onclick="showPanel('p-nep',this)">📜 NEP & Digital</button>
+    <button class="ttab" onclick="showPanel('p-genz',this)">💬 Gen Z</button>
+    <button class="ttab" onclick="showPanel('p-belonging',this)">❤️ Belonging</button>
+    <button class="ttab" onclick="showPanel('p-nps',this)">📈 NPS & Score</button>
+    <button class="ttab" onclick="showPanel('p-schools',this)">🏫 By School</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="loading" id="loadingState">
+    <div class="spin"></div>
+    <div style="margin-top:8px;font-size:14px">Loading responses from database…</div>
+  </div>
+
+  <div id="dashContent" style="display:none">
+
+    <!-- KPIs -->
+    <div class="kpis" id="kpiStrip"></div>
+
+    <!-- OVERVIEW -->
+    <div class="panel on" id="p-overview">
+      <div class="section-header"><span class="section-icon">📊</span><span class="section-title">Overview</span><span class="section-count" id="ov-count"></span></div>
+      <div class="g2">
+        <div class="card"><div class="ct">🔥 Top Vibe Words <span class="ct-sub">Q1 · highs + lows</span></div><div id="vibeChart"></div></div>
+        <div class="card"><div class="ct">😊 Week Feelings <span class="ct-sub">Q4 · multi-select</span></div><div id="feelChart"></div></div>
+      </div>
+      <div class="card"><div class="ct">🌡️ Overall Vibe Score Distribution <span class="ct-sub">Q2 · 1–10 scale</span></div><div class="dist" id="vibeDist"></div></div>
+      <div class="g2">
+        <div class="card"><div class="ct">🤝 Felt Welcomed? <span class="ct-sub">Q3</span></div><div id="welcomedChart"></div></div>
+        <div class="card"><div class="ct">🌟 Avatar Chosen <span class="ct-sub">Bonus question</span></div><div id="avatarChart"></div></div>
+      </div>
+      <div class="g2">
+        <div class="card"><div class="ct">🎓 UG vs PG Split</div><div id="ugpgChart"></div></div>
+        <div class="card"><div class="ct">🏫 Top Schools by Response Count</div><div id="topSchoolChart"></div></div>
+      </div>
+    </div>
+
+    <!-- STUDENT LIST -->
+    <div class="panel" id="p-responses">
+      <div class="section-header">
+        <span class="section-icon">👥</span>
+        <span class="section-title">Students Participated</span>
+        <span class="section-count" id="student-count"></span>
+      </div>
+      <div class="card" style="overflow-x:auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:12px">
+          <div style="font-size:13px;font-weight:600;color:var(--muted)" id="selectedCountLabel">0 selected</div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-red" id="deleteSelectedBtn" onclick="deleteSelected()" style="display:none">🗑️ Delete Selected</button>
+            <button class="btn btn-red" onclick="deleteAllResponses()">⚠️ Delete All</button>
+          </div>
+        </div>
+        <table class="student-table" id="studentTable">
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)" style="cursor:pointer;transform:scale(1.15)"></th>
+              <th>#</th>
+              <th>School</th>
+              <th>Programme</th>
+              <th>Level</th>
+              <th style="text-align:center">Vibe (Q2)</th>
+              <th style="text-align:center">Transition (Q6)</th>
+              <th style="text-align:center">Belonging (Q29)</th>
+              <th style="text-align:center">NPS (Q34)</th>
+              <th>Vibe Tone</th>
+              <th>Avatar</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIBE CHECK -->
+    <div class="panel" id="p-vibe">
+      <div class="section-header"><span class="section-icon">🔥</span><span class="section-title">Vibe Check Details</span></div>
+
+      <!-- Carousel: Vibe Words -->
+      <div class="carousel-wrap animate-in">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">✨ Positive Vibe Words <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q1 — Inspiring moments</span></div>
+            <div id="vibeHiChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">😬 Challenging Vibe Words <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q1 — Low points</span></div>
+            <div id="vibeLoChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="carousel-dots"></div>
+            <span class="carousel-counter">1 / 2</span>
+          </div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+
+      <!-- Carousel: Sessions -->
+      <div class="carousel-wrap animate-in animate-delay-1">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">😎 Spark Sessions (Best) <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q5a</span></div>
+            <div id="sparkChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">😶 Missed Sessions (Least) <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q5b</span></div>
+            <div id="missChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="carousel-dots"></div>
+            <span class="carousel-counter">1 / 2</span>
+          </div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+
+      <!-- Carousel: Feelings -->
+      <div class="carousel-wrap animate-in animate-delay-2">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">💚 Positive Feelings <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q4</span></div>
+            <div id="feel4posChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">🔴 Challenging Feelings <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q4</span></div>
+            <div id="feel4negChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="carousel-dots"></div>
+            <span class="carousel-counter">1 / 2</span>
+          </div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSITION -->
+    <div class="panel" id="p-transition">
+      <div class="section-header"><span class="section-icon">🧭</span><span class="section-title">Ease of Transition</span></div>
+      <div class="carousel-wrap animate-in">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">🧭 Transition Score Distribution <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q6 · emoji scale (1–5)</span></div>
+            <div class="dist" id="transitionDist"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">⚠️ Onboarding Challenges <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q7 · multi-select</span></div>
+            <div id="onboardingBadChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="carousel-dots"></div>
+            <span class="carousel-counter">1 / 2</span>
+          </div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTSTEPS -->
+    <div class="panel" id="p-footsteps">
+      <div class="section-header"><span class="section-icon">👣</span><span class="section-title">Footsteps — Pre-Arrival Module</span></div>
+      <div class="card"><div class="ct">📋 Footsteps Helpfulness Matrix <span class="ct-sub">Q8 · Yes / Somewhat / No</span></div><div style="overflow-x:auto"><table class="mtable" id="footstepsMat"></table></div></div>
+      <div class="g2">
+        <div class="card"><div class="ct">🎬 Favourite Footsteps Content <span class="ct-sub">Q9 · multi-select</span></div><div id="footstepsContentChart"></div></div>
+        <div class="card"><div class="ct">📺 Would Binge Season 2? <span class="ct-sub">Q10</span></div><div id="bingeChart"></div></div>
+      </div>
+    </div>
+
+    <!-- ORIENTATION -->
+    <div class="panel" id="p-orientation">
+      <div class="section-header"><span class="section-icon">🎯</span><span class="section-title">Orientation Experience</span></div>
+      <div class="g2">
+        <div class="card"><div class="ct">💥 High-Impact Sessions <span class="ct-sub">Q11</span></div><div id="impactChart"></div></div>
+        <div class="card"><div class="ct">🔧 Sessions Needing Work <span class="ct-sub">Q12</span></div><div id="improveChart"></div></div>
+      </div>
+      <div class="card"><div class="ct">📋 Orientation Impact Matrix <span class="ct-sub">Q13</span></div><div style="overflow-x:auto"><table class="mtable" id="orientMat"></table></div></div>
+      <div class="g2">
+        <div class="card"><div class="ct">🤝 Hands-on Activity Rating <span class="ct-sub">Q14</span></div><div class="dist" id="handsOnDist"></div></div>
+        <div class="card"><div class="ct">⚡ Session Engagement <span class="ct-sub">Q15</span></div><div id="engageChart"></div></div>
+      </div>
+    </div>
+
+    <!-- BRIDGE COURSE -->
+    <div class="panel" id="p-bridge">
+      <div class="section-header"><span class="section-icon">🌉</span><span class="section-title">Bridge Course — Academic Preparedness</span></div>
+      <div class="card"><div class="ct">📈 Bridge Confidence Score Distribution <span class="ct-sub">Q16 · 1–5</span></div><div class="dist" id="bridgeDist"></div></div>
+      <div class="g2">
+        <div class="card"><div class="ct">📚 Areas That Helped Most <span class="ct-sub">Q17</span></div><div id="bridgeAreasChart"></div></div>
+        <div class="card"><div class="ct">✅ Ready for Regular Classes? <span class="ct-sub">Q18</span></div><div id="readyChart"></div></div>
+      </div>
+      <div class="card"><div class="ct">🏆 Most Helpful Orientation Aspects <span class="ct-sub">Q19</span></div><div id="helpfulAspectsChart"></div></div>
+    </div>
+
+    <!-- NEP & DIGITAL -->
+    <div class="panel" id="p-nep">
+      <div class="section-header"><span class="section-icon">📜</span><span class="section-title">NEP 2020 Awareness</span></div>
+      <div class="g2">
+        <div class="card"><div class="ct">📜 NEP 2020 Awareness Before <span class="ct-sub">Q20</span></div><div id="nepBeforeChart"></div></div>
+        <div class="card"><div class="ct">✨ NEP Clarity After Deeksharambh <span class="ct-sub">Q21</span></div><div id="nepAfterChart"></div></div>
+      </div>
+    </div>
+
+    <!-- GEN Z -->
+    <div class="panel" id="p-genz">
+      <div class="section-header"><span class="section-icon">💬</span><span class="section-title">The Real Gen Z Section</span></div>
+
+      <div class="carousel-wrap animate-in">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">📌 Expectation Before Joining <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q23a</span></div>
+            <div id="expBeforeChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">🔄 Expectation After Deeksharambh <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q23b</span></div>
+            <div id="expAfterChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px"><div class="carousel-dots"></div><span class="carousel-counter">1 / 2</span></div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+
+      <div class="carousel-wrap animate-in animate-delay-1">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">🎬 Movie Genre Vibes <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q24</span></div>
+            <div id="genreChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">🎢 First Week Experience <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q25</span></div>
+            <div id="weekChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px"><div class="carousel-dots"></div><span class="carousel-counter">1 / 2</span></div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+
+      <div class="carousel-wrap animate-in animate-delay-2">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">😮 Biggest Surprise <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q26</span></div>
+            <div id="surpriseChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">😊 What Made Them Smile <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q27</span></div>
+            <div id="smileChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">😰 Biggest Stress Points <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q28</span></div>
+            <div id="stressChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px"><div class="carousel-dots"></div><span class="carousel-counter">1 / 3</span></div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BELONGING -->
+    <div class="panel" id="p-belonging">
+      <div class="section-header"><span class="section-icon">❤️</span><span class="section-title">Belonging & Academic Expectations</span></div>
+      <div class="g2">
+        <div class="card"><div class="ct">❤️ Belonging Score Distribution <span class="ct-sub">Q29 · 1–10</span></div><div class="dist" id="belongDist"></div></div>
+        <div class="card"><div class="ct">🚀 Success Confidence Distribution <span class="ct-sub">Q32 · 1–10</span></div><div class="dist" id="successDist"></div></div>
+      </div>
+      <div class="g2">
+        <div class="card"><div class="ct">👫 Friends Made So Far <span class="ct-sub">Q30</span></div><div id="friendsChart"></div></div>
+        <div class="card"><div class="ct">🆘 Knows Who to Contact for Help <span class="ct-sub">Q31</span></div><div id="helpChart"></div></div>
+      </div>
+      <div class="card"><div class="ct">🎯 Academic Journey Expectations <span class="ct-sub">Q33 · multi-select</span></div><div id="expectationsChart"></div></div>
+    </div>
+
+    <!-- NPS & SCORE -->
+    <div class="panel" id="p-nps">
+      <div class="section-header"><span class="section-icon">📈</span><span class="section-title">NPS & Overall Score</span></div>
+      <div class="card animate-in">
+        <div class="ct">📊 Net Promoter Score</div>
+        <div class="nps-buckets" id="npsBuckets"></div>
+        <div class="nps-big" id="npsScoreBig"></div>
+        <div class="dist" id="npsDist"></div>
+      </div>
+
+      <div class="carousel-wrap animate-in animate-delay-1">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">⭐ Overall Experience Rating <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q35</span></div>
+            <div id="overallDist"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">💬 Final Feelings <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q40 · highs + lows</span></div>
+            <div id="finalFeelingChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px"><div class="carousel-dots"></div><span class="carousel-counter">1 / 2</span></div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+
+      <div class="carousel-wrap animate-in animate-delay-2">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">👍 NPS Positive Reasons <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q36 positives</span></div>
+            <div id="npsReasonPosChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">👎 NPS Critical Reasons <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q36 negatives</span></div>
+            <div id="npsReasonNegChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px"><div class="carousel-dots"></div><span class="carousel-counter">1 / 2</span></div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+
+      <div class="carousel-wrap animate-in animate-delay-3">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">👍 Keep Doing <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q37</span></div>
+            <div id="keepChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">🚫 Stop Doing <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q38</span></div>
+            <div id="stopChart"></div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-slide-title">✨ Introduce Next Year <span style="font-size:10px;font-weight:400;color:var(--muted);margin-left:auto">Q39</span></div>
+            <div id="addChart"></div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" data-dir="-1">← Prev</button>
+          <div style="display:flex;align-items:center;gap:10px"><div class="carousel-dots"></div><span class="carousel-counter">1 / 3</span></div>
+          <button class="carousel-btn" data-dir="1">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BY SCHOOL -->
+    <div class="panel" id="p-schools">
+      <div class="section-header"><span class="section-icon">🏫</span><span class="section-title">By School</span></div>
+      <div class="card"><div class="ct">🏫 Responses by School</div><div class="school-grid" id="schoolBreakdown"></div></div>
+      <div class="g2">
+        <div class="card"><div class="ct">🌡️ Avg Vibe Score by School <span class="ct-sub">out of 10</span></div><div id="schoolVibeChart"></div></div>
+        <div class="card"><div class="ct">❤️ Avg Belonging by School <span class="ct-sub">out of 10</span></div><div id="schoolBelongChart"></div></div>
+      </div>
+      <div class="g2">
+        <div class="card"><div class="ct">🧭 Avg Transition Ease by School <span class="ct-sub">Q6 · out of 5</span></div><div id="schoolTransChart"></div></div>
+        <div class="card"><div class="ct">📈 NPS by School</div><div id="schoolNPSChart"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /dashContent -->
+</div><!-- /main -->
+
+<script>
+const COLORS=["#0d2147","#1D9E75","#D85A30","#BA7517","#534AB7","#e6b324","#0F6E56","#993C1D","#854F0B","#3C3489","#1a3a7a","#2d6a4f"];
+let ALL=[],FILTERED=[];
+
+/* ── Utilities ── */
+function cnt(arr,key){
+  const m={};
+  arr.forEach(r=>{
+    const v=r[key];
+    if(Array.isArray(v))v.forEach(x=>{if(x)m[x]=(m[x]||0)+1;});
+    else if(v!=null&&v!=="")m[String(v)]=(m[String(v)]||0)+1;
+  });
+  return m;
+}
+// Count only items that contain a filter string (for split tone fields)
+function cntFilter(arr,key,filterFn){
+  const m={};
+  arr.forEach(r=>{
+    const v=r[key];
+    if(Array.isArray(v))v.filter(filterFn).forEach(x=>{if(x)m[x]=(m[x]||0)+1;});
+  });
+  return m;
+}
+function avg(arr,key){
+  const vs=arr.map(r=>parseFloat(r[key])).filter(x=>!isNaN(x));
+  return vs.length?vs.reduce((a,b)=>a+b)/vs.length:0;
+}
+function pct(n,d){return d?Math.round(n/d*100):0;}
+function topN(obj,n=10){return Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n);}
+
+/* ── Emoji value → numeric map for emoji scales ── */
+const EMOJI_TO_NUM={
+  "Very hard":1,"Tough":2,"Okay":3,"Smooth":4,"Super easy":5,
+  "All sitting, no doing":1,"Mostly passive":2,"Some activities":3,"Quite hands-on":4,"Fully interactive!":5,
+  "Sleep Mode":1,"Interesting":3,"Super Engaging":4,"Couldn't Stop":5,
+  "No idea":1,"Heard of it":2,"Basic idea":3,"I knew well":4,
+  "Not great":1,"Could be better":2,"It was okay":3,"Pretty good!":4,"Absolutely loved it":5,
+  "A rollercoaster":3,"A blur":2,"A celebration":5,"Study mode":3,"Fresh start":4,"Survive mode":2,
+};
+function emojiAvg(arr,key){
+  const vs=arr.map(r=>EMOJI_TO_NUM[r[key]]).filter(x=>x!==undefined);
+  return vs.length?vs.reduce((a,b)=>a+b)/vs.length:0;
+}
+
+/* ── Bar chart ── */
+function barChart(cid,entries,total,ci=0){
+  const c=document.getElementById(cid);if(!c)return;
+  if(!entries||!entries.length){c.innerHTML='<div class="empty"><div class="empty-em">📭</div><div class="empty-sub">No data yet</div></div>';return;}
+  c.innerHTML=entries.map(([lb,n],i)=>`
+    <div class="bar-row">
+      <div class="bar-label" title="${lb}">${lb}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct(n,total)}%;background:${COLORS[(i+ci)%COLORS.length]}">${pct(n,total)>15?pct(n,total)+"%":""}</div></div>
+      <div class="bar-num">${n}</div>
+      <div class="bar-pct">${pct(n,total)}%</div>
+    </div>`).join("");
+}
+
+/* ── Distribution chart ── */
+function distChart(cid,arr,key,mn,mx,color="#0d2147",emojiMode=false){
+  const c=document.getElementById(cid);if(!c)return;
+  const d={};for(let i=mn;i<=mx;i++)d[i]=0;
+  arr.forEach(r=>{
+    let v;
+    if(emojiMode){v=EMOJI_TO_NUM[r[key]];}else{v=parseInt(r[key]);}
+    if(!isNaN(v)&&d[v]!==undefined)d[v]++;
+  });
+  const mx2=Math.max(...Object.values(d),1);
+  c.innerHTML=Object.entries(d).map(([k,v])=>`
+    <div class="dc">
+      <div class="dw"><div class="df" style="height:${Math.round(v/mx2*100)}%;background:${color}"></div></div>
+      <div class="dn">${v}</div><div class="dl">${k}</div>
+    </div>`).join("");
+}
+
+/* ── Matrix chart ── */
+function matChart(tid,matKey,rows,cols,arr){
+  const t=document.getElementById(tid);if(!t)return;
+  const tots={},cts={};
+  rows.forEach(r=>{tots[r]=0;cts[r]={};cols.forEach(c=>{cts[r][c]=0;});});
+  arr.forEach(resp=>{
+    const m=resp[matKey]||{};
+    Object.entries(m).forEach(([row,col])=>{
+      const rowKey=rows.find(r=>r===row||r.includes(row.replace(/^[\u{1F000}-\u{1FFFF}\u{2600}-\u{27FF}]\s*/u,"")))||row;
+      const colKey=cols.find(c=>c===col||c.includes(col)||col.includes(c));
+      if(cts[rowKey]&&colKey&&cts[rowKey][colKey]!==undefined){cts[rowKey][colKey]++;tots[rowKey]++;}
+    });
+  });
+  let h=`<tr><th>Area</th>${cols.map(c=>`<th>${c}</th>`).join("")}</tr>`;
+  rows.forEach(row=>{
+    const tot=tots[row]||1;
+    h+=`<tr><td>${row}</td>${cols.map(col=>{
+      const p=pct(cts[row][col],tot);
+      const cls=p>=60?"phi":p>=30?"pmi":"plo";
+      return`<td class="${cls}">${p}%<br><span style="font-size:9px;color:var(--muted)">${cts[row][col]}</span></td>`;
+    }).join("")}</tr>`;
+  });
+  t.innerHTML=h;
+}
+
+/* ── NPS ── */
+function renderNPS(arr){
+  const scores=arr.map(r=>parseInt(r.q34)).filter(x=>!isNaN(x)&&x>=0&&x<=10);
+  const n=scores.length;
+  if(!n){document.getElementById("npsBuckets").innerHTML='<div class="empty" style="grid-column:1/-1">No NPS data yet</div>';document.getElementById("npsScoreBig").innerHTML="";return;}
+  const prom=scores.filter(x=>x>=9).length;
+  const pass=scores.filter(x=>x>=7&&x<9).length;
+  const detr=scores.filter(x=>x<7).length;
+  const npsScore=Math.round(pct(prom,n)-pct(detr,n));
+  document.getElementById("npsBuckets").innerHTML=`
+    <div class="nb np"><div class="nbl">Promoters (9–10)</div><div class="nbv">${pct(prom,n)}%</div><div class="nbs">${prom} students</div></div>
+    <div class="nb na"><div class="nbl">Passives (7–8)</div><div class="nbv">${pct(pass,n)}%</div><div class="nbs">${pass} students</div></div>
+    <div class="nb nd"><div class="nbl">Detractors (0–6)</div><div class="nbv">${pct(detr,n)}%</div><div class="nbs">${detr} students</div></div>`;
+  const col=npsScore>=50?"#1D9E75":npsScore>=20?"#BA7517":"#D85A30";
+  document.getElementById("npsScoreBig").innerHTML=`
+    <div class="nsv" style="color:${col}">${npsScore>0?"+":""}${npsScore}</div>
+    <div class="nsl">Net Promoter Score · ${n} responses</div>`;
+  distChart("npsDist",arr,"q34",0,10,"#0d2147");
+}
+
+/* ── Vibe tone helper ── */
+function vibeTone(r){
+  const POS_WORDS=["🔥 Inspiring","🚀 Exciting","😊 Welcoming","💡 Eye-opening","❤️ Memorable","🎯 Productive","🤝 Community-driven","⚡ Energising","🧠 Thought-provoking"];
+  const NEG_WORDS=["😵 Overwhelming","😐 Average","😴 Boring","😬 Stressful","😶 Disconnected","⏳ Too rushed"];
+  const q1=r.q1||[];
+  const hasPOS=q1.some(w=>POS_WORDS.includes(w));
+  const hasNEG=q1.some(w=>NEG_WORDS.includes(w));
+  if(hasPOS&&!hasNEG)return"pos";
+  if(hasNEG&&!hasPOS)return"neg";
+  if(hasPOS&&hasNEG)return"mix";
+  return null;
+}
+
+/* ── KPIs ── */
+function renderKPIs(arr){
+  const n=arr.length;
+  const avgVibe=avg(arr,"q2").toFixed(1);
+  const avgBelong=avg(arr,"q29").toFixed(1);
+  const avgTrans=emojiAvg(arr,"q6").toFixed(1);
+  const avgBridge=avg(arr,"q16").toFixed(1);
+  const avgSuccess=avg(arr,"q32").toFixed(1);
+  const npsScores=arr.map(r=>parseInt(r.q34)).filter(x=>!isNaN(x));
+  const nl=npsScores.length||1;
+  const nps=Math.round(pct(npsScores.filter(x=>x>=9).length,nl)-pct(npsScores.filter(x=>x<7).length,nl));
+  document.getElementById("respCount").textContent=n.toLocaleString();
+  document.getElementById("ov-count").textContent=`${n} total`;
+  document.getElementById("kpiStrip").innerHTML=`
+    <div class="kpi navy animate-in" onclick="showStudentList()" style="cursor:pointer" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'">
+      <div class="kl">Total Responses</div><div class="kv kpi-val-anim" data-target="${n}">${n}</div><div class="ks">Students participated 👥</div>
+    </div>
+    <div class="kpi ${+avgVibe>=7?"green":+avgVibe>=5?"amber":"red"} animate-in animate-delay-1"><div class="kl">Avg Vibe Score</div><div class="kv kpi-val-anim" data-target="${avgVibe}" data-float="1">${avgVibe}</div><div class="ks">Out of 10 (Q2)</div></div>
+    <div class="kpi ${+avgBelong>=7?"green":+avgBelong>=5?"amber":"red"} animate-in animate-delay-2"><div class="kl">Avg Belonging</div><div class="kv kpi-val-anim" data-target="${avgBelong}" data-float="1">${avgBelong}</div><div class="ks">Out of 10 (Q29)</div></div>
+    <div class="kpi ${nps>=30?"green":nps>=0?"amber":"red"} animate-in animate-delay-2"><div class="kl">NPS Score</div><div class="kv kpi-val-anim" data-target="${nps}">${nps>0?"+":""}${nps}</div><div class="ks">Net Promoter Score</div></div>
+    <div class="kpi ${+avgTrans>=4?"green":+avgTrans>=3?"amber":"red"} animate-in animate-delay-3"><div class="kl">Transition Ease</div><div class="kv kpi-val-anim" data-target="${avgTrans}" data-float="1">${avgTrans}</div><div class="ks">Out of 5 (Q6)</div></div>
+    <div class="kpi ${+avgBridge>=4?"green":+avgBridge>=3?"amber":"red"} animate-in animate-delay-4"><div class="kl">Bridge Confidence</div><div class="kv kpi-val-anim" data-target="${avgBridge}" data-float="1">${avgBridge}</div><div class="ks">Out of 5 (Q16)</div></div>
+    <div class="kpi ${+avgSuccess>=7?"green":+avgSuccess>=5?"amber":"red"} animate-in animate-delay-4"><div class="kl">Success Confidence</div><div class="kv kpi-val-anim" data-target="${avgSuccess}" data-float="1">${avgSuccess}</div><div class="ks">Out of 10 (Q32)</div></div>`;
+  setTimeout(animateKPIs, 50);
+}
+}
+
+/* ── Render all charts ── */
+function renderAll(arr){
+  const n=arr.length;
+  if(!n){
+    document.getElementById("loadingState").innerHTML=`<div class="empty"><div class="empty-em">📭</div><div class="empty-title">No responses yet</div><div class="empty-sub">Share the student survey to start collecting.</div></div>`;
+    document.getElementById("loadingState").style.display="block";
+    document.getElementById("dashContent").style.display="none";
+    return;
+  }
+  document.getElementById("loadingState").style.display="none";
+  document.getElementById("dashContent").style.display="block";
+  renderKPIs(arr);
+
+  // Student list
+  document.getElementById("student-count").textContent=`${n} students`;
+  const master=document.getElementById("selectAllCheckbox");if(master)master.checked=false;
+  document.getElementById("selectedCountLabel").textContent="0 selected";
+  document.getElementById("deleteSelectedBtn").style.display="none";
+
+  const NEG_WORDS_SET=new Set(["😵 Overwhelming","😐 Average","😴 Boring","😬 Stressful","😶 Disconnected","⏳ Too rushed"]);
+  const POS_WORDS_SET=new Set(["🔥 Inspiring","🚀 Exciting","😊 Welcoming","💡 Eye-opening","❤️ Memorable","🎯 Productive","🤝 Community-driven","⚡ Energising","🧠 Thought-provoking"]);
+
+  document.getElementById("studentTableBody").innerHTML=arr.map((r,idx)=>{
+    const tone=vibeTone(r);
+    const toneBadge=tone==="pos"?'<span class="tone-badge tone-pos">Positive</span>':
+                    tone==="neg"?'<span class="tone-badge tone-neg">Critical</span>':
+                    tone==="mix"?'<span class="tone-badge tone-mix">Mixed</span>':"—";
+    // Transition ease lives in q5. After server normalisation it is numeric
+    // (1-5); raw client data may still be the emoji label — handle both.
+    let transVal = "—";
+    if(r.q5!=null && r.q5!=="" && !isNaN(parseInt(r.q5)))      transVal = parseInt(r.q5);
+    else if(EMOJI_TO_NUM[r.q5_label]!=null)                    transVal = EMOJI_TO_NUM[r.q5_label];
+    else if(EMOJI_TO_NUM[r.q5]!=null)                          transVal = EMOJI_TO_NUM[r.q5];
+    return`<tr>
+      <td><input type="checkbox" class="student-select" value="${r.id}" onchange="updateSelectState()" style="cursor:pointer;transform:scale(1.15)"></td>
+      <td style="color:var(--muted);font-weight:600">${idx+1}</td>
+      <td style="font-weight:600;color:var(--navy);font-size:11px">${r.school||"—"}</td>
+      <td style="font-size:11px">${r.program||"—"}</td>
+      <td style="color:var(--muted);font-size:11px">${r.ugpg||"—"}</td>
+      <td style="text-align:center;font-weight:700;color:var(--c2)">${r.q2!=null?r.q2+"/10":"—"}</td>
+      <td style="text-align:center;font-weight:700;color:var(--amber)">${transVal!=="—"?transVal+"/5":"—"}</td>
+      <td style="text-align:center;font-weight:700;color:var(--c3)">${r.q29!=null?r.q29+"/10":"—"}</td>
+      <td style="text-align:center;font-weight:700;color:var(--navy-m)">${r.q34!=null?r.q34+"/10":"—"}</td>
+      <td>${toneBadge}</td>
+      <td style="font-size:11px;font-weight:500">${r.q41||"—"}</td>
+    </tr>`;
+  }).join("")||`<tr><td colspan="11" style="text-align:center;padding:2rem;color:var(--muted)">No records found</td></tr>`;
+
+  // ── Overview ──
+  barChart("vibeChart",topN(cnt(arr,"q1")),n);
+  barChart("feelChart",topN(cnt(arr,"q4")),n,2);
+  distChart("vibeDist",arr,"q2",1,10,"#0d2147");
+  barChart("welcomedChart",topN(cnt(arr,"q3")),n,1);
+  barChart("avatarChart",topN(cnt(arr,"q41")),n,3);
+  barChart("ugpgChart",topN(cnt(arr,"ugpg")),n);
+  barChart("topSchoolChart",topN(cnt(arr,"school"),6),n,2);
+
+  // ── Vibe Check Detail ──
+  // Q1 split: positive words vs negative words
+  const POS_VIBES=["🔥 Inspiring","🚀 Exciting","😊 Welcoming","💡 Eye-opening","❤️ Memorable","🎯 Productive","🤝 Community-driven","⚡ Energising","🧠 Thought-provoking"];
+  const NEG_VIBES=["😵 Overwhelming","😐 Average","😴 Boring","😬 Stressful","😶 Disconnected","⏳ Too rushed"];
+  const POS_FEELS=["😎 Confident","🤔 Curious","💪 Motivated","✨ Inspired","🤝 Connected","🎉 Excited","😊 Happy","🎯 Focused"];
+  const NEG_FEELS=["😬 Nervous","😕 Lost","😵 Overwhelmed","😰 Anxious","😶 Confused","😤 Frustrated"];
+  barChart("vibeHiChart",topN(cntFilter(arr,"q1",x=>POS_VIBES.includes(x))),n);
+  barChart("vibeLoChart",topN(cntFilter(arr,"q1",x=>NEG_VIBES.includes(x))),n,4);
+  barChart("sparkChart",topN(cnt(arr,"q5a")),n);
+  barChart("missChart",topN(cnt(arr,"q5b")),n,3);
+  barChart("feel4posChart",topN(cntFilter(arr,"q4",x=>POS_FEELS.includes(x))),n,1);
+  barChart("feel4negChart",topN(cntFilter(arr,"q4",x=>NEG_FEELS.includes(x))),n,4);
+
+  // ── Transition — q6 is emoji scale, store as text label ──
+  distChart("transitionDist",arr,"q6",1,5,"#1D9E75",true);
+  barChart("onboardingBadChart",topN(cnt(arr,"q7")),n,4);
+
+  // ── Footsteps ──
+  matChart("footstepsMat","q8",["🏛️ University overview","🏫 My School & Department","📋 My Programme structure","📚 Academic expectations","🎉 Student life & clubs"],["✅ Yes","🤔 Somewhat","❌ No"],arr);
+  barChart("footstepsContentChart",topN(cnt(arr,"q9")),n);
+  barChart("bingeChart",topN(cnt(arr,"q10")),n,2);
+
+  // ── Orientation ──
+  barChart("impactChart",topN(cnt(arr,"q11")),n);
+  barChart("improveChart",topN(cnt(arr,"q12")),n,2);
+  matChart("orientMat","q13",["🏛️ University culture","📚 Academic preparedness","🆘 Support systems","🤝 Building community","✅ Ready for classes"],["💯 Strongly Agree","👍 Agree","😐 Neutral","👎 Disagree"],arr);
+  distChart("handsOnDist",arr,"q14",1,5,"#BA7517",true);
+  barChart("engageChart",topN(cnt(arr,"q15")),n,1);
+
+  // ── Bridge ──
+  distChart("bridgeDist",arr,"q16",1,5,"#1D9E75");
+  barChart("bridgeAreasChart",topN(cnt(arr,"q17")),n,3);
+  barChart("readyChart",topN(cnt(arr,"q18")),n,1);
+  barChart("helpfulAspectsChart",topN(cnt(arr,"q19")),n,2);
+
+  // ── NEP ──
+  barChart("nepBeforeChart",topN(cnt(arr,"q20")),n);
+  barChart("nepAfterChart",topN(cnt(arr,"q21")),n,1);
+
+  // ── Gen Z ──
+  barChart("expBeforeChart",topN(cnt(arr,"q23a")),n);
+  barChart("expAfterChart",topN(cnt(arr,"q23b")),n,2);
+  barChart("genreChart",topN(cnt(arr,"q24")),n,1);
+  barChart("weekChart",topN(cnt(arr,"q25")),n,3);
+  barChart("surpriseChart",topN(cnt(arr,"q26")),n);
+  barChart("smileChart",topN(cnt(arr,"q27")),n,2);
+  barChart("stressChart",topN(cnt(arr,"q28")),n,4);
+
+  // ── Belonging ──
+  distChart("belongDist",arr,"q29",1,10,"#D85A30");
+  distChart("successDist",arr,"q32",1,10,"#1D9E75");
+  barChart("friendsChart",topN(cnt(arr,"q30")),n,1);
+  barChart("helpChart",topN(cnt(arr,"q31")),n,2);
+  barChart("expectationsChart",topN(cnt(arr,"q33")),n);
+
+  // ── NPS & Score ──
+  renderNPS(arr);
+  // Q35 emoji scale
+  distChart("overallDist",arr,"q35",1,5,"#e6b324",true);
+
+  // Q40 split into pos/neg
+  const POS_FINALS=["🚀 Excited & ready to begin","💪 Motivated to excel here","😎 Confident & positive","❤️ Happy & glad to be here"];
+  const NEG_FINALS=["🌱 Still settling in gradually","😅 Slightly overwhelmed but okay","🤔 Curious but unsure","😐 Underwhelmed honestly"];
+  const finalAll={...Object.fromEntries(topN(cntFilter(arr,"q40",x=>POS_FINALS.includes(x)),4)),...Object.fromEntries(topN(cntFilter(arr,"q40",x=>NEG_FINALS.includes(x)),4))};
+  barChart("finalFeelingChart",topN(finalAll),n,2);
+
+  // Q36 split into pos/neg reasons
+  const POS_NPS_REASONS=["🌟 Great overall experience","👩‍🏫 Faculty impressed me","🏫 Campus is outstanding","🤗 Felt very welcomed & included","🏆 Strong academic reputation","💼 Good career support visible"];
+  const NEG_NPS_REASONS=["📋 Programme needs more clarity","🔧 Needs operational improvements","😐 Sessions were not engaging enough","📅 Poor scheduling & time management","🔁 Too much repetition in content"];
+  barChart("npsReasonPosChart",topN(cntFilter(arr,"q36",x=>POS_NPS_REASONS.includes(x))),n);
+  barChart("npsReasonNegChart",topN(cntFilter(arr,"q36",x=>NEG_NPS_REASONS.includes(x))),n,4);
+
+  barChart("keepChart",topN(cnt(arr,"q37")),n);
+  barChart("stopChart",topN(cnt(arr,"q38")),n,4);
+  barChart("addChart",topN(cnt(arr,"q39")),n,2);
+
+  // ── By School ──
+  const scCnt=cnt(arr,"school");
+  const schools=Object.keys(scCnt);
+  document.getElementById("schoolBreakdown").innerHTML=
+    Object.entries(scCnt).sort((a,b)=>b[1]-a[1]).map(([s,c])=>
+      `<div class="school-card"><div class="school-name">${s}</div><div class="school-count">${c}</div></div>`
+    ).join("")||'<div class="empty">No school data yet</div>';
+  const sv2=schools.map(s=>[s,+avg(arr.filter(r=>r.school===s),"q2").toFixed(1)]).sort((a,b)=>b[1]-a[1]);
+  barChart("schoolVibeChart",sv2,10);
+  const sb=schools.map(s=>[s,+avg(arr.filter(r=>r.school===s),"q29").toFixed(1)]).sort((a,b)=>b[1]-a[1]);
+  barChart("schoolBelongChart",sb,10,2);
+  const st=schools.map(s=>[s,+emojiAvg(arr.filter(r=>r.school===s),"q6").toFixed(1)]).sort((a,b)=>b[1]-a[1]);
+  barChart("schoolTransChart",st,5,1);
+  const sn=schools.map(s=>{
+    const sd=arr.filter(r=>r.school===s).map(r=>parseInt(r.q34)).filter(x=>!isNaN(x));
+    const le=sd.length||1;
+    return[s,Math.round(pct(sd.filter(x=>x>=9).length,le)-pct(sd.filter(x=>x<7).length,le))];
+  }).sort((a,b)=>b[1]-a[1]);
+  barChart("schoolNPSChart",sn,100,1);
+}
+
+/* ── Filters ── */
+function applyFilter(){
+  const school=document.getElementById("schoolFilter").value;
+  const ugpg=document.getElementById("ugpgFilter").value;
+  FILTERED=ALL.filter(r=>(school==="all"||r.school===school)&&(ugpg==="all"||(r.ugpg||"").toLowerCase().includes(ugpg.toLowerCase())));
+  renderAll(FILTERED);
+  // Init carousels after render
+  setTimeout(initCarousels, 100);
+}
+function handleSchoolChange(){applyFilter();}
+function populateFilters(){
+  const sel=document.getElementById("schoolFilter");
+  const cur=sel.value;
+  sel.innerHTML="<option value='all'>All Schools</option>";
+  [...new Set(ALL.map(r=>r.school).filter(Boolean))].sort().forEach(s=>{
+    const o=document.createElement("option");o.value=s;o.textContent=s;sel.appendChild(o);
+  });
+  sel.value=cur;
+}
+
+/* ── Load data ── */
+async function loadData(){
+  document.getElementById("loadingState").innerHTML='<div class="spin"></div><div style="margin-top:8px;font-size:14px">Loading from database…</div>';
+  document.getElementById("loadingState").style.display="block";
+  document.getElementById("dashContent").style.display="none";
+  try{
+    const school=document.getElementById("schoolFilter").value||"all";
+    const ugpg=document.getElementById("ugpgFilter").value||"all";
+    const res=await fetch(`/admin/api/stats?school=${encodeURIComponent(school)}&ugpg=${encodeURIComponent(ugpg)}`);
+    const json=await res.json();
+    if(!json.ok)throw new Error(json.error||"Server error");
+    ALL=json.data;populateFilters();applyFilter();
+  }catch(e){
+    document.getElementById("loadingState").innerHTML=`<div class="empty"><div class="empty-em">⚠️</div><div class="empty-title">Failed to load data</div><div class="empty-sub">${e.message}<br><br><button class="btn btn-outline" onclick="loadData()" style="color:var(--navy);background:var(--card);border-color:var(--border)">↺ Retry</button></div></div>`;
+  }
+}
+
+/* ── Excel export ── */
+function exportExcel(){
+  const school=document.getElementById("schoolFilter").value||"all";
+  const ugpg=document.getElementById("ugpgFilter").value||"all";
+  window.location.href=`/admin/api/export?school=${encodeURIComponent(school)}&ugpg=${encodeURIComponent(ugpg)}`;
+}
+
+/* ── Tab switch ── */
+function showPanel(id,btn){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("on"));
+  document.querySelectorAll(".ttab").forEach(t=>t.classList.remove("on"));
+  const panel = document.getElementById(id);
+  panel?.classList.add("on");
+  btn.classList.add("on");
+  // Animate KPI values on Overview tab
+  if(id==='p-overview') animateKPIs();
+}
+
+/* ── Carousel ── */
+function makeCarousel(wrapEl){
+  const track = wrapEl.querySelector('.carousel-track');
+  const slides = wrapEl.querySelectorAll('.carousel-slide');
+  const dotsEl = wrapEl.querySelector('.carousel-dots');
+  const prevBtn = wrapEl.querySelector('.carousel-btn[data-dir="-1"]');
+  const nextBtn = wrapEl.querySelector('.carousel-btn[data-dir="1"]');
+  const counter = wrapEl.querySelector('.carousel-counter');
+  if(!track || slides.length < 1) return;
+  let cur = 0;
+  function goto(n){
+    cur = Math.max(0, Math.min(n, slides.length - 1));
+    track.style.transform = `translateX(-${cur * 100}%)`;
+    dotsEl?.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+    if(prevBtn) prevBtn.disabled = cur === 0;
+    if(nextBtn) nextBtn.disabled = cur === slides.length - 1;
+    if(counter) counter.textContent = `${cur+1} / ${slides.length}`;
+  }
+  // Build dots
+  if(dotsEl){
+    slides.forEach((_,i) => {
+      const d = document.createElement('span');
+      d.className = 'carousel-dot' + (i===0?' active':'');
+      d.onclick = () => goto(i);
+      dotsEl.appendChild(d);
+    });
+  }
+  if(prevBtn) prevBtn.onclick = () => goto(cur-1);
+  if(nextBtn) nextBtn.onclick = () => goto(cur+1);
+  goto(0);
+}
+function initCarousels(){
+  document.querySelectorAll('.carousel-wrap').forEach(makeCarousel);
+}
+
+/* ── KPI count-up animation ── */
+function animateKPIs(){
+  document.querySelectorAll('.kv[data-target]').forEach(el => {
+    const target = parseFloat(el.dataset.target);
+    const isFloat = el.dataset.float === '1';
+    const suffix = el.dataset.suffix || '';
+    let start = 0; const dur = 800; const startTime = performance.now();
+    function tick(now){
+      const p = Math.min((now - startTime) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      const val = start + (target - start) * ease;
+      el.textContent = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+function showStudentList(){
+  const btn=document.getElementById("tab-responses");
+  if(btn)showPanel("p-responses",btn);
+}
+
+/* ── Checkbox / Delete logic ── */
+function toggleSelectAll(master){
+  document.querySelectorAll(".student-select").forEach(cb=>cb.checked=master.checked);
+  updateSelectState();
+}
+function updateSelectState(){
+  const cbs=document.querySelectorAll(".student-select");
+  const checked=Array.from(cbs).filter(cb=>cb.checked).length;
+  document.getElementById("selectedCountLabel").textContent=`${checked} selected`;
+  document.getElementById("deleteSelectedBtn").style.display=checked>0?"inline-flex":"none";
+  const master=document.getElementById("selectAllCheckbox");
+  if(master)master.checked=cbs.length>0&&checked===cbs.length;
+}
+async function deleteSelected(){
+  const ids=Array.from(document.querySelectorAll(".student-select:checked")).map(cb=>cb.value);
+  if(!ids.length)return;
+  if(!confirm(`Delete ${ids.length} selected response(s)? This cannot be undone.`))return;
+  const res=await fetch("/admin/api/delete_selected",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ids})});
+  const json=await res.json();
+  if(json.ok){await loadData();alert(`Deleted ${json.deleted_count} response(s).`);}
+  else alert("Error: "+(json.error||"Failed"));
+}
+async function deleteAllResponses(){
+  if(!confirm("⚠️ Delete ALL responses? This will clear the entire database and cannot be undone!"))return;
+  if(!confirm("FINAL CONFIRMATION: Permanently erase everything?"))return;
+  const res=await fetch("/admin/api/delete_all",{method:"POST"});
+  const json=await res.json();
+  if(json.ok){await loadData();alert(`Deleted all ${json.deleted_count} response(s).`);}
+  else alert("Error: "+(json.error||"Failed"));
+}
+
+setInterval(loadData,90000);
+loadData();
+</script>
+</body>
+</html>

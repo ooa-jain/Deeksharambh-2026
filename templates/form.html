@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Deeksharambh Story 2026 — JAIN University</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2147;--navy-deep:#0a1628;--navy-mid:#112a5e;
+  --gold:#e6b324;--gold-l:#fff8e1;--gold-d:#8a6000;--gold-m:#f5d76e;
+  --c2:#e6b324;--c2l:#fff8e1;--c2d:#8a6000;
+  --bg:#f7f6ff;--card:#fff;--text:#1a1a2e;--muted:#64637a;
+  --border:rgba(13,33,71,0.12);--radius:16px;
+  --shadow:0 2px 16px rgba(13,33,71,0.07);
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#111827;--card:#1e2435;--text:#e8e7f8;--muted:#9997b8;--border:rgba(255,255,255,0.1)}
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;background:#fff;color:var(--text);min-height:100vh;padding:0 0 4rem 0;padding-top:70px;background-image:linear-gradient(rgba(13,33,71,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(13,33,71,0.05) 1px,transparent 1px);background-size:32px 32px}
+.wrap{width:100%;max-width:min(95%,760px);margin:0 auto;padding:1.25rem 1rem;box-sizing:border-box}
+@media(min-width:600px){.wrap{max-width:min(92%,820px);padding:1.4rem 1.25rem}}
+@media(min-width:900px){.wrap{max-width:min(90%,980px);padding:1.6rem 1.5rem}}
+@media(min-width:1200px){.wrap{max-width:min(88%,1100px);padding:1.75rem 2rem}}
+@media(min-width:1600px){.wrap{max-width:min(85%,1200px);padding:2rem 2.5rem}}
+
+/* 2-column layout: only on wide screens (desktop). Phones/tablets stay single column. */
+@media(min-width:1200px){
+  .section.active.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;align-items:start}
+  .section.active.cols-2 > .sec-eye,
+  .section.active.cols-2 > .sec-title,
+  .section.active.cols-2 > .sec-sub,
+  .section.active.cols-2 > .sec-head,
+  .section.active.cols-2 > .nav{grid-column:1/-1}
+  .section.active.cols-2 > .sec-sub{margin-bottom:0}
+  .section.active.cols-2 .q{margin-bottom:0}
+  .section.active.cols-2 .q.full-col{grid-column:1/-1}
+}
+
+/* ── FIXED NAVBAR ── */
+.navbar-fixed{
+  position:fixed;top:0;left:0;right:0;
+  background:#fff;border-bottom:1px solid #e0e0e0;
+  height:70px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;z-index:1000;box-shadow:0 2px 8px rgba(13,33,71,0.08);
+}
+.navbar-fixed .nav-left{display:flex;align-items:center;gap:20px;}
+.navbar-fixed .nav-logo{height:46px;object-fit:contain;transition:transform .35s ease,filter .35s ease;cursor:pointer}
+.navbar-fixed .nav-logo:hover{transform:scale(1.08);filter:brightness(1.1) drop-shadow(0 2px 6px rgba(13,33,71,0.25))}
+.navbar-fixed .nav-divider{width:1px;height:30px;background:#e0e0e0;}
+.navbar-fixed .nav-text{font-size:14px;font-weight:700;color:var(--navy);letter-spacing:1.2px;text-transform:uppercase;transition:color .3s ease,letter-spacing .3s ease;cursor:default}
+.navbar-fixed .nav-text:hover{color:var(--gold);letter-spacing:1.6px}
+
+/* ── VIDEO INTRO OVERLAY (fullscreen) ── */
+#videoOverlay{
+  position:fixed;inset:0;z-index:9999;
+  background:#000;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#videoOverlay video{
+  width:100%;height:100%;
+  object-fit:contain;       /* YouTube-style: show FULL video, never crop */
+  background:#000;          /* letterbox/pillarbox bars */
+  display:block;
+}
+/* Top bar inside overlay */
+#videoOverlay .vo-bar{
+  position:absolute;top:0;left:0;right:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0.75) 0%,transparent 100%);
+  padding:16px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:2;pointer-events:none;
+}
+#videoOverlay .vo-brand{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  border-radius:24px;padding:6px 16px;backdrop-filter:blur(6px);
+  pointer-events:none;
+}
+#videoOverlay .vo-brand span{color:#fff;font-size:12px;font-weight:600;letter-spacing:.5px}
+#videoOverlay .vo-live{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(13,33,71,0.6);border:1px solid rgba(230,179,36,0.3);
+  border-radius:20px;padding:5px 14px;
+  color:#f0c842;font-size:11px;font-weight:600;letter-spacing:.8px;
+  text-transform:uppercase;pointer-events:none;
+}
+#videoOverlay .vo-live-dot{
+  width:7px;height:7px;border-radius:50%;background:#4ade80;
+  animation:vdot 1.5s ease-in-out infinite;
+}
+@keyframes vdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* Bottom bar */
+#videoOverlay .vo-bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(0deg,rgba(0,0,0,0.85) 0%,transparent 100%);
+  padding:28px 24px 24px;z-index:2;
+}
+#videoOverlay .vo-caption{
+  color:rgba(255,255,255,0.8);font-size:13px;margin-bottom:12px;line-height:1.5;
+}
+#videoOverlay .vo-progress{
+  width:100%;height:3px;background:rgba(255,255,255,0.2);border-radius:2px;overflow:hidden;margin-bottom:14px;
+}
+#videoOverlay .vo-progress-fill{
+  height:100%;background:linear-gradient(90deg,#e6b324,#f5d76e);border-radius:2px;
+  width:0%;transition:width .3s linear;
+}
+#videoOverlay .vo-actions{display:flex;align-items:center;justify-content:space-between;}
+#videoOverlay .vo-skip{
+  background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);
+  color:#fff;border-radius:24px;padding:9px 22px;font-size:13px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:all .18s;backdrop-filter:blur(4px);
+  display:none;
+}
+#videoOverlay .vo-skip:hover{background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.45)}
+#videoOverlay .vo-time{color:rgba(255,255,255,0.5);font-size:12px;font-weight:500;}
+
+/* Play button overlay (autoplay blocked) */
+#videoOverlay .vo-play{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.4);cursor:pointer;z-index:3;
+}
+#videoOverlay .vo-play-btn{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(230,179,36,0.9);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 12px rgba(230,179,36,0.2),0 0 0 24px rgba(230,179,36,0.08);
+  transition:transform .2s;
+}
+#videoOverlay .vo-play:hover .vo-play-btn{transform:scale(1.08);}
+#videoOverlay .vo-unmute{display:flex;flex-direction:column;align-items:center;gap:10px}
+#videoOverlay .vo-unmute-label{color:rgba(255,255,255,0.85);font-size:12px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;text-shadow:0 1px 4px rgba(0,0,0,0.6)}
+
+/* Transition out */
+#videoOverlay.hiding{animation:vo-fade .6s ease forwards;}
+@keyframes vo-fade{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.03)}}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,#0a1628 0%,#0d2147 45%,#112a5e 100%);border-radius:24px;overflow:hidden;margin-bottom:1.75rem;box-shadow:0 12px 48px rgba(10,22,40,0.45)}
+.hero-geo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-top{background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(230,179,36,0.18);padding:13px 22px;display:none;align-items:center;justify-content:space-between;gap:10px;position:relative}
+.hero-logo-wrap{background:#fff;border-radius:10px;padding:6px 14px;display:flex;align-items:center;box-shadow:0 4px 14px rgba(0,0,0,0.25);transition:transform .35s ease,box-shadow .35s ease;cursor:pointer}
+.hero-logo-wrap:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 22px rgba(0,0,0,0.35)}
+.hero-logo{height:40px;object-fit:contain}
+.hero-pill{background:rgba(230,179,36,0.14);border:1px solid rgba(230,179,36,0.38);border-radius:20px;padding:4px 14px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:#f0c842;white-space:nowrap}
+.hero-body{padding:2rem 2rem 1.5rem;color:#fff;text-align:center;position:relative}
+.hero-arc1{position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(230,179,36,0.1)}
+.hero-arc2{position:absolute;bottom:-50px;left:-50px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(230,179,36,0.08)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(230,179,36,0.12);border:1px solid rgba(230,179,36,0.3);border-radius:20px;padding:5px 16px;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;color:#f0c842;font-weight:600}
+.hero h1{font-size:26px;font-weight:700;letter-spacing:-0.4px;line-height:1.2;margin-bottom:6px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:13px;opacity:0.75;line-height:1.7;max-width:380px;margin:0 auto}
+.anon-note{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:7px 14px;font-size:12px;opacity:0.85;color:#fff}
+.hero-prog{background:rgba(255,255,255,0.05);border-top:1px solid rgba(230,179,36,0.12);padding:11px 22px}
+.prog-bar{background:rgba(255,255,255,0.1);border-radius:10px;height:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#e6b324,#f5d76e);border-radius:10px;transition:width .45s cubic-bezier(.4,0,.2,1);width:0%}
+.prog-meta{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:rgba(255,255,255,0.55)}
+
+/* ── SECTIONS ── */
+.section{display:none;animation:up .3s ease}
+.section.active{display:block}
+.section.active.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;align-items:start}
+.section.active.cols-2 > .sec-eye,
+.section.active.cols-2 > .sec-title,
+.section.active.cols-2 > .sec-sub,
+.section.active.cols-2 > .sec-head,
+.section.active.cols-2 > .nav{grid-column:1/-1}
+.section.active.cols-2 > .sec-sub{margin-bottom:0}
+.section.active.cols-2 .q{margin-bottom:0}
+.section.active.cols-2 .q.full-col{grid-column:1/-1}
+.section.active.cols-2 .q.full-col .chips,
+.section.active.cols-2 .q.full-col textarea{font-size:14px}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sec-eye{display:inline-flex;align-items:center;background:var(--gold-l);color:var(--gold-d);border-radius:20px;padding:4px 13px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;border:1px solid rgba(230,179,36,0.25)}
+.sec-title{font-size:21px;font-weight:700;letter-spacing:-0.3px;margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:1.25rem}
+
+/* ── QUESTION BLOCKS ── */
+.q{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.2rem 1rem;margin-bottom:.9rem;box-shadow:var(--shadow)}
+.ql{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-bottom:7px;display:flex;align-items:center;gap:6px;opacity:0.6}
+.ql::after{content:"";flex:1;height:1px;background:var(--border)}
+.qt{font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px;line-height:1.5}
+.qhint{font-size:11.5px;color:var(--muted);font-weight:400;display:block;margin-top:2px}
+
+/* ── CHIPS ── */
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{display:inline-flex;align-items:center;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;cursor:pointer;transition:all .15s;color:var(--text);background:var(--bg);user-select:none;font-family:inherit}
+.chip:hover{border-color:var(--navy);background:rgba(13,33,71,0.06)}
+.chip.on{border-color:var(--navy);background:var(--navy);color:#fff;font-weight:600}
+
+/* ── AGREE ── */
+.agrees{display:flex;flex-wrap:wrap;gap:7px}
+.ag{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;cursor:pointer;transition:all .15s;color:var(--text);background:var(--bg);user-select:none}
+.ag:hover{border-color:var(--c2);background:var(--c2l)}
+.ag.on{border-color:var(--c2);background:var(--c2l);color:var(--c2d);font-weight:600}
+
+/* ── EMOJI ── */
+.emojis{display:flex;flex-wrap:wrap;gap:9px}
+.em-opt{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 10px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;transition:all .18s;min-width:80px;flex:1;max-width:130px;font-size:12px;color:var(--muted);background:var(--bg);text-align:center;user-select:none}
+.em-opt .e{font-size:26px}
+.em-opt:hover{border-color:var(--gold);transform:translateY(-2px)}
+.em-opt.on{border-color:var(--gold);background:var(--gold-l);color:var(--gold-d);font-weight:600}
+
+/* ── SLIDERS ── */
+.sl-wrap{padding:4px 0 2px}
+.sl-row{display:flex;align-items:center;gap:12px;margin-bottom:7px}
+.sl-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:5px;background:rgba(13,33,71,0.1);border-radius:3px;outline:none;cursor:pointer}
+.sl-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--navy);border:3px solid #fff;box-shadow:0 2px 8px rgba(13,33,71,0.3);cursor:pointer}
+.sl-val{font-size:24px;font-weight:700;color:var(--navy);min-width:32px;text-align:center}
+.sl-lbs{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+
+/* ── MATRIX ── */
+.mwrap{overflow-x:auto}
+.mtable{width:100%;border-collapse:collapse;font-size:13px;min-width:340px}
+.mtable th{padding:8px 5px;text-align:center;font-weight:600;color:var(--muted);font-size:11px;border-bottom:1.5px solid var(--border)}
+.mtable th:first-child{text-align:left;padding-left:0}
+.mtable td{padding:10px 5px;text-align:center;border-bottom:1px solid var(--border)}
+.mtable tr:last-child td{border-bottom:none}
+.mtable td:first-child{text-align:left;font-weight:500;padding-left:0;font-size:13px}
+.rdot{width:19px;height:19px;border-radius:50%;border:2px solid rgba(13,33,71,0.2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all .14s;background:var(--bg);margin:0 auto}
+.rdot:hover{border-color:var(--navy)}
+.rdot.on{border-color:var(--navy);background:var(--navy)}
+.rdot.on::after{content:"";width:7px;height:7px;border-radius:50%;background:#fff}
+
+/* ── RATING STARS (1-5) ── */
+.star-row{display:flex;gap:6px;flex-wrap:wrap}
+.star-btn{width:50px;height:50px;border-radius:12px;border:1.5px solid var(--border);font-size:16px;font-weight:700;cursor:pointer;transition:all .14s;background:var(--bg);color:var(--text);font-family:inherit;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px}
+.star-btn .sn{font-size:11px;font-weight:400;color:var(--muted)}
+.star-btn:hover{border-color:var(--gold);background:var(--gold-l)}
+.star-btn.on{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 3px 12px rgba(13,33,71,0.25)}
+.star-btn.on .sn{color:rgba(255,255,255,0.7)}
+.star-lbs{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px}
+
+/* ── NPS ── */
+.nps-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-bottom:6px}
+.nbt{width:46px;height:46px;border-radius:10px;border:1.5px solid var(--border);font-size:14px;font-weight:600;cursor:pointer;transition:all .14s;background:var(--bg);color:var(--text);font-family:inherit}
+.nbt:hover{border-color:var(--navy);background:rgba(13,33,71,0.06)}
+.nbt.on{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 3px 12px rgba(13,33,71,0.25)}
+.nps-lbs{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+
+/* ── AVATARS ── */
+.av-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px}
+.av-card{border:1.5px solid var(--border);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .18s;background:var(--bg);user-select:none}
+.av-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 5px 18px rgba(230,179,36,0.2)}
+.av-card.on{border-color:var(--navy);background:var(--navy)}
+.av-card .ae{font-size:30px;margin-bottom:7px}
+.av-card .at{font-size:12.5px;font-weight:600;line-height:1.3;color:var(--text)}
+.av-card.on .at{color:#fff}
+
+/* ── SELECTS ── */
+select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230d2147' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .15s}
+select:focus{border-color:var(--navy)}
+
+/* ── NAV ── */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;gap:10px}
+.bbk{padding:10px 20px;border:1.5px solid var(--border);border-radius:10px;background:transparent;font-size:14px;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .14s}
+.bbk:hover{background:var(--gold-l);border-color:var(--gold);color:var(--gold-d)}
+.bnx{padding:11px 26px;border:none;border-radius:10px;background:var(--navy);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;flex:1;max-width:210px;box-shadow:0 4px 14px rgba(13,33,71,0.2);transition:all .17s}
+.bnx:hover{background:var(--navy-deep);transform:translateY(-1px)}
+.bsub{background:var(--c2);box-shadow:0 4px 14px rgba(230,179,36,0.32);max-width:240px}
+.bsub:hover{background:var(--c2d)}
+
+/* ── SPINNER & TY ── */
+.spinner{display:none;text-align:center;padding:2rem;color:var(--muted);font-size:14px}
+.spinner.show{display:block}
+.spin{display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ty{display:none;animation:up .4s ease}
+.ty.active{display:block}
+
+/* ── ANSWER SUMMARY (in thank-you) — short scorecard ── */
+.as-jain-tag{
+  text-align:center;
+  font-size:18px;font-weight:700;color:var(--navy);
+  margin-bottom:1.1rem;letter-spacing:.2px;
+}
+.as-jain-tag-sub{
+  display:block;font-size:12px;font-weight:500;color:var(--muted);
+  letter-spacing:1px;text-transform:uppercase;margin-top:4px;
+}
+
+.as-scorecard{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.7rem;
+}
+@media(max-width:760px){
+  .as-scorecard{grid-template-columns:repeat(2,1fr)}
+}
+.as-scorecard-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:1rem .75rem;
+  text-align:center;
+  box-shadow:0 4px 14px rgba(13,33,71,0.06);
+  position:relative;overflow:hidden;
+}
+.as-scorecard-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),#f5d76e);
+}
+.as-scorecard-label{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.5rem;
+}
+.as-score-val{
+  font-size:32px;font-weight:800;color:var(--navy);
+  line-height:1;margin-bottom:.35rem;letter-spacing:-.5px;
+}
+.as-score-max{
+  font-size:15px;font-weight:600;color:var(--muted);margin-left:2px;
+}
+.as-scorecard-foot{
+  font-size:11px;color:var(--muted);line-height:1.3;margin-top:.25rem;
+}
+.ty-hero{background:linear-gradient(135deg,#0d2147,#1a3a7a);border-radius:24px;padding:2.5rem 2rem;text-align:center;color:#fff;margin-bottom:1.25rem;box-shadow:0 8px 28px rgba(13,33,71,0.3);position:relative;overflow:hidden}
+.ty-gold-line{height:3px;background:linear-gradient(90deg,transparent,#e6b324,transparent);margin-bottom:1.5rem;border-radius:2px}
+.ty-em{font-size:56px;margin-bottom:12px}
+.ty-t{font-size:24px;font-weight:700;margin-bottom:8px}
+.ty-s{font-size:13.5px;opacity:0.82;line-height:1.65;max-width:380px;margin:0 auto}
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:1rem}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.9rem 1rem;box-shadow:var(--shadow)}
+.sc .sl{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.sc .sv{font-size:20px;font-weight:700;color:var(--navy)}
+.sc .st{font-size:11.5px;color:var(--muted);margin-top:2px}
+
+footer{text-align:center;padding-top:1.75rem;font-size:11px;color:var(--muted);opacity:0.6}
+@media(max-width:600px){
+  body{padding-left:0.6rem;padding-right:0.6rem}
+  .navbar-fixed{padding:0 1rem}
+  .hero h1{font-size:22px}.av-grid{grid-template-columns:repeat(2,1fr)}
+  .sum-grid{grid-template-columns:1fr}.nbt{width:38px;height:38px;font-size:12px}
+  .em-opt{min-width:70px}.star-btn{width:42px;height:42px}
+  .q{padding:1rem .9rem .85rem}
+  .video-intro video{max-height:260px}
+  /* Stack the question chips on mobile */
+  .chips{flex-wrap:wrap}
+  .bnx{max-width:100%}
+  .nav{flex-direction:column-reverse;gap:.6rem}
+  /* Hero on mobile: smaller padding, smaller logo */
+  .hero{border-radius:18px}
+  .hero-body{padding:1.5rem 1.25rem 1.25rem}
+  .hero-top{padding:11px 16px}
+  .hero-logo{height:34px}
+  .hero-pill{font-size:9px;padding:3px 11px;letter-spacing:1px}
+  /* Make sure avatar grid doesn't break */
+  .av-grid{gap:10px}
+  /* Stronger touch targets */
+  .ag,.em-opt,.nbt,.star-btn{min-height:44px}
+  /* Prevent horizontal scroll on small screens */
+  body,.wrap,.q,.hero,.ty{overflow-x:hidden;max-width:100%}
+  img,svg,video{max-width:100%;height:auto}
+}
+@media(min-width:601px) and (max-width:900px){
+  .navbar-fixed{padding:0 1.5rem}
+  .video-intro video{max-height:360px}
+}
+@media(max-width:900px){
+  /* On tablet/mobile: force single-column layout in 2-col sections */
+  .section.active.cols-2{grid-template-columns:1fr;gap:.75rem}
+  .section.active.cols-2 .q.full-col{grid-column:auto}
+}
+
+/* ── PDF DOWNLOAD BUTTON ── */
+.pdf-download-btn {
+  position: relative;
+  padding: 14px 28px;
+  border: 2px solid var(--navy);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(13, 33, 71, 0.25);
+  overflow: hidden;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.pdf-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(13, 33, 71, 0.4);
+  border-color: var(--gold);
+  background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+}
+
+.pdf-download-btn:active {
+  transform: translateY(-1px);
+}
+
+.pdf-icon {
+  font-size: 18px;
+  animation: pdf-bounce 0.6s ease-in-out infinite;
+}
+
+.pdf-download-btn:hover .pdf-icon {
+  animation: pdf-rotate 0.8s ease-in-out infinite;
+}
+
+.pdf-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  pointer-events: none;
+}
+
+.pdf-download-btn:hover .pdf-shimmer {
+  animation: shimmer 0.6s ease-in-out infinite;
+}
+
+@keyframes pdf-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pdf-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ── PDF-ONLY STYLES (rendered into the export node) ── */
+#pdfExportRoot .pd-section-title{
+  background:#0d2147;color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:8px 14px;border-radius:6px;margin:16px 0 8px;break-after:avoid;
+}
+#pdfExportRoot .pd-q{
+  display:grid;grid-template-columns:46px 1fr;
+  gap:8px;padding:7px 0;border-bottom:1px solid rgba(13,33,71,0.08);
+  break-inside:avoid;
+}
+#pdfExportRoot .pd-q:last-child{border-bottom:none}
+#pdfExportRoot .pd-qn{
+  font-size:10px;font-weight:700;color:#e6b324;text-align:right;
+  letter-spacing:.8px;padding-top:2px;
+}
+#pdfExportRoot .pd-ql{
+  font-size:12px;font-weight:700;color:#0d2147;margin-bottom:3px;
+}
+#pdfExportRoot .pd-qv{
+  font-size:11.5px;color:#1a1a2e;line-height:1.55;
+}
+#pdfExportRoot .pd-qv em{color:#9997b8}
+#pdfExportRoot .pd-sc{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px;
+}
+#pdfExportRoot .pd-sc-card{
+  background:#fff8e1;border:1px solid rgba(230,179,36,.35);
+  border-radius:8px;padding:10px 8px;text-align:center;
+  break-inside:avoid;
+}
+#pdfExportRoot .pd-sc-l{
+  font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:#8a6000;margin-bottom:4px;
+}
+#pdfExportRoot .pd-sc-v{
+  font-size:18px;font-weight:800;color:#0d2147;
+}
+</style>
+</head>
+<body>
+<!-- FIXED NAVBAR -->
+<div class="navbar-fixed">
+  <div class="nav-left">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" class="nav-logo" alt="JAIN University">
+    <div class="nav-divider"></div>
+    <div class="nav-text">Freshers 2026</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- FULLSCREEN VIDEO OVERLAY -->
+<div id="videoOverlay">
+  <video id="introVideo" playsinline webkit-playsinline autoplay muted>
+    <source src="{{ url_for('static', filename='videos/video.mp4') }}" type="video/mp4">
+  </video>
+  <!-- Top bar -->
+  <div class="vo-bar">
+    <div class="vo-brand">
+      <span>✦ Deeksharambh 2026 · JAIN University</span>
+    </div>
+  </div>
+  <!-- Bottom bar -->
+  <div class="vo-bottom">
+    <div class="vo-caption">A special message from JAIN University — before you begin your story.</div>
+    <div class="vo-progress"><div class="vo-progress-fill" id="voPF"></div></div>
+    <div class="vo-actions">
+      <button class="vo-skip" id="voSkip" onclick="dismissVideo()">Skip & Start Survey →</button>
+      <span class="vo-time" id="voTime"></span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-logo-wrap"><img src="{{ url_for('static', filename='img/logo.png') }}" class="hero-logo" alt="JAIN University"></div>
+    <div class="hero-pill">Freshers 2026</div>
+  </div>
+  <div class="hero-body">
+    <div class="hero-arc1"></div><div class="hero-arc2"></div>
+    <div class="hero-badge">✦ Deeksharambh 2026</div>
+    <h1>My <em>Deeksharambh</em> Story</h1>
+    <p>Your first chapter at JAIN starts here. Tell us how it felt — honestly and openly. Takes about 5 minutes.</p>
+    <div class="anon-note">🔒 This form is <strong>&nbsp;completely anonymous&nbsp;</strong> — we do not collect your name. Be 100% frank!</div>
+  </div>
+  <div class="hero-prog">
+    <div class="prog-bar"><div class="prog-fill" id="pf"></div></div>
+    <div class="prog-meta"><span id="plb">Step 1 of 10</span><span id="ppc">0% done</span></div>
+  </div>
+</div>
+
+<!-- SEC 0: IDENTITY (no name) -->
+<div class="section active cols-2" id="sec0">
+  <div class="sec-eye">Before we begin</div>
+  <div class="sec-title">Quick Intro</div>
+  <div class="sec-sub">We don't need your name — you're completely anonymous here. Just help us understand your academic context.</div>
+
+  <div class="q">
+    <div class="ql">Your School</div>
+    <div class="qt">Which School are you part of?</div>
+    <select id="school" onchange="loadPrograms()">
+      <option value="">— Select your School —</option>
+    </select>
+  </div>
+  <div class="q">
+    <div class="ql">Your Programme</div>
+    <div class="qt">Which Programme are you enrolled in?</div>
+    <input type="text" id="program" placeholder="e.g. B.Com, B.Tech (AI &amp; ML), MBA, LL.B..." style="width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'" oninput="state.program=this.value">
+  </div>
+  <div class="q">
+    <div class="ql">Level</div>
+    <div class="qt">Are you a UG or PG student?</div>
+    <div class="chips" id="ugpg"></div>
+  </div>
+  <div class="nav"><div></div><button class="bnx" onclick="goTo(1)">Let&apos;s Go →</button></div>
+</div>
+
+<!-- SEC 1: VIBE CHECK -->
+<div class="section cols-2" id="sec1">
+  <div class="sec-eye">🔥 Section 1 of 9</div>
+  <div class="sec-title">The Vibe Check</div>
+
+  <div class="q full-col">
+    <div class="ql">Q1 · your vibe check</div>
+    <div class="qt">Choose words that describe your Deeksharambh experience</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c2);margin-bottom:8px;margin-top:2px">✨ The highs</div>
+    <div class="chips" id="q1pos" style="margin-bottom:14px"></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c3);margin-bottom:8px">😬 The not-so-great</div>
+    <div class="chips" id="q1neg"></div>
+
+  </div>
+  <div class="q">
+    <div class="ql">Q2 · slider</div>
+    <div class="qt">Rate the overall vibe of Deeksharambh 2026</div>
+    <div class="sl-wrap">
+      <div class="sl-row"><input type="range" min="1" max="10" value="5" id="q2" step="1" oninput="onVibeSlider(this.value)"><span class="sl-val" id="q2v">5</span></div>
+      <div class="sl-lbs"><span>😒 I wanted to leave</span><span>🚀 I wish it never ended</span></div>
+    </div>
+    <div id="q2mismatch" style="display:none;margin-top:10px;background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:8px 12px;font-size:12px;color:#856404"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q3 · single choice</div>
+    <div class="qt">Did you feel welcomed during Deeksharambh?</div>
+    <div class="agrees" id="q3"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q4 · multi-select</div>
+    <div class="qt">During Deeksharambh 2026, I felt:</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c2);margin-bottom:8px;margin-top:2px">✨ Positive feelings</div>
+    <div class="chips" id="q4pos" style="margin-bottom:14px"></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c3);margin-bottom:8px">😬 Challenging feelings</div>
+    <div class="chips" id="q4neg"></div>
+  </div>
+
+  <div class="q">
+    <div class="ql">Q5a · spark moment</div>
+    <div class="qt">Which technical / knowledge sessions during Deeksharambh sparked your interest the most? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q5a"></div>
+  </div>
+
+  <div class="q">
+    <div class="ql">Q5b · missed the vibe</div>
+    <div class="qt">Which technical / knowledge sessions felt the least connecting for you? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q5b"></div>
+  </div>
+
+  <div class="nav"><button class="bbk" onclick="goTo(0)">← Back</button><button class="bnx" onclick="goTo(2)">Next →</button></div>
+</div>
+
+<!-- SEC 2: EASE OF TRANSITION -->
+<div class="section cols-2" id="sec2">
+  <div class="sec-eye">🧭 Section 2 of 9</div>
+  <div class="sec-title">Settling In — Ease of Transition</div>
+  <div class="sec-sub">How smoothly did the initial onboarding support help you settle into university life?</div>
+
+  <div class="q">
+    <div class="ql">Q5 · how was it?</div>
+    <div class="qt">Overall, how easy was it to transition into JAIN University life?</div>
+    <div class="emojis" id="q5"></div>
+  </div>
+
+  <div class="q">
+    <div class="ql">Q7 · multi-select</div>
+    <div class="qt">What challenges did you face during initial onboarding? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q7"></div>
+  </div>
+  <div class="nav"><button class="bbk" onclick="goTo(1)">← Back</button><button class="bnx" onclick="goTo(3)">Next →</button></div>
+</div>
+
+<!-- SEC 3: FOOTSTEPS -->
+<div class="section cols-2" id="sec3">
+  <div class="sec-eye">👣 Section 3 of 9</div>
+  <div class="sec-title">Footsteps — Pre-Arrival Module</div>
+  <div class="sec-sub">Footsteps was the online pre-arrival programme you accessed before stepping on campus.</div>
+
+  <div class="q full-col">
+    <div class="ql">Q8 · matrix</div>
+    <div class="qt">Did Footsteps help you understand:</div>
+    <div class="mwrap"><table class="mtable" id="q8t"></table></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q9 · multi-select</div>
+    <div class="qt">Which Footsteps content did you find most useful? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q9"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q10 · quick take</div>
+    <div class="qt">If Footsteps was a Netflix show, would you binge-watch Season 2? 📺</div>
+    <div class="emojis" id="q10"></div>
+  </div>
+  <div class="nav"><button class="bbk" onclick="goTo(2)">← Back</button><button class="bnx" onclick="goTo(4)">Next →</button></div>
+</div>
+
+<!-- SEC 4: ORIENTATION -->
+<div class="section cols-2" id="sec4">
+  <div class="sec-eye">🎯 Section 4 of 9</div>
+  <div class="sec-title">Orientation Experience</div>
+
+  <div class="q">
+    <div class="ql">Q11 · multi-select</div>
+    <div class="qt">Which sessions had the biggest impact on you? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q11"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q12 · multi-select</div>
+    <div class="qt">Which sessions need the most improvement? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q12"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q13 · matrix</div>
+    <div class="qt">The Orientation Programme helped me:</div>
+    <div class="mwrap"><table class="mtable" id="q13t"></table></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q14 · hands-on vibes</div>
+    <div class="qt">How much did sessions encourage hands-on or interactive activities?</div>
+    <div class="emojis" id="q14"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q15 · session energy</div>
+    <div class="qt">How engaging were the sessions overall?</div>
+    <div class="emojis" id="q15"></div>
+  </div>
+  <div class="nav"><button class="bbk" onclick="goTo(3)">← Back</button><button class="bnx" onclick="goTo(5)">Next →</button></div>
+</div>
+
+<!-- SEC 5: BRIDGE COURSE -->
+<div class="section cols-2" id="sec5">
+  <div class="sec-eye">🌉 Section 5 of 9</div>
+  <div class="sec-title">Bridge Course — Academic Preparedness</div>
+  <div class="sec-sub">The Bridge Course was designed to strengthen your foundations before regular classes begin.</div>
+
+  <div class="q">
+    <div class="ql">Q16 · slider</div>
+    <div class="qt">How much did the Bridge Course improve your academic confidence?</div>
+    <div class="sl-wrap">
+      <div class="sl-row"><input type="range" min="1" max="5" value="3" id="q16" step="1" oninput="sv('q16v',this.value)"><span class="sl-val" id="q16v">3</span></div>
+      <div class="sl-lbs"><span>1 — Not at all</span><span>5 — A lot</span></div>
+    </div>
+  </div>
+  <div class="q">
+    <div class="ql">Q17 · multi-select</div>
+    <div class="qt">Which Bridge Course areas helped you most? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q17"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q18 · readiness</div>
+    <div class="qt">After the Bridge Course, I feel prepared for regular classes.</div>
+    <div class="agrees" id="q18"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q19 · multi-select</div>
+    <div class="qt">What were your most helpful aspects of the Orientation Programme overall? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q19"></div>
+  </div>
+  <div class="nav"><button class="bbk" onclick="goTo(4)">← Back</button><button class="bnx" onclick="goTo(6)">Next →</button></div>
+</div>
+
+<!-- SEC 6: NEP + DIGITAL -->
+<div class="section cols-2" id="sec6">
+  <div class="sec-eye">📜 Section 6 of 9</div>
+  <div class="sec-title">NEP 2020 & Digital Readiness</div>
+  <div class="sec-sub">JAIN follows the National Education Policy 2020. This section checks your awareness and digital onboarding experience.</div>
+
+  <div class="q">
+    <div class="ql">Q20 · awareness</div>
+    <div class="qt">Before Deeksharambh, I knew what NEP 2020 means for my education.</div>
+    <div class="emojis" id="q20"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q21 · awareness</div>
+    <div class="qt">After Deeksharambh, I understand NEP 2020 concepts like ABC ID, APAAR, and credit flexibility.</div>
+    <div class="agrees" id="q21"></div>
+  </div>
+
+  <div class="nav"><button class="bbk" onclick="goTo(5)">← Back</button><button class="bnx" onclick="goTo(7)">Next →</button></div>
+</div>
+
+<!-- SEC 7: GEN Z FEELS -->
+<div class="section cols-2" id="sec7">
+  <div class="sec-eye">💬 Section 7 of 9</div>
+  <div class="sec-title">The Real Gen Z Section</div>
+  <div class="sec-sub">No right answers. Just pick what resonates with you.</div>
+
+  <div class="q">
+    <div class="ql">Q23a · before</div>
+    <div class="qt">Before joining JAIN, I expected university to be: <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q23a"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q23b · after</div>
+    <div class="qt">After Deeksharambh, I now think it will be: <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q23b"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q24 · movie genre</div>
+    <div class="qt">If Deeksharambh was a movie, its genre would be 🎬</div>
+    <div class="chips" id="q24"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q25 · vibe</div>
+    <div class="qt">My first week overall was like 🤳</div>
+    <div class="emojis" id="q25"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q26 · surprise</div>
+    <div class="qt">What surprised you most? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q26"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q27 · smile</div>
+    <div class="qt">What made you smile the most? 😊 <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q27"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q28 · stress</div>
+    <div class="qt">What stressed you out most? 😰 <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q28"></div>
+  </div>
+  <div class="nav"><button class="bbk" onclick="goTo(6)">← Back</button><button class="bnx" onclick="goTo(8)">Next →</button></div>
+</div>
+
+<!-- SEC 8: BELONGING + EXPECTATIONS -->
+<div class="section cols-2" id="sec8">
+  <div class="sec-eye">❤️ Section 8 of 9</div>
+  <div class="sec-title">Belonging & Academic Expectations</div>
+
+  <div class="q">
+    <div class="ql">Q29 · belonging score</div>
+    <div class="qt">I feel I belong at JAIN University.</div>
+    <div class="sl-wrap">
+      <div class="sl-row"><input type="range" min="1" max="10" value="5" id="q29" step="1" oninput="sv('q29v',this.value)"><span class="sl-val" id="q29v">5</span></div>
+      <div class="sl-lbs"><span>1 — Not at all</span><span>10 — Completely</span></div>
+    </div>
+  </div>
+  <div class="q">
+    <div class="ql">Q30 · social connect</div>
+    <div class="qt">I have already made:</div>
+    <div class="chips" id="q30"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q31 · support awareness</div>
+    <div class="qt">I know whom to contact if I need academic or personal help.</div>
+    <div class="chips" id="q31"></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q32 · future confidence</div>
+    <div class="qt">I can see myself succeeding at JAIN.</div>
+    <div class="sl-wrap">
+      <div class="sl-row"><input type="range" min="1" max="10" value="5" id="q32" step="1" oninput="sv('q32v',this.value)"><span class="sl-val" id="q32v">5</span></div>
+      <div class="sl-lbs"><span>1 — Very unsure</span><span>10 — Absolutely certain</span></div>
+    </div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q33 · academic expectations</div>
+    <div class="qt">My top expectations from my academic journey at JAIN: <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q33"></div>
+  </div>
+  <div class="nav"><button class="bbk" onclick="goTo(7)">← Back</button><button class="bnx" onclick="goTo(9)">Next →</button></div>
+</div>
+
+<!-- SEC 9: NPS + MIC DROP + AVATAR -->
+<div class="section cols-2" id="sec9">
+  <div class="sec-eye">📊 Section 9 of 9</div>
+  <div class="sec-title">Score + Mic Drop 🎤</div>
+
+  <div class="q">
+    <div class="ql">Q34 · net promoter score</div>
+    <div class="qt">How likely are you to recommend JAIN University to a friend?</div>
+    <div class="nps-row" id="q34"></div>
+    <div class="nps-lbs"><span>😬 Not likely</span><span>🤩 Extremely likely</span></div>
+  </div>
+  <div class="q">
+    <div class="ql">Q35 · your honest verdict</div>
+    <div class="qt">How do you rate your overall learning experience during the initial days at JAIN? 🎤</div>
+    <div class="emojis" id="q35"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q36 · reason for score</div>
+    <div class="qt">The main reason(s) for my NPS rating:</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c2);margin-bottom:8px;margin-top:2px">👍 What worked well</div>
+    <div class="chips" id="q36pos" style="margin-bottom:14px"></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c3);margin-bottom:8px">👎 What needs work</div>
+    <div class="chips" id="q36neg"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q37 · keep it 👍</div>
+    <div class="qt">What should we definitely continue next year? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q37"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q38 · drop it 🚫</div>
+    <div class="qt">What should we stop doing? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q38"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q39 · add it ✨</div>
+    <div class="qt">What should we introduce next year? <span class="qhint">(select all that apply)</span></div>
+    <div class="chips" id="q39"></div>
+  </div>
+  <div class="q full-col">
+    <div class="ql">Q40 · final feeling</div>
+    <div class="qt">Overall, Deeksharambh 2026 left me feeling:</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--c2);margin-bottom:8px;margin-top:2px">🌟 On a high note</div>
+    <div class="chips" id="q40pos" style="margin-bottom:14px"></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--amber);margin-bottom:8px">🤔 Still finding my footing</div>
+    <div class="chips" id="q40neg"></div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="sec-eye">🌟 Bonus</div>
+    <div class="sec-title" style="margin-bottom:.4rem">Your JAIN Avatar</div>
+    <div class="sec-sub">Who are you going to be at JAIN? Pick one that resonates.</div>
+    <div class="av-grid" id="q41"></div>
+  </div>
+
+  <div class="nav" style="margin-top:1.5rem">
+    <button class="bbk" onclick="goTo(8)">← Back</button>
+    <button class="bnx bsub" onclick="submitForm()">Submit My Story 🚀</button>
+  </div>
+</div>
+
+<div class="spinner" id="spin"><div class="spin"></div><div>Saving your story...</div></div>
+
+<!-- THANK YOU -->
+<div class="ty" id="ty">
+  <div class="ty-hero">
+    <div class="ty-gold-line"></div>
+    <div class="ty-em">🎓</div>
+    <div class="ty-t">Your story is written!</div>
+    <div class="ty-s">Thank you for being part of Deeksharambh 2026. Your anonymous feedback shapes the next batch's first week. Welcome to the JAIN family! ❤️</div>
+  </div>
+
+  <!-- ── ANSWERED RESULTS (populated by showThanks) ── -->
+  <div id="answerSummary" style="margin-top:1.75rem"></div>
+
+  <!-- ── SHOW ALL ANSWERS (toggleable full Q&A list) ── -->
+  <div id="allAnswersWrap" style="margin-top:1.5rem;display:none">
+    <button id="toggleAllAnswers" onclick="toggleAllAnswers()" class="bbk" style="width:100%;text-align:center;padding:13px 20px;background:var(--card);border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-weight:600;color:var(--navy)">
+      <span id="toggleAllAnswersLabel">📋 Show all my answers</span>
+    </button>
+    <div id="allAnswersBody" style="display:none;margin-top:1rem"></div>
+  </div>
+
+  <!-- ── JAIN AVATAR (shown at END on the same page) ── -->
+  <div id="avatarSection" class="avatar-section" style="background:linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%);color:#fff;border-radius:24px;padding:2.5rem 2rem;margin:2rem 0 1.5rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 12px 36px rgba(13,33,71,0.3)">
+    <div style="height:3px;background:linear-gradient(90deg,transparent,#e6b324,transparent);margin-bottom:1.5rem;border-radius:2px;max-width:280px;margin-left:auto;margin-right:auto"></div>
+    <div style="display:inline-flex;align-items:center;background:rgba(230,179,36,0.18);color:#f5d76e;border:1px solid rgba(230,179,36,0.4);border-radius:20px;padding:4px 13px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px">🌟 Bonus</div>
+    <h2 style="font-size:24px;font-weight:700;margin-bottom:6px;letter-spacing:-0.3px">Your JAIN Avatar</h2>
+    <div style="font-size:13.5px;opacity:.85;margin-bottom:1.75rem;line-height:1.5;max-width:380px;margin-left:auto;margin-right:auto">Who are you going to be at JAIN? Pick one that resonates.</div>
+    <div id="avatarEmoji" style="font-size:96px;line-height:1;margin-bottom:14px;position:relative;z-index:1">🎓</div>
+    <div id="avatarName" style="font-size:28px;font-weight:700;margin-bottom:8px;position:relative;z-index:1;letter-spacing:-0.3px">A JAIN Star ⭐</div>
+    <div class="avatar-youare" id="avatarYouAre" style="display:inline-block;background:rgba(230,179,36,0.18);border:2px solid #e6b324;color:#f5d76e;padding:10px 28px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;position:relative;z-index:1;margin-top:6px">YOU ARE A JAIN STAR</div>
+  </div>
+
+  <!-- ── FULL ANSWER SUMMARY (used only by the PDF export; hidden on screen) ── -->
+  <div id="fullAnswerSummary" style="position:absolute;left:-99999px;top:0;width:720px"></div>
+
+  <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <button id="pdfBtn" class="pdf-download-btn" onclick="downloadPDF()">
+      <span class="pdf-icon">📄</span>
+      <span class="pdf-text">Download as PDF</span>
+      <span class="pdf-shimmer"></span>
+    </button>
+  </div>
+  <div style="margin-top:1.5rem;text-align:center">
+    <button class="bbk" onclick="retake()" style="background:transparent;border:1.5px solid var(--border);color:var(--muted)">Back to Top ↑</button>
+  </div>
+</div>
+
+<footer>Deeksharambh 2026 · JAIN (Deemed-to-be University) · Office of Academics · Anonymous & Confidential</footer>
+</div>
+
+<script>
+// ── SESSION REDIRECT ──
+// If the user already submitted the survey (in this tab, or persistently on this device),
+// show the inline thank-you section instead of the form. No /result navigation.
+(function(){
+  try {
+    const tabSubmitted = sessionStorage.getItem('deeksha_submitted') === '1';
+    const deviceSubmitted = localStorage.getItem('deeksha_submitted') === '1';
+    if(tabSubmitted || deviceSubmitted){
+      // Hide all form sections, hide the hero, hide the progress bar — show only thank-you
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const ty = document.getElementById('ty');
+      if (ty) {
+        ty.classList.add('active');
+        ty.style.display = 'block';
+      }
+      const hero = document.querySelector('.hero');
+      if (hero) hero.style.display = 'none';
+      const prog = document.querySelector('.progress-wrap, .prog, .progbar');
+      if (prog) prog.style.display = 'none';
+      const plb = document.getElementById('plb');
+      if (plb) plb.textContent = 'Completed!';
+      const ppc = document.getElementById('ppc');
+      if (ppc) ppc.textContent = '100% done';
+      const pf = document.getElementById('pf');
+      if (pf) pf.style.width = '100%';
+
+      // Show a prominent "you've already taken this" banner
+      const tyHero = document.querySelector('.ty-hero');
+      if (tyHero && !document.getElementById('alreadyTakenBanner')) {
+        const banner = document.createElement('div');
+        banner.id = 'alreadyTakenBanner';
+        banner.style.cssText = 'display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:12px;padding:11px 20px;font-size:13px;margin-top:0.75rem;backdrop-filter:blur(4px)';
+        banner.innerHTML = '<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.6)"></span><span><strong>You\'ve already taken this survey</strong> — showing your submitted answers below</span>';
+        tyHero.appendChild(banner);
+      }
+
+      // Rebuild the answer summary if the function is available
+      if (typeof buildAnswerSummary === 'function') buildAnswerSummary();
+      // Also rebuild the full summary used by the PDF export
+      const full = document.getElementById('fullAnswerSummary');
+      if (full && typeof buildFullAnswerSummary === 'function') {
+        full.innerHTML = buildFullAnswerSummary();
+      }
+      // Populate the "show all answers" body
+      const allBody = document.getElementById('allAnswersBody');
+      if (allBody && typeof buildAllAnswersHTML === 'function') {
+        allBody.innerHTML = buildAllAnswersHTML();
+      }
+      const allWrap = document.getElementById('allAnswersWrap');
+      if (allWrap) allWrap.style.display = 'block';
+      // Populate the JAIN Avatar section
+      if (typeof populateAvatarSection === 'function') populateAvatarSection();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  } catch(e) { /* storage may be unavailable */ }
+})();
+
+const SCHOOLS=[
+  "CMS Business School",
+  "School of Commerce",
+  "School of Engineering and Technology",
+  "School of Aerospace Engineering",
+  "School of Computer Science and Engineering",
+  "School of Sciences",
+  "School of Computer Science and IT",
+  "School of Allied Healthcare and Sciences",
+  "School of Humanities and Social Sciences",
+  "School of Design, Media and Creative Arts",
+  "School of Aviation and Aerospace Management (SAAM)",
+  "School of Sports Education and Research",
+  "School of Law"
+];
+
+const STORAGE_KEY="deeksharambh_2026_responses";
+const state={};
+let cur=0;
+const TOTAL=10;
+
+function sv(id,v){document.getElementById(id).textContent=v;}
+function upd(n){
+  const pct=Math.round((n/TOTAL)*100);
+  document.getElementById("pf").style.width=pct+"%";
+  document.getElementById("plb").textContent="Step "+(n+1)+" of "+TOTAL;
+  document.getElementById("ppc").textContent=pct+"% done";
+}
+function goTo(n){
+  if(n===1){const prog=document.getElementById("program")?.value?.trim();if(!state.school||!prog||!state.ugpg){alert("Please complete all fields before continuing.");return;}state.program=prog;}
+  document.getElementById("sec"+cur)?.classList.remove("active");
+  document.getElementById("sec"+n)?.classList.add("active");
+  cur=n;upd(n);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+(function initSchools(){
+  const sel=document.getElementById("school");
+  SCHOOLS.forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sel.appendChild(o);});
+})();
+
+function loadPrograms(){
+  state.school=document.getElementById("school").value;
+}
+
+function mkChips(cid,items,key,multi){
+  const c=document.getElementById(cid);if(!c)return;
+  items.forEach(item=>{
+    const el=document.createElement("div");el.className="chip";el.textContent=item;
+    el.onclick=()=>{
+      if(!multi)c.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+      el.classList.toggle("on");
+      state[key]=multi?Array.from(c.querySelectorAll(".chip.on")).map(x=>x.textContent):(el.classList.contains("on")?item:null);
+    };
+    c.appendChild(el);
+  });
+}
+function mkAgree(cid,items,key){
+  const c=document.getElementById(cid);if(!c)return;
+  items.forEach(item=>{
+    const el=document.createElement("div");el.className="ag";el.textContent=item;
+    el.onclick=()=>{c.querySelectorAll(".ag").forEach(x=>x.classList.remove("on"));el.classList.add("on");state[key]=item;};
+    c.appendChild(el);
+  });
+}
+function mkEmoji(cid,items,key){
+  const c=document.getElementById(cid);if(!c)return;
+  items.forEach(({e,l})=>{
+    const el=document.createElement("div");el.className="em-opt";
+    el.innerHTML="<span class='e'>"+e+"</span><span>"+l+"</span>";
+    el.onclick=()=>{c.querySelectorAll(".em-opt").forEach(x=>x.classList.remove("on"));el.classList.add("on");state[key]=l;};
+    c.appendChild(el);
+  });
+}
+function mkMatrix(tid,rows,cols,key){
+  const t=document.getElementById(tid);if(!t)return;
+  let h="<tr><th></th>";cols.forEach(c=>{h+="<th>"+c+"</th>";});h+="</tr>";
+  rows.forEach(row=>{
+    h+="<tr><td>"+row+"</td>";
+    cols.forEach((col)=>{h+="<td><div class='rdot' data-k='"+key+"' data-r='"+row+"' data-c='"+col+"' onclick='selR(this)'></div></td>";});
+    h+="</tr>";
+  });
+  t.innerHTML=h;if(!state[key])state[key]={};
+}
+function selR(el){
+  const{k,r,c}=el.dataset;
+  document.querySelectorAll("[data-k='"+k+"'][data-r='"+r+"']").forEach(x=>x.classList.remove("on"));
+  el.classList.add("on");if(!state[k])state[k]={};state[k][r]=c;
+}
+function mkStars(cid,key,n=5){
+  const c=document.getElementById(cid);if(!c)return;
+  for(let i=1;i<=n;i++){
+    const el=document.createElement("button");el.className="star-btn";el.innerHTML=i+"<span class='sn'>★</span>";
+    el.onclick=()=>{c.querySelectorAll(".star-btn").forEach(x=>x.classList.remove("on"));el.classList.add("on");state[key]=i;};
+    c.appendChild(el);
+  }
+}
+function mkNPS(cid,key){
+  const c=document.getElementById(cid);if(!c)return;
+  for(let i=0;i<=10;i++){
+    const el=document.createElement("button");el.className="nbt";el.textContent=i;
+    el.onclick=()=>{c.querySelectorAll(".nbt").forEach(x=>x.classList.remove("on"));el.classList.add("on");state[key]=i;};
+    c.appendChild(el);
+  }
+}
+function mkAv(cid,items,key){
+  const c=document.getElementById(cid);if(!c)return;
+  items.forEach(({e,t})=>{
+    const el=document.createElement("div");el.className="av-card";
+    el.innerHTML="<div class='ae'>"+e+"</div><div class='at'>"+t+"</div>";
+    el.onclick=()=>{c.querySelectorAll(".av-card").forEach(x=>x.classList.remove("on"));el.classList.add("on");state[key]=t;};
+    c.appendChild(el);
+  });
+}
+
+// ── Q1 tone tracker ──
+let q1Tone = null; // "pos", "neg", or null
+
+function onVibeSlider(val){
+  sv("q2v",val);
+  state.q2=parseInt(val);
+  // Hard enforce slider range based on Q1 tone
+  if(q1Tone==="pos" && parseInt(val)<6){
+    document.getElementById("q2").value=6;
+    sv("q2v",6); state.q2=6;
+    flashMismatch("q2mismatch","🔒 You described a positive experience above — your score stays at 6 or higher to keep your response consistent.");
+    return;
+  }
+  if(q1Tone==="neg" && parseInt(val)>5){
+    document.getElementById("q2").value=5;
+    sv("q2v",5); state.q2=5;
+    flashMismatch("q2mismatch","🔒 You described a challenging experience above — your score stays at 5 or lower to keep your response consistent.");
+    return;
+  }
+  document.getElementById("q2mismatch").style.display="none";
+}
+
+function flashMismatch(id,msg){
+  const el=document.getElementById(id);
+  el.textContent=msg;el.style.display="block";
+  clearTimeout(el._t);el._t=setTimeout(()=>{el.style.display="none";},3500);
+}
+
+function setQ1Tone(tone){
+  q1Tone=tone;
+  const slider=document.getElementById("q2");
+  if(tone==="pos"){slider.min=6;if(parseInt(slider.value)<6){slider.value=6;sv("q2v",6);state.q2=6;}}
+  else if(tone==="neg"){slider.max=5;if(parseInt(slider.value)>5){slider.value=5;sv("q2v",5);state.q2=5;}}
+  else{slider.min=1;slider.max=10;}
+}
+
+// ── Q7 mutual exclusion: smooth vs challenges ──
+function mkChipsQ7(){
+  const challenges=["📚 Information was too much at once","🙋 Didn't know who to ask for help","💻 Tech systems were confusing","🗺️ Felt lost on campus","🏠 Accommodation issues","⏳ Long waiting times","🗣️ Language barrier"];
+  const SMOOTH="✅ Nothing — it was smooth!";
+  const c=document.getElementById("q7");if(!c)return;
+  [...challenges,SMOOTH].forEach(item=>{
+    const el=document.createElement("div");el.className="chip";el.textContent=item;
+    el.onclick=()=>{
+      if(item===SMOOTH){
+        // Selecting smooth: deselect and DISABLE all challenges
+        c.querySelectorAll(".chip").forEach(x=>{
+          x.classList.remove("on");
+          if(x.textContent!==SMOOTH){x.style.opacity="0.35";x.style.pointerEvents="none";}
+        });
+        el.style.opacity="1";el.style.pointerEvents="auto";
+        el.classList.add("on");
+        state.q7=[SMOOTH];
+      } else {
+        // Selecting a challenge: if smooth is on, unselect it and re-enable all
+        const smoothEl=Array.from(c.querySelectorAll(".chip")).find(x=>x.textContent===SMOOTH);
+        if(smoothEl&&smoothEl.classList.contains("on")){
+          smoothEl.classList.remove("on");
+          c.querySelectorAll(".chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";});
+        }
+        el.classList.toggle("on");
+        state.q7=Array.from(c.querySelectorAll(".chip.on")).map(x=>x.textContent);
+      }
+    };
+    c.appendChild(el);
+  });
+}
+
+async function submitForm(){
+  ["q2","q16","q29","q32"].forEach(id=>{const el=document.getElementById(id);if(el)state[id]=parseInt(el.value);});
+  state.timestamp=new Date().toISOString();
+  if(!state.id) state.id=Math.random().toString(36).slice(2,10);
+  document.getElementById("sec9").classList.remove("active");
+  document.getElementById("spin").classList.add("show");
+  document.getElementById("pf").style.width="100%";
+  document.getElementById("plb").textContent="Submitting...";
+
+  // Keep a local backup first so an answer is never lost.
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...(JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")),state]));}catch(e){}
+
+  // ── Send the response to the server so it lands in MongoDB and shows up
+  //    in the admin dashboard, the Excel export and the /result snapshot. ──
+  try{
+    const res = await fetch('/api/submit', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(state)
+    });
+    if(res.ok){
+      const j = await res.json().catch(()=>({}));
+      if(j && j.id) state.id = j.id;   // use the server-issued id
+    } else {
+      console.error('Submit failed, HTTP', res.status);
+    }
+  }catch(err){
+    // Network down — the user still sees their thank-you screen and the
+    // localStorage backup above preserves their answers.
+    console.error('Submit network error:', err);
+  }
+
+  // Mark this session (and this device) as submitted so refresh / revisit skips the form
+  try{ sessionStorage.setItem('deeksha_submitted','1'); }catch(e){}
+  try{ localStorage.setItem('deeksha_submitted','1'); }catch(e){}
+  document.getElementById("spin").classList.remove("show");
+  showThanks();
+}
+
+function showThanks(){
+  buildAnswerSummary();
+  // Build the full answer dump used by the PDF export
+  const full = document.getElementById('fullAnswerSummary');
+  if (full) full.innerHTML = buildFullAnswerSummary();
+  // Populate the inline "show all my answers" body
+  const body = document.getElementById('allAnswersBody');
+  if (body) body.innerHTML = buildAllAnswersHTML();
+  // Reveal the toggle
+  const wrap = document.getElementById('allAnswersWrap');
+  if (wrap) wrap.style.display = 'block';
+  // Populate the JAIN Avatar section
+  populateAvatarSection();
+  document.getElementById("ty").classList.add("active");
+  document.getElementById("plb").textContent="Completed!";
+  document.getElementById("ppc").textContent="100% done";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// Map the chosen avatar name → emoji (the form only stored the text label)
+const AVATAR_MAP = {
+  "Future CEO": "😎",
+  "Startup Founder": "🚀",
+  "Academic Achiever": "🎓",
+  "Change Maker": "🌎",
+  "AI Innovator": "🤖",
+  "Creative Maverick": "🎨",
+  "Corporate Leader": "💼",
+  "The Rule Changer": "⚖️",
+  "Sports Star": "🏅",
+  "Still Figuring It Out": "❤️"
+};
+
+// Resolve the chosen JAIN Avatar's FULL name no matter how it was stored.
+// q41 is normally a plain string ("Future CEO"). Older/edge data may store
+// it as an array (["Future CEO"]) or an object ({text:"Future CEO"}).
+// NOTE: never do q41[0] on a string — that returns just the first letter!
+function avatarOf(s){
+  if(!s) return '';
+  const v = s.q41;
+  if(Array.isArray(v))           return v.length ? String(v[0]) : '';
+  if(v && typeof v === 'object') return v.text ? String(v.text) : '';
+  if(typeof v === 'string')      return v;
+  return s.avatar ? String(s.avatar) : '';
+}
+
+function populateAvatarSection(){
+  const s = window.state || state;
+  const av = avatarOf(s);
+  const name = av || 'A JAIN Star ⭐';
+  const emoji = AVATAR_MAP[name] || '🎓';
+  const nameEl = document.getElementById('avatarName');
+  const emojiEl = document.getElementById('avatarEmoji');
+  const youareEl = document.getElementById('avatarYouAre');
+  if (nameEl) nameEl.textContent = name;
+  if (emojiEl) emojiEl.textContent = emoji;
+  if (youareEl) youareEl.textContent = 'YOU ARE ' + String(name).toUpperCase();
+}
+
+function toggleAllAnswers(){
+  const body = document.getElementById('allAnswersBody');
+  const label = document.getElementById('toggleAllAnswersLabel');
+  if (!body) return;
+  const showing = body.style.display === 'block';
+  body.style.display = showing ? 'none' : 'block';
+  if (label) label.textContent = showing ? '📋 Show all my answers' : '📋 Hide all my answers';
+}
+
+function _esc(v){
+  if(v===null||v===undefined) return '';
+  return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function _list(v){
+  if(!v||(Array.isArray(v)&&!v.length)) return '<em style="color:var(--muted)">—</em>';
+  return (Array.isArray(v)?v:[v]).map(_esc).join(', ');
+}
+function _score(v,max){
+  if(v===null||v===undefined||v==='') return '<em style="color:var(--muted)">—</em>';
+  return _esc(v)+'<span style="font-size:12px;color:var(--muted);font-weight:600"> / '+max+'</span>';
+}
+function _emoji(labelKey, numKey, max){
+  const s = window.state || state;
+  if(s[labelKey]) return _esc(s[labelKey]);
+  if(s[numKey]!==null&&s[numKey]!==undefined) return max ? _esc(s[numKey])+' / '+max : _esc(s[numKey]);
+  return '<em style="color:var(--muted)">—</em>';
+}
+function _matrix(v){
+  if(!v||typeof v!=='object'||!Object.keys(v).length) return '<em style="color:var(--muted)">—</em>';
+  let h='<table style="width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px">';
+  for(const k in v){ h+='<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border);font-weight:500">'+_esc(k)+'</td><td style="padding:6px 10px;border-bottom:1px solid var(--border);text-align:right;color:var(--navy);font-weight:600;white-space:nowrap">'+_esc(v[k])+'</td></tr>'; }
+  h+='</table>'; return h;
+}
+function _row(num,label,value){
+  return '<div style="padding:11px 0;border-bottom:1px solid var(--border)"><div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-d);margin-bottom:2px">Q'+num+'</div><div style="font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:6px;line-height:1.45">'+_esc(label)+'</div><div style="font-size:13px;color:var(--text);line-height:1.55">'+value+'</div></div>';
+}
+function _section(t){
+  return '<div style="display:inline-flex;align-items:center;background:var(--gold-l);color:var(--gold-d);border-radius:20px;padding:4px 13px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin:1.5rem 0 .5rem;border:1px solid rgba(230,179,36,0.25)">'+_esc(t)+'</div>';
+}
+
+function buildAllAnswersHTML(){
+  const s = window.state || state;
+  if(!s) return '';
+  let h = '<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;box-shadow:0 2px 16px rgba(13,33,71,0.07)">';
+
+  // Profile
+  h += _section('📋 Your Profile');
+  h += _row('', 'School',          _esc(s.school || '—'));
+  h += _row('', 'Programme',       _esc(s.program || '—'));
+  h += _row('', 'Level (UG / PG)', _esc(s.ugpg || '—'));
+
+  // Section 1
+  h += _section('🔥 Section 1 · The Vibe Check');
+  h += _row('1',  'Words describing your experience',        _list(s.q1));
+  h += _row('2',  'Overall vibe rating (1–10)',             _score(s.q2, 10));
+  h += _row('3',  'Did you feel welcomed?',                 _esc(s.q3 || '—'));
+  h += _row('4',  'Feelings during Deeksharambh',           _list(s.q4));
+  h += _row('5a', 'Sessions that sparked your interest',    _list(s.q5a));
+  h += _row('5b', 'Sessions that felt least connecting',    _list(s.q5b));
+
+  // Section 2
+  h += _section('🧭 Section 2 · Settling In');
+  h += _row('5',  'Ease of transition into JAIN life',      _emoji('q5_label','q5',5));
+  h += _row('7',  'Onboarding challenges faced',            _list(s.q7));
+
+  // Section 3
+  h += _section('👣 Section 3 · Footsteps');
+  h += _row('8',  'Did Footsteps help you understand…',     _matrix(s.q8));
+  h += _row('9',  'Most useful Footsteps content',          _list(s.q9));
+  h += _row('10', 'Would you binge-watch Footsteps S2?',    _emoji('q10_label','q10',''));
+
+  // Section 4
+  h += _section('🎯 Section 4 · Orientation');
+  h += _row('11', 'Sessions with the biggest impact',      _list(s.q11));
+  h += _row('12', 'Sessions that need improvement',         _list(s.q12));
+  h += _row('13', 'The Orientation Programme helped me…',  _matrix(s.q13));
+  h += _row('14', 'Hands-on vs passive sessions',          _emoji('q14_label','q14',''));
+  h += _row('15', 'Engagement level of sessions',          _emoji('q15_label','q15',''));
+
+  // Section 5
+  h += _section('🌉 Section 5 · Bridge Course');
+  h += _row('16', 'Bridge Course confidence (1–5)',        _score(s.q16, 5));
+  h += _row('17', 'Bridge areas you engaged with',         _list(s.q17));
+  h += _row('18', 'How ready do you feel for classes?',    _esc(s.q18 || '—'));
+  h += _row('19', 'Most helpful aspects',                  _list(s.q19));
+
+  // Section 6
+  h += _section('📜 Section 6 · NEP 2020');
+  h += _row('20', 'NEP awareness before Deeksharambh',     _emoji('q20_label','q20',''));
+  h += _row('21', 'NEP clarity after Deeksharambh',        _esc(s.q21 || '—'));
+  h += _row('22', 'Digital / tech confidence',             _emoji('q22_label','q22',''));
+
+  // Section 7
+  h += _section('🎬 Section 7 · Gen Z Lens');
+  h += _row('23a','University — what you expected',        _list(s.q23a));
+  h += _row('23b','University — what you found',           _list(s.q23b));
+  h += _row('24', 'Your Deeksharambh as a movie genre',    _esc(s.q24 || '—'));
+  h += _row('25', 'Your first week in one word',           _emoji('q25_label','q25',''));
+
+  // Section 8
+  h += _section('🤝 Section 8 · Belonging & Surprises');
+  h += _row('26', 'Biggest surprise about JAIN',           _list(s.q26));
+  h += _row('27', 'Moments that made you smile',           _list(s.q27));
+  h += _row('28', 'Moments that stressed you out',         _list(s.q28));
+  h += _row('29', 'How much do you feel you belong? (1–10)', _score(s.q29, 10));
+  h += _row('30', 'Friends made during Deeksharambh',      _esc(s.q30 || '—'));
+  h += _row('31', 'Knows who to contact for help',         _esc(s.q31 || '—'));
+  h += _row('32', 'Confidence in academic success (1–10)', _score(s.q32, 10));
+  h += _row('33', 'Academic expectations ahead',           _list(s.q33));
+
+  // Section 9
+  h += _section('⭐ Section 9 · NPS & Final Verdict');
+  h += _row('34', 'How likely to recommend JAIN? (0–10)',  _score(s.q34, 10));
+  h += _row('35', 'Overall Deeksharambh experience',       _emoji('q35_label','q35',''));
+  h += _row('36', 'Reason for your NPS rating',            _list(s.q36));
+  h += _row('37', 'Keep doing next year',                  _list(s.q37));
+  h += _row('38', 'Stop doing next year',                  _list(s.q38));
+  h += _row('39', 'Introduce next year',                   _list(s.q39));
+  h += _row('40', 'Final feeling',                         _list(s.q40));
+
+  h += '</div>';
+  return h;
+}
+
+function _scoreChip(n, max){
+  if(n===null||n===undefined||n==='') return '<div class="as-score-val">—</div>';
+  return '<div class="as-score-val">'+n+'<span class="as-score-max">/'+max+'</span></div>';
+}
+function _npsChip(n){
+  if(n===null||n===undefined||n==='') return '<div class="as-score-val">—</div>';
+  return '<div class="as-score-val">'+n+'<span class="as-score-max">/10</span></div>';
+}
+
+function buildAnswerSummary(){
+  const s = window.state || state;
+
+  // Compute the avatar tagline from the chosen JAIN Avatar (full name)
+  const av = avatarOf(s);
+  const avatarTag = av ? av : 'You are a JAIN Star ⭐';
+
+  // Build the 4-card scorecard
+  const vibeN = s.q2;
+  const easeN = s.q5;
+  const belongN = s.q29;
+  const npsN = s.q34;
+
+  const cards = [
+    {label:'Overall Vibe',      val: _scoreChip(vibeN,   10), foot:'Your vibe score'},
+    {label:'Ease of Transition',val: _scoreChip(easeN,    5), foot:'Settling-in ease'},
+    {label:'Belonging',         val: _scoreChip(belongN, 10), foot:'How at home you feel'},
+    {label:'NPS Score',         val: _npsChip(npsN),           foot:'Likelihood to recommend'}
+  ];
+
+  const html = `
+    <div class="as-jain-tag">${avatarTag} <span class="as-jain-tag-sub">— you are a JAIN star</span></div>
+    <div class="as-scorecard">
+      ${cards.map(c => `
+        <div class="as-scorecard-card">
+          <div class="as-scorecard-label">${c.label}</div>
+          ${c.val}
+          <div class="as-scorecard-foot">${c.foot}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  const target = document.getElementById('answerSummary');
+  if (target) target.innerHTML = html;
+}
+
+// ── FULL ANSWER SUMMARY (used by the PDF export) ──
+function _escHtml(v){
+  if(v===null||v===undefined) return '';
+  return String(v)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function _fmtList(v){
+  if(v===null||v===undefined||v==='') return '<em>—</em>';
+  if(Array.isArray(v)) return v.length ? v.map(_escHtml).join(', ') : '<em>—</em>';
+  return _escHtml(v);
+}
+function _fmtObj(v){
+  if(!v||typeof v!=='object') return '<em>—</em>';
+  const parts=[];
+  for(const k in v){ if(v[k]) parts.push(`<strong>${_escHtml(k)}</strong>: ${_escHtml(v[k])}`); }
+  return parts.length ? parts.join(' &nbsp;·&nbsp; ') : '<em>—</em>';
+}
+function _qRow(num, label, value){
+  return `<div class="pd-q"><div class="pd-qn">Q${num}</div><div class="pd-ql">${_escHtml(label)}</div><div class="pd-qv">${value}</div></div>`;
+}
+
+function buildFullAnswerSummary(){
+  const s = window.state || state;
+  if(!s) return '';
+
+  const sections = [];
+
+  // ── Identity
+  sections.push(`
+    <div class="pd-section-title">Your Profile</div>
+    ${_qRow('', 'School',          _escHtml(s.school || '—'))}
+    ${_qRow('', 'Programme',       _escHtml(s.program || '—'))}
+    ${_qRow('', 'Level (UG / PG)', _escHtml(s.ugpg || '—'))}
+  `);
+
+  // ── Scorecard
+  const cards = [
+    {l:'Overall Vibe',       v: s.q2  !== undefined ? s.q2 + ' / 10' : '—'},
+    {l:'Ease of Transition', v: s.q5  !== undefined ? s.q5  + ' / 5'  : '—'},
+    {l:'Belonging',          v: s.q29 !== undefined ? s.q29 + ' / 10' : '—'},
+    {l:'NPS Score',          v: s.q34 !== undefined ? s.q34 + ' / 10' : '—'},
+  ];
+  sections.push(`
+    <div class="pd-section-title">Your Scorecard</div>
+    <div class="pd-sc">
+      ${cards.map(c => `<div class="pd-sc-card"><div class="pd-sc-l">${c.l}</div><div class="pd-sc-v">${_escHtml(c.v)}</div></div>`).join('')}
+    </div>
+  `);
+
+  // ── Section 1: Vibe Check
+  sections.push(`
+    <div class="pd-section-title">Section 1 · The Vibe Check</div>
+    ${_qRow('1',  'Words describing your experience',        _fmtList(s.q1))}
+    ${_qRow('2',  'Overall vibe rating (1–10)',             s.q2 !== undefined ? s.q2 + ' / 10' : '<em>—</em>')}
+    ${_qRow('3',  'Did you feel welcomed?',                 _fmtList(s.q3))}
+    ${_qRow('4',  'Feelings during Deeksharambh',           _fmtList(s.q4))}
+    ${_qRow('5a', 'Sessions that sparked your interest',    _fmtList(s.q5a))}
+    ${_qRow('5b', 'Sessions that felt least connecting',    _fmtList(s.q5b))}
+  `);
+
+  // ── Section 2: Transition
+  sections.push(`
+    <div class="pd-section-title">Section 2 · Settling In</div>
+    ${_qRow('5',  'Ease of transition into JAIN life',      _fmtList(s.q5))}
+    ${_qRow('7',  'Onboarding challenges faced',            _fmtList(s.q7))}
+  `);
+
+  // ── Section 3: Footsteps
+  sections.push(`
+    <div class="pd-section-title">Section 3 · Footsteps (Pre-Arrival)</div>
+    ${_qRow('8',  'Did Footsteps help you understand…',     _fmtObj(s.q8))}
+    ${_qRow('9',  'Most useful Footsteps content',          _fmtList(s.q9))}
+    ${_qRow('10', 'Would you binge-watch Footsteps S2?',    _fmtList(s.q10))}
+  `);
+
+  // ── Section 4: Orientation
+  sections.push(`
+    <div class="pd-section-title">Section 4 · Orientation Experience</div>
+    ${_qRow('11', 'Sessions with the biggest impact',      _fmtList(s.q11))}
+    ${_qRow('12', 'Sessions that need the most improvement',_fmtList(s.q12))}
+    ${_qRow('13', 'The Orientation Programme helped me…',  _fmtObj(s.q13))}
+    ${_qRow('14', 'Hands-on vs passive sessions',          _fmtList(s.q14))}
+    ${_qRow('15', 'Engagement level of sessions',          _fmtList(s.q15))}
+  `);
+
+  // ── Section 5: Bridge Course
+  sections.push(`
+    <div class="pd-section-title">Section 5 · Bridge Course</div>
+    ${_qRow('16', 'Bridge Course confidence (1–5)',        s.q16 !== undefined ? s.q16 + ' / 5' : '<em>—</em>')}
+    ${_qRow('17', 'Bridge areas you engaged with',         _fmtList(s.q17))}
+    ${_qRow('18', 'How ready do you feel for classes?',    _fmtList(s.q18))}
+    ${_qRow('19', 'Most helpful aspects',                  _fmtList(s.q19))}
+  `);
+
+  // ── Section 6: NEP
+  sections.push(`
+    <div class="pd-section-title">Section 6 · NEP 2020</div>
+    ${_qRow('20', 'NEP awareness before Deeksharambh',     _fmtList(s.q20))}
+    ${_qRow('21', 'NEP clarity after Deeksharambh',        _fmtList(s.q21))}
+    ${_qRow('22', 'Digital / tech confidence',             _fmtList(s.q22))}
+  `);
+
+  // ── Section 7: Gen Z Lens
+  sections.push(`
+    <div class="pd-section-title">Section 7 · The Gen Z Lens</div>
+    ${_qRow('23a','University — what you expected',        _fmtList(s.q23a))}
+    ${_qRow('23b','University — what you found',           _fmtList(s.q23b))}
+    ${_qRow('24', 'Your Deeksharambh as a movie genre',    _fmtList(s.q24))}
+    ${_qRow('25', 'Your first week in one word',           _fmtList(s.q25))}
+  `);
+
+  // ── Section 8: Belonging
+  sections.push(`
+    <div class="pd-section-title">Section 8 · Belonging &amp; Surprises</div>
+    ${_qRow('26', 'Biggest surprise about JAIN',           _fmtList(s.q26))}
+    ${_qRow('27', 'Moments that made you smile',           _fmtList(s.q27))}
+    ${_qRow('28', 'Moments that stressed you out',         _fmtList(s.q28))}
+    ${_qRow('29', 'How much do you feel you belong? (1–10)', s.q29 !== undefined ? s.q29 + ' / 10' : '<em>—</em>')}
+    ${_qRow('30', 'Friends made during Deeksharambh',      _fmtList(s.q30))}
+    ${_qRow('31', 'Knows who to contact for help',         _fmtList(s.q31))}
+    ${_qRow('32', 'Confidence in academic success (1–10)', s.q32 !== undefined ? s.q32 + ' / 10' : '<em>—</em>')}
+    ${_qRow('33', 'Academic expectations ahead',           _fmtList(s.q33))}
+  `);
+
+  // ── Section 9: NPS & Score
+  sections.push(`
+    <div class="pd-section-title">Section 9 · NPS &amp; Final Verdict</div>
+    ${_qRow('34', 'How likely to recommend JAIN? (0–10)',  s.q34 !== undefined ? s.q34 + ' / 10' : '<em>—</em>')}
+    ${_qRow('35', 'Overall Deeksharambh experience',       _fmtList(s.q35))}
+    ${_qRow('36', 'Reason for your NPS rating',            _fmtList(s.q36))}
+    ${_qRow('37', 'Keep doing next year',                  _fmtList(s.q37))}
+    ${_qRow('38', 'Stop doing next year',                  _fmtList(s.q38))}
+    ${_qRow('39', 'Introduce next year',                   _fmtList(s.q39))}
+    ${_qRow('40', 'Final feeling',                         _fmtList(s.q40))}
+  `);
+
+  // ── Bonus: Avatar (full name)
+  const av = avatarOf(s);
+  sections.push(`
+    <div class="pd-section-title">Bonus · Your JAIN Avatar</div>
+    ${_qRow('41', 'You are going to be…',                  av ? _escHtml(av) : '<em>—</em>')}
+  `);
+
+  return sections.join('');
+}
+
+function retake(){
+  // The user has already submitted. The survey is anonymous and one
+  // submission per user is enforced server-side. Just scroll back to top
+  // of the thank-you — staying on the same page.
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── INIT ALL QUESTIONS ──
+mkChips("ugpg",["🎒 UG (Under Graduate)","🎓 PG (Post Graduate)"],"ugpg",false);
+// Q1 — hard mutual exclusion between highs and not-so-great
+(function(){
+  const pos=["🔥 Inspiring","🚀 Exciting","😊 Welcoming","💡 Eye-opening","❤️ Memorable","🎯 Productive","🤝 Community-driven","⚡ Energising","🧠 Thought-provoking"];
+  const neg=["😵 Overwhelming","😐 Average","😴 Boring","😬 Stressful","😶 Disconnected","⏳ Too rushed"];
+
+  function lockSection(lockCid, unlockCid){
+    // Disable all chips in lockCid, enable all in unlockCid
+    document.querySelectorAll("#"+lockCid+" .chip").forEach(x=>{
+      x.classList.remove("on");x.style.opacity="0.3";x.style.pointerEvents="none";
+    });
+    document.querySelectorAll("#"+unlockCid+" .chip").forEach(x=>{
+      x.style.opacity="1";x.style.pointerEvents="auto";
+    });
+  }
+  function unlockBoth(){
+    ["q1pos","q1neg"].forEach(cid=>{
+      document.querySelectorAll("#"+cid+" .chip").forEach(x=>{
+        x.style.opacity="1";x.style.pointerEvents="auto";
+      });
+    });
+  }
+
+  function buildQ1Chips(cid, items, tone){
+    const c=document.getElementById(cid);if(!c)return;
+    items.forEach(item=>{
+      const el=document.createElement("div");
+      el.className="chip";el.textContent=item;
+      el.onclick=()=>{
+        el.classList.toggle("on");
+        const posOn=Array.from(document.querySelectorAll("#q1pos .chip.on"));
+        const negOn=Array.from(document.querySelectorAll("#q1neg .chip.on"));
+        // Hard lock the opposite section
+        if(tone==="pos"){
+          if(posOn.length>0){lockSection("q1neg","q1pos");setQ1Tone("pos");}
+          else{unlockBoth();setQ1Tone(null);}
+        } else {
+          if(negOn.length>0){lockSection("q1pos","q1neg");setQ1Tone("neg");}
+          else{unlockBoth();setQ1Tone(null);}
+        }
+        state.q1=[...posOn,...negOn].map(x=>x.textContent);
+      };
+      c.appendChild(el);
+    });
+  }
+  buildQ1Chips("q1pos",pos,"pos");
+  buildQ1Chips("q1neg",neg,"neg");
+})();
+// Q5a & Q5b — mutual exclusion: same session cannot be "best" AND "least connecting"
+(function(){
+  const sessions=["🏛️ University Overview & Vision", "🏫 School & Dept Introduction", "👩\u200d🏫 Faculty Interaction", "🎪 Student Club Fair", "🗺️ Academic Roadmap Session", "🏢 Industry Connect / Guest Talk", "🤝 Mentor Meet", "🎓 Alumni Talk", "🚶 Campus Tour", "🎭 Cultural Programme", "📜 NEP 2020 Awareness Talk", "💻 ERP / LMS Onboarding", "🔬 Lab / Discipline Demo Session", "💡 Innovation & Entrepreneurship Talk"];
+  function buildSessionChips(cid, otherCid, key){
+    const c=document.getElementById(cid);if(!c)return;
+    sessions.forEach(item=>{
+      const el=document.createElement("div");el.className="chip";el.textContent=item;
+      el.onclick=()=>{
+        el.classList.toggle("on");
+        // If this session is selected in OTHER question, deselect it there
+        if(el.classList.contains("on")){
+          const other=document.getElementById(otherCid);
+          if(other){
+            const twin=Array.from(other.querySelectorAll(".chip")).find(x=>x.textContent===item);
+            if(twin&&twin.classList.contains("on"))twin.classList.remove("on");
+          }
+        }
+        state[key]=Array.from(c.querySelectorAll(".chip.on")).map(x=>x.textContent);
+        // Keep state of other question in sync
+        const otherEl=document.getElementById(otherCid);
+        if(otherEl)state[otherCid.replace("q","q")]=Array.from(otherEl.querySelectorAll(".chip.on")).map(x=>x.textContent);
+      };
+      c.appendChild(el);
+    });
+  }
+  buildSessionChips("q5a","q5b","q5a");
+  buildSessionChips("q5b","q5a","q5b");
+})();
+
+mkAgree("q3",["🤗 Absolutely yes!","🙂 Yes, mostly","😐 Neutral","🤔 Not really","😞 Not at all"],"q3");
+// Q4 — hard mutual exclusion between positive and challenging feelings
+(function(){
+  const pos4=["😎 Confident","🤔 Curious","💪 Motivated","✨ Inspired","🤝 Connected","🎉 Excited","😊 Happy","🎯 Focused"];
+  const neg4=["😬 Nervous","😕 Lost","😵 Overwhelmed","😰 Anxious","😶 Confused","😤 Frustrated"];
+  function lockQ4(lockCid,unlockCid){
+    document.querySelectorAll("#"+lockCid+" .chip").forEach(x=>{x.classList.remove("on");x.style.opacity="0.3";x.style.pointerEvents="none";});
+    document.querySelectorAll("#"+unlockCid+" .chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";});
+  }
+  function unlockQ4(){["q4pos","q4neg"].forEach(cid=>document.querySelectorAll("#"+cid+" .chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";}));}
+  function buildQ4(cid,items,tone){
+    const c=document.getElementById(cid);if(!c)return;
+    items.forEach(item=>{
+      const el=document.createElement("div");el.className="chip";el.textContent=item;
+      el.onclick=()=>{
+        el.classList.toggle("on");
+        const pOn=Array.from(document.querySelectorAll("#q4pos .chip.on"));
+        const nOn=Array.from(document.querySelectorAll("#q4neg .chip.on"));
+        if(tone==="pos"){if(pOn.length>0)lockQ4("q4neg","q4pos");else unlockQ4();}
+        else{if(nOn.length>0)lockQ4("q4pos","q4neg");else unlockQ4();}
+        state.q4=[...pOn,...nOn].map(x=>x.textContent);
+      };
+      c.appendChild(el);
+    });
+  }
+  buildQ4("q4pos",pos4,"pos");
+  buildQ4("q4neg",neg4,"neg");
+})();
+mkEmoji("q5",[{e:"🧊",l:"Very hard"},{e:"😓",l:"Tough"},{e:"😐",l:"Okay"},{e:"🙂",l:"Smooth"},{e:"🚀",l:"Super easy"}],"q5");
+
+mkChipsQ7();
+mkMatrix("q8t",["🏛️ University overview","🏫 My School & Department","📋 My Programme structure","📚 Academic expectations","🎉 Student life & clubs"],["✅ Yes","🤔 Somewhat","❌ No"],"q8");
+mkChips("q9",["🎬 Welcome videos","👩‍🏫 Faculty introduction clips","🏫 Campus tour video","📋 Programme overview","🎯 Quizzes & activities","📖 Reading materials","💭 Reflection exercises","💬 Student testimonials"],"q9",true);
+mkEmoji("q10",[{e:"😂",l:"Absolutely!"},{e:"🙂",l:"Maybe"},{e:"😐",l:"Not sure"},{e:"🙄",l:"Probably not"}],"q10");
+mkChips("q11",["🏛️ University Overview & Vision","🏫 School & Dept Introduction","👩‍🏫 Faculty Interaction","🎪 Student Club Fair","🗺️ Academic Roadmap Session","🏢 Industry Connect / Guest Talk","🤝 Mentor Meet","🎓 Alumni Talk","🚶 Campus Tour","🎭 Cultural Programme","📜 NEP 2020 Awareness Talk","💻 ERP / LMS Onboarding"],"q11",true);
+mkChips("q12",["🏛️ University Overview & Vision","🏫 School & Dept Introduction","👩‍🏫 Faculty Interaction","🎪 Student Club Fair","🗺️ Academic Roadmap Session","🏢 Industry Connect / Guest Talk","🤝 Mentor Meet","🎓 Alumni Talk","🚶 Campus Tour","🎭 Cultural Programme","📜 NEP 2020 Awareness Talk","💻 ERP / LMS Onboarding"],"q12",true);
+mkMatrix("q13t",["🏛️ University culture","📚 Academic preparedness","🆘 Support systems","🤝 Building community","✅ Ready for classes"],["💯 Strongly Agree","👍 Agree","😐 Neutral","👎 Disagree"],"q13");
+mkEmoji("q14",[{e:"🪑",l:"All sitting, no doing"},{e:"😑",l:"Mostly passive"},{e:"🤷",l:"Some activities"},{e:"🤸",l:"Quite hands-on"},{e:"🔥",l:"Fully interactive!"}],"q14");
+mkEmoji("q15",[{e:"😴",l:"Sleep Mode"},{e:"🙂",l:"Okay"},{e:"😎",l:"Interesting"},{e:"🚀",l:"Super Engaging"},{e:"🔥",l:"Couldn't Stop"}],"q15");
+mkChips("q17",["🗣️ Communication Skills","🔢 Quantitative / Numerical Skills","📚 Academic Readiness","💻 Technology & Digital Skills","🧠 Critical Thinking","🔬 Subject / Domain Knowledge","⏰ Time Management","❤️ Emotional Intelligence"],"q17",true);
+mkAgree("q18",["💪 Totally ready!","🙂 Mostly ready","😐 Somewhat ready","😬 Not quite","😰 Not ready at all"],"q18");
+mkChips("q19",["👣 Guidance through Footsteps module","🌉 Academic prep via Bridge Course","💡 Exposure to skills & industry insights","🤝 Faculty / mentor interactions","💻 Digital readiness & ERP onboarding","🧑‍🤝‍🧑 Peer networking & team activities","🎭 Cultural & campus activities","📜 NEP 2020 awareness sessions"],"q19",true);
+mkEmoji("q20",[{e:"🙅",l:"No idea"},{e:"🤔",l:"Heard of it"},{e:"🙂",l:"Basic idea"},{e:"😎",l:"I knew well"}],"q20");
+mkAgree("q21",["🧠 Crystal clear now!","🙂 Mostly understand","😐 Kind of","🤔 Still confused","😕 No idea still"],"q21");
+
+mkChips("q23a",["😰 Stressful & competitive","📚 Purely academic","🎉 Social & fun","😵 Overwhelming","🔍 Exploratory","💼 Professional & structured","❓ Something unknown","🌅 A fresh start"],"q23a",true);
+mkChips("q23b",["⚡ Challenging but exciting","🤩 Better than I expected","👍 About what I expected","🤝 More social than I thought","💼 Very professional","🌱 A place to grow","🤷 Still uncertain"],"q23b",true);
+mkChips("q24",["🎭 Coming-of-age drama","😂 Feel-good comedy","💥 Action thriller","🏆 Inspirational biopic","🎥 Documentary","💕 Romantic comedy","🔍 Mystery"],"q24",false);
+mkEmoji("q25",[{e:"🎢",l:"A rollercoaster"},{e:"☁️",l:"A blur"},{e:"🎉",l:"A celebration"},{e:"📚",l:"Study mode"},{e:"🌅",l:"Fresh start"},{e:"😅",l:"Survive mode"}],"q25");
+mkChips("q26",["🤗 How friendly everyone was","👩‍🏫 Quality of faculty","🏫 Campus facilities","🎯 Number of activities","⏰ Pace & organisation","🌍 Diversity of students","💻 How well digital systems worked","📜 NEP 2020 flexibility"],"q26",true);
+mkChips("q27",["👫 Making new friends","🤝 A faculty interaction","🎪 A campus activity","🧑‍🏫 A senior/mentor talking to me","🏅 A moment of personal achievement","🔥 The team spirit","🎉 Fun events","❤️ Recognition or inclusion I felt"],"q27",true);
+mkChips("q28",["🤯 Information overload in one day","⏳ Too many long sessions","🔁 Repetitive or irrelevant content","😶 Not knowing anyone","🗺️ Finding my way around campus","💻 Technology / system issues","📚 Academic pressure already starting","📢 Unclear communication"],"q28",true);
+mkChips("q30",["😔 No close friends yet","🤝 1–2 friends","👥 3–5 friends","🎉 More than 5 friends!"],"q30",false);
+mkChips("q31",["✅ Yes — I know exactly who to reach","🤔 Somewhat — have a rough idea","❓ Not really — need more clarity"],"q31",false);
+mkChips("q33",["📚 Strong academic foundation & clarity","🏭 Industry-relevant skills & certifications","🔬 Internship & research opportunities","💼 Career support & placement prep","🚀 Innovation & entrepreneurship exposure","🎭 Co-curricular & extracurricular activities","🌍 International exposure & collaborations","🧭 Mentorship & personal growth"],"q33",true);
+mkNPS("q34","q34");
+mkEmoji("q35",[{e:"😤",l:"Not great"},{e:"😕",l:"Could be better"},{e:"🙂",l:"It was okay"},{e:"😄",l:"Pretty good!"},{e:"🤩",l:"Absolutely loved it"}],"q35");
+// Q36 — hard mutual exclusion between positive and critical NPS reasons
+(function(){
+  const pos36=["🌟 Great overall experience","👩‍🏫 Faculty impressed me","🏫 Campus is outstanding","🤗 Felt very welcomed & included","🏆 Strong academic reputation","💼 Good career support visible"];
+  const neg36=["📋 Programme needs more clarity","🔧 Needs operational improvements","😐 Sessions were not engaging enough","📅 Poor scheduling & time management","🔁 Too much repetition in content"];
+  function lockQ36(lk,ul){document.querySelectorAll("#"+lk+" .chip").forEach(x=>{x.classList.remove("on");x.style.opacity="0.3";x.style.pointerEvents="none";});document.querySelectorAll("#"+ul+" .chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";});}
+  function unlockQ36(){["q36pos","q36neg"].forEach(cid=>document.querySelectorAll("#"+cid+" .chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";}));}
+  function buildQ36(cid,items,tone){
+    const c=document.getElementById(cid);if(!c)return;
+    items.forEach(item=>{
+      const el=document.createElement("div");el.className="chip";el.textContent=item;
+      el.onclick=()=>{
+        el.classList.toggle("on");
+        const pOn=Array.from(document.querySelectorAll("#q36pos .chip.on"));
+        const nOn=Array.from(document.querySelectorAll("#q36neg .chip.on"));
+        if(tone==="pos"){if(pOn.length>0)lockQ36("q36neg","q36pos");else unlockQ36();}
+        else{if(nOn.length>0)lockQ36("q36pos","q36neg");else unlockQ36();}
+        state.q36=[...pOn,...nOn].map(x=>x.textContent);
+      };
+      c.appendChild(el);
+    });
+  }
+  buildQ36("q36pos",pos36,"pos");
+  buildQ36("q36neg",neg36,"neg");
+})();
+mkChips("q37",["👩‍🏫 Faculty interaction sessions","🏫 Campus tours","🎉 Cultural & fun events","🎓 Alumni talks","🎪 Club & activity fair","🤝 Mentor / buddy introductions","🌉 Bridge course sessions","🧑‍🤝‍🧑 Peer bonding activities","📜 NEP 2020 awareness sessions","💻 ERP / digital onboarding"],"q37",true);
+mkChips("q38",["🤯 Too much information in one day","😴 Too many long sitting sessions","🔁 Repetitive content across sessions","🎯 Sessions not relevant to my programme","😐 Excessive formality / rigid structure","📄 Too much paperwork & documentation","⏰ Poor time management during sessions"],"q38",true);
+mkChips("q39",["🎯 More interactive workshops","🏢 Industry guest talks","🏃 Sports & fitness sessions","🎤 Student-led experience panels","🎨 Creative expression activities","💼 Career guidance from Day 1","🧭 More one-on-one mentoring","🎮 Digital-first / gamified activities","🧑‍🤝‍🧑 More time for peer bonding"],"q39",true);
+// Q40 — hard mutual exclusion between upbeat and settling feelings
+(function(){
+  const pos40=["🚀 Excited & ready to begin","💪 Motivated to excel here","😎 Confident & positive","❤️ Happy & glad to be here"];
+  const neg40=["🌱 Still settling in gradually","😅 Slightly overwhelmed but okay","🤔 Curious but unsure","😐 Underwhelmed honestly"];
+  function lockQ40(lk,ul){document.querySelectorAll("#"+lk+" .chip").forEach(x=>{x.classList.remove("on");x.style.opacity="0.3";x.style.pointerEvents="none";});document.querySelectorAll("#"+ul+" .chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";});}
+  function unlockQ40(){["q40pos","q40neg"].forEach(cid=>document.querySelectorAll("#"+cid+" .chip").forEach(x=>{x.style.opacity="1";x.style.pointerEvents="auto";}));}
+  function buildQ40(cid,items,tone){
+    const c=document.getElementById(cid);if(!c)return;
+    items.forEach(item=>{
+      const el=document.createElement("div");el.className="chip";el.textContent=item;
+      el.onclick=()=>{
+        el.classList.toggle("on");
+        const pOn=Array.from(document.querySelectorAll("#q40pos .chip.on"));
+        const nOn=Array.from(document.querySelectorAll("#q40neg .chip.on"));
+        if(tone==="pos"){if(pOn.length>0)lockQ40("q40neg","q40pos");else unlockQ40();}
+        else{if(nOn.length>0)lockQ40("q40pos","q40neg");else unlockQ40();}
+        state.q40=[...pOn,...nOn].map(x=>x.textContent);
+      };
+      c.appendChild(el);
+    });
+  }
+  buildQ40("q40pos",pos40,"pos");
+  buildQ40("q40neg",neg40,"neg");
+})();
+mkAv("q41",[{e:"😎",t:"Future CEO"},{e:"🚀",t:"Startup Founder"},{e:"🎓",t:"Academic Achiever"},{e:"🌎",t:"Change Maker"},{e:"🤖",t:"AI Innovator"},{e:"🎨",t:"Creative Maverick"},{e:"💼",t:"Corporate Leader"},{e:"⚖️",t:"The Rule Changer"},{e:"🏅",t:"Sports Star"},{e:"❤️",t:"Still Figuring It Out"}],"q41");
+
+upd(0);
+
+// ── FULLSCREEN VIDEO OVERLAY ──
+(function(){
+  // If the user already submitted in this session, don't show the video
+  // again — the redirect at the top of this file is already in flight to
+  // /result. Showing the video for a few frames in between is jarring.
+  try {
+    if (sessionStorage.getItem('deeksha_submitted') === '1') {
+      const _ov = document.getElementById('videoOverlay');
+      if (_ov) _ov.remove();
+      return;
+    }
+  } catch(e) { /* sessionStorage unavailable */ }
+
+  const overlay = document.getElementById('videoOverlay');
+  const vid     = document.getElementById('introVideo');
+  const pf      = document.getElementById('voPF');
+  const skipBtn = document.getElementById('voSkip');
+  const timeEl  = document.getElementById('voTime');
+  if(!overlay || !vid) return;
+
+  // Lock scroll while overlay visible
+  document.body.style.overflow = 'hidden';
+
+  function fmtTime(s){
+    s = Math.max(0, Math.ceil(s));
+    const m = Math.floor(s/60), sec = s%60;
+    return m>0 ? `${m}:${sec<10?'0':''}${sec}` : `${sec}s`;
+  }
+
+  function dismissVideo(){
+    overlay.classList.add('hiding');
+    document.body.style.overflow = '';
+    setTimeout(()=>{ overlay.remove(); }, 620);
+  }
+  window.dismissVideo = dismissVideo;
+
+  // Progress bar + time update
+  vid.addEventListener('timeupdate', ()=>{
+    if(!vid.duration) return;
+    const pct = (vid.currentTime / vid.duration) * 100;
+    pf.style.width = pct + '%';
+    const rem = vid.duration - vid.currentTime;
+    timeEl.textContent = rem > 0 ? fmtTime(rem) + ' left' : '';
+  });
+
+  // Auto-dismiss when ended
+  vid.addEventListener('ended', dismissVideo);
+
+  // Show skip after 4s
+  setTimeout(()=>{ if(skipBtn) skipBtn.style.display='block'; }, 4000);
+
+  // Autoplay attempt — keep muted=true (required by most browsers for autoplay),
+  // show a tap-to-unmute button on top so user can hear sound with one click.
+  vid.muted = true;
+  vid.setAttribute('muted', '');
+  vid.volume = 1;
+  const isMobile = /iPhone|iPad|Android|Mobile/i.test(navigator.userAgent);
+  const playPromise = vid.play();
+
+  if(playPromise !== undefined){
+    playPromise
+      .then(()=>{
+        // Autoplay succeeded — show tap-to-unmute overlay
+        showTapToUnmute();
+      })
+      .catch(err=>{
+        console.log('Autoplay blocked:', err);
+        // For mobile, try again muted
+        if(isMobile){
+          vid.muted = true;
+          vid.play().then(()=>showTapToUnmute()).catch(()=>showTapToPlay());
+        } else {
+          showTapToPlay();
+        }
+      });
+  }
+
+  function showTapToUnmute(){
+    const unmuteDiv = document.createElement('div');
+    unmuteDiv.className = 'vo-play vo-unmute';
+    unmuteDiv.innerHTML = '<div class="vo-play-btn"><svg viewBox="0 0 24 24" fill="white" width="34" height="34"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></div><div class="vo-unmute-label">Tap for sound</div>';
+    unmuteDiv.onclick = ()=>{
+      vid.muted = false;
+      unmuteDiv.remove();
+    };
+    overlay.appendChild(unmuteDiv);
+    // Auto-hide after 5s so it doesn't block video controls
+    setTimeout(()=>{ if(unmuteDiv.parentNode) unmuteDiv.remove(); }, 5000);
+  }
+
+  function showTapToPlay(){
+    const playDiv = document.createElement('div');
+    playDiv.className = 'vo-play';
+    playDiv.innerHTML = '<div class="vo-play-btn"><svg viewBox="0 0 24 24" fill="white" width="34" height="34"><path d="M8 5v14l11-7z"/></svg></div>';
+    playDiv.onclick = ()=>{
+      vid.muted = true;
+      vid.play();
+      playDiv.remove();
+      setTimeout(showTapToUnmute, 400);
+    };
+    overlay.appendChild(playDiv);
+  }
+
+  // Fallback: if video can't load at all, dismiss after 3s
+  vid.addEventListener('error', ()=> setTimeout(dismissVideo, 800));
+  vid.addEventListener('stalled', ()=> setTimeout(()=>{ if(vid.readyState<2) dismissVideo(); }, 3500));
+})();
+
+// ── PDF DOWNLOAD FUNCTION ──
+async function downloadPDF(){
+  const btn = document.getElementById('pdfBtn');
+  if (!btn) return;
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="pdf-icon">⏳</span><span class="pdf-text">Generating PDF...</span>';
+
+  if (typeof html2pdf === 'undefined') {
+    console.warn('html2pdf not available; falling back to window.print()');
+    setTimeout(() => { btn.disabled = false; btn.innerHTML = originalHTML; window.print(); }, 200);
+    return;
+  }
+
+  // Find the thank-you (.ty) panel on screen. The simplest, most reliable way
+  // to make a non-blank PDF is to clone that panel (which we KNOW renders
+  // correctly) and pass the clone to html2canvas. The chosen avatar and every
+  // answer the user gave are already in the visible DOM, so the PDF will
+  // match exactly.
+  const source = document.querySelector('.ty');
+  if (!source) {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+    return;
+  }
+
+  const clone = source.cloneNode(true);
+  // Remove elements that shouldn't appear in the PDF. CRUCIAL: drop the hidden
+  // #fullAnswerSummary which sits at left:-99999px — if it stays, html2canvas
+  // tries to allocate a ~100,000px-wide canvas (over the browser limit) and the
+  // PDF comes out completely BLANK.
+  clone.querySelectorAll('.pdf-actions, .retake-btn, #pdfBtn, #fullAnswerSummary, .spinner, .nav').forEach(el => el.remove());
+  // Defensive: pull back anything else parked far off-screen.
+  clone.querySelectorAll('*').forEach(el => {
+    const l = el.style && el.style.left;
+    if (l && parseInt(l, 10) <= -9999) { el.style.position = 'static'; el.style.left = '0'; el.style.display = 'none'; }
+  });
+  clone.id = 'pdfExportRoot';
+  clone.style.cssText = 'position:fixed;top:0;left:0;width:760px;background:#0d2147;color:#fff;padding:0;margin:0;box-sizing:border-box;z-index:99999;pointer-events:none;visibility:visible;opacity:1;overflow:hidden;';
+
+  // Attach a tall <style> block to the clone so the PDF picks up the same
+  // navy hero, gold avatar block, chip styles, etc. — but tuned for print
+  // (dark text on white for the body, navy gradient kept on the hero and
+  // avatar so they stay branded).
+  const styleEl = document.createElement('style');
+  styleEl.textContent = `
+    #pdfExportRoot { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important; }
+    #pdfExportRoot .ty-hero, #pdfExportRoot .avatar-section, #pdfExportRoot .all-answers, #pdfExportRoot .sec {
+      background: #ffffff !important;
+      color: #1a1a2e !important;
+      border: 1px solid rgba(13,33,71,0.12) !important;
+      box-shadow: none !important;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    #pdfExportRoot .ty-hero { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
+    #pdfExportRoot .ty-hero * { color: #fff !important; }
+    #pdfExportRoot .avatar-section { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
+    #pdfExportRoot .avatar-section * { color: #fff !important; }
+    #pdfExportRoot .avatar-section .gold-line { background: #e6b324 !important; }
+    #pdfExportRoot .avatar-youare { background: rgba(230,179,36,0.18) !important; border: 2px solid #e6b324 !important; color: #f5d76e !important; }
+    #pdfExportRoot .chip { background: rgba(13,33,71,0.06) !important; color: #1a1a2e !important; border: 1px solid rgba(13,33,71,0.18) !important; }
+    #pdfExportRoot h1, #pdfExportRoot h2, #pdfExportRoot h3, #pdfExportRoot h4, #pdfExportRoot .sec-eye, #pdfExportRoot .lbl { color: #0d2147 !important; }
+  `;
+  clone.insertBefore(styleEl, clone.firstChild);
+
+  document.body.appendChild(clone);
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+  const opt = {
+    margin: [8, 6, 8, 6],
+    filename: 'Deeksharambh-2026-Response.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, windowWidth: 760, letterRendering: true, scrollX: 0, scrollY: 0 },
+    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
+    pagebreak: { mode: ['css', 'legacy'], avoid: ['.ty-hero', '.sec', '.avatar-section'] }
+  };
+
+  try {
+    await html2pdf().set(opt).from(clone).save();
+    btn.innerHTML = '<span class="pdf-icon">✓</span><span class="pdf-text">Downloaded!</span>';
+  } catch (err) {
+    console.error('PDF generation error:', err);
+    try { window.print(); } catch(e) {}
+  } finally {
+    clone.remove();
+    btn.disabled = false;
+    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
+  }
+}
+</script>
+</body>
+</html>
