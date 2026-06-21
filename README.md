@@ -77,7 +77,7 @@ deeksharambh/
 ├── nginx.conf.example      ← Nginx reverse-proxy config
 ├── .env.example            ← Copy to .env and fill in
 ├── templates/
-│   ├── form.html           ← Student survey (landing page + GSAP + PDF)
+│   ├── form.html           ← Student survey (landing page + GSAP)
 │   ├── admin.html          ← Admin dashboard (live charts)
 │   └── admin_login.html    ← Admin login
 └── static/
@@ -109,7 +109,7 @@ deeksharambh/
 - **Landing page** with GSAP letter-by-letter animation, feature cards, and timeline
 - **10-step survey** with slide-in/out animations and staggered Q-card entrances
 - **Star rating** for Q2 (vibe score 1–10), emoji cards for Q5/Q10/Q14/Q15/Q20/Q22/Q25/Q35
-- **PDF download** on thank-you screen (html2pdf.js, 2-page A4 report)
+- ~~**PDF download** on thank-you screen~~ (removed)
 - **localStorage** used for "already submitted" detection (no server-side session on form)
 - **Q5** stores the emoji label text (e.g. "Smooth"); `app.py` maps it to numeric and stores both `q5` (numeric) and `q5_label` (text)
 

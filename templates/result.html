@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Deeksharambh Story · JAIN University</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- html2pdf removed (PDF download feature deprecated) -->
 <style>
 :root{
   --navy:#0d2147;--navy-deep:#0a1628;--navy-mid:#112a5e;
@@ -817,12 +817,8 @@ footer{text-align:center;padding-top:2rem;font-size:11px;color:var(--muted);opac
       <div class="avatar-youare" id="avatarYouAre">YOU ARE {{ (avatar_text or 'A JAIN STAR')|upper }}</div>
     </section>
 
-    <!-- ── PDF DOWNLOAD BUTTON ── -->
-    <div class="pdf-actions">
-      <button id="pdfBtn" class="pdf-download-btn" onclick="downloadPDF()">
-        <span class="pdf-icon">📄</span>
-        <span class="pdf-text">Download as PDF</span>
-      </button>
+    <!-- ── BACK TO TOP ── -->
+    <div style="text-align:center;margin-top:2rem">
       <button class="retake-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
     </div>
 
@@ -862,86 +858,8 @@ const AVATAR_MAP = {
   emojiEl.textContent = AVATAR_MAP[name] || '🎓';
 })();
 
-// ── PDF DOWNLOAD ──
-async function downloadPDF(){
-  const btn = document.getElementById('pdfBtn');
-  if (!btn) return;
-  const originalHTML = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="pdf-icon">⏳</span><span class="pdf-text">Generating PDF...</span>';
+// ── PDF download removed ──
 
-  if (typeof html2pdf === 'undefined') {
-    console.warn('html2pdf not available; falling back to window.print()');
-    setTimeout(() => { btn.disabled = false; btn.innerHTML = originalHTML; window.print(); }, 200);
-    return;
-  }
-
-  // The simplest, most reliable way to make a non-blank PDF is to clone the
-  // on-screen result content (which we KNOW renders correctly) and pass
-  // that clone to html2canvas. The chosen avatar and every answer are
-  // already in the visible DOM, so the PDF will match exactly.
-  const source = document.querySelector('.wrap');
-  if (!source) {
-    btn.disabled = false;
-    btn.innerHTML = originalHTML;
-    return;
-  }
-
-  const clone = source.cloneNode(true);
-  // Remove elements that shouldn't appear in the PDF
-  clone.querySelectorAll('.pdf-actions, .navbar-fixed, .retake-btn, #pdfBtn, #fullAnswerSummary, .spinner').forEach(el => el.remove());
-  // Defensive: pull back anything parked far off-screen so html2canvas does not
-  // allocate an oversized (blank) canvas.
-  clone.querySelectorAll('*').forEach(el => {
-    const l = el.style && el.style.left;
-    if (l && parseInt(l, 10) <= -9999) { el.style.position = 'static'; el.style.left = '0'; el.style.display = 'none'; }
-  });
-  clone.id = 'pdfExportRoot';
-  clone.style.cssText = 'position:fixed;top:0;left:0;width:760px;background:#0b1027;color:#fff;padding:0;margin:0;box-sizing:border-box;z-index:99999;pointer-events:none;visibility:visible;opacity:1;overflow:hidden;';
-
-  // Attach a tall <style> block to the clone so the PDF picks up the same
-  // navy hero, gold avatar block, chip styles, etc. — but tuned for print
-  // (dark text on white for the body, navy gradient kept on the hero and
-  // avatar so they stay branded).
-  const styleEl = document.createElement('style');
-  styleEl.textContent = `
-    #pdfExportRoot { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important; }
-    #pdfExportRoot > * { background: #ffffff !important; color: #1a1a2e !important; box-shadow: none !important; }
-    #pdfExportRoot .ty-hero { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
-    #pdfExportRoot .ty-hero * { color: #fff !important; }
-    #pdfExportRoot .avatar-section { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
-    #pdfExportRoot .avatar-section * { color: #fff !important; }
-    #pdfExportRoot .avatar-youare { background: rgba(230,179,36,0.18) !important; border: 2px solid #e6b324 !important; color: #f5d76e !important; }
-    #pdfExportRoot .chip, #pdfExportRoot .pill { background: rgba(13,33,71,0.06) !important; color: #1a1a2e !important; border: 1px solid rgba(13,33,71,0.18) !important; }
-    #pdfExportRoot h1, #pdfExportRoot h2, #pdfExportRoot h3, #pdfExportRoot h4, #pdfExportRoot .sec-eye, #pdfExportRoot .q-num, #pdfExportRoot .lbl { color: #0d2147 !important; }
-    #pdfExportRoot .section-card, #pdfExportRoot .q-row, #pdfExportRoot .scorecard { page-break-inside: avoid; break-inside: avoid; }
-  `;
-  clone.insertBefore(styleEl, clone.firstChild);
-
-  document.body.appendChild(clone);
-  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-
-  const opt = {
-    margin: [8, 6, 8, 6],
-    filename: 'Deeksharambh-2026-Response.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, windowWidth: 760, letterRendering: true, scrollX: 0, scrollY: 0 },
-    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
-    pagebreak: { mode: ['css', 'legacy'], avoid: ['.ty-hero', '.section-card', '.avatar-section', '.q-row', '.scorecard'] }
-  };
-
-  try {
-    await html2pdf().set(opt).from(clone).save();
-    btn.innerHTML = '<span class="pdf-icon">✓</span><span class="pdf-text">Downloaded!</span>';
-  } catch (err) {
-    console.error('PDF generation error:', err);
-    try { window.print(); } catch(e) {}
-  } finally {
-    clone.remove();
-    btn.disabled = false;
-    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
-  }
-}
 </script>
 </body>
 </html>

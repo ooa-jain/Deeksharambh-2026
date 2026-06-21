@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Deeksharambh Story 2026 — JAIN University</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- html2pdf removed (PDF download feature deprecated) -->
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -917,17 +917,8 @@ footer{text-align:center;padding-top:1.75rem;font-size:11px;color:var(--muted);o
     <div class="avatar-youare" id="avatarYouAre" style="display:inline-block;background:rgba(230,179,36,0.18);border:2px solid #e6b324;color:#f5d76e;padding:10px 28px;border-radius:24px;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;position:relative;z-index:1;margin-top:6px">YOU ARE A JAIN STAR</div>
   </div>
 
-  <!-- ── FULL ANSWER SUMMARY (used only by the PDF export; hidden on screen) ── -->
-  <div id="fullAnswerSummary" style="position:absolute;left:-99999px;top:0;width:720px"></div>
-
-  <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-    <button id="pdfBtn" class="pdf-download-btn" onclick="downloadPDF()">
-      <span class="pdf-icon">📄</span>
-      <span class="pdf-text">Download as PDF</span>
-      <span class="pdf-shimmer"></span>
-    </button>
-  </div>
-  <div style="margin-top:1.5rem;text-align:center">
+  <!-- ── PDF export removed ── -->
+  <div style="margin-top:2rem;text-align:center">
     <button class="bbk" onclick="retake()" style="background:transparent;border:1.5px solid var(--border);color:var(--muted)">Back to Top ↑</button>
   </div>
 </div>
@@ -974,11 +965,6 @@ footer{text-align:center;padding-top:1.75rem;font-size:11px;color:var(--muted);o
 
       // Rebuild the answer summary if the function is available
       if (typeof buildAnswerSummary === 'function') buildAnswerSummary();
-      // Also rebuild the full summary used by the PDF export
-      const full = document.getElementById('fullAnswerSummary');
-      if (full && typeof buildFullAnswerSummary === 'function') {
-        full.innerHTML = buildFullAnswerSummary();
-      }
       // Populate the "show all answers" body
       const allBody = document.getElementById('allAnswersBody');
       if (allBody && typeof buildAllAnswersHTML === 'function') {
@@ -1217,9 +1203,6 @@ async function submitForm(){
 
 function showThanks(){
   buildAnswerSummary();
-  // Build the full answer dump used by the PDF export
-  const full = document.getElementById('fullAnswerSummary');
-  if (full) full.innerHTML = buildFullAnswerSummary();
   // Populate the inline "show all my answers" body
   const body = document.getElementById('allAnswersBody');
   if (body) body.innerHTML = buildAllAnswersHTML();
@@ -1896,96 +1879,7 @@ upd(0);
   vid.addEventListener('stalled', ()=> setTimeout(()=>{ if(vid.readyState<2) dismissVideo(); }, 3500));
 })();
 
-// ── PDF DOWNLOAD FUNCTION ──
-async function downloadPDF(){
-  const btn = document.getElementById('pdfBtn');
-  if (!btn) return;
-  const originalHTML = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="pdf-icon">⏳</span><span class="pdf-text">Generating PDF...</span>';
-
-  if (typeof html2pdf === 'undefined') {
-    console.warn('html2pdf not available; falling back to window.print()');
-    setTimeout(() => { btn.disabled = false; btn.innerHTML = originalHTML; window.print(); }, 200);
-    return;
-  }
-
-  // Find the thank-you (.ty) panel on screen. The simplest, most reliable way
-  // to make a non-blank PDF is to clone that panel (which we KNOW renders
-  // correctly) and pass the clone to html2canvas. The chosen avatar and every
-  // answer the user gave are already in the visible DOM, so the PDF will
-  // match exactly.
-  const source = document.querySelector('.ty');
-  if (!source) {
-    btn.disabled = false;
-    btn.innerHTML = originalHTML;
-    return;
-  }
-
-  const clone = source.cloneNode(true);
-  // Remove elements that shouldn't appear in the PDF. CRUCIAL: drop the hidden
-  // #fullAnswerSummary which sits at left:-99999px — if it stays, html2canvas
-  // tries to allocate a ~100,000px-wide canvas (over the browser limit) and the
-  // PDF comes out completely BLANK.
-  clone.querySelectorAll('.pdf-actions, .retake-btn, #pdfBtn, #fullAnswerSummary, .spinner, .nav').forEach(el => el.remove());
-  // Defensive: pull back anything else parked far off-screen.
-  clone.querySelectorAll('*').forEach(el => {
-    const l = el.style && el.style.left;
-    if (l && parseInt(l, 10) <= -9999) { el.style.position = 'static'; el.style.left = '0'; el.style.display = 'none'; }
-  });
-  clone.id = 'pdfExportRoot';
-  clone.style.cssText = 'position:fixed;top:0;left:0;width:760px;background:#0d2147;color:#fff;padding:0;margin:0;box-sizing:border-box;z-index:99999;pointer-events:none;visibility:visible;opacity:1;overflow:hidden;';
-
-  // Attach a tall <style> block to the clone so the PDF picks up the same
-  // navy hero, gold avatar block, chip styles, etc. — but tuned for print
-  // (dark text on white for the body, navy gradient kept on the hero and
-  // avatar so they stay branded).
-  const styleEl = document.createElement('style');
-  styleEl.textContent = `
-    #pdfExportRoot { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif !important; }
-    #pdfExportRoot .ty-hero, #pdfExportRoot .avatar-section, #pdfExportRoot .all-answers, #pdfExportRoot .sec {
-      background: #ffffff !important;
-      color: #1a1a2e !important;
-      border: 1px solid rgba(13,33,71,0.12) !important;
-      box-shadow: none !important;
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-    #pdfExportRoot .ty-hero { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
-    #pdfExportRoot .ty-hero * { color: #fff !important; }
-    #pdfExportRoot .avatar-section { background: linear-gradient(135deg,#0d2147 0%,#1a3a7a 100%) !important; color: #fff !important; }
-    #pdfExportRoot .avatar-section * { color: #fff !important; }
-    #pdfExportRoot .avatar-section .gold-line { background: #e6b324 !important; }
-    #pdfExportRoot .avatar-youare { background: rgba(230,179,36,0.18) !important; border: 2px solid #e6b324 !important; color: #f5d76e !important; }
-    #pdfExportRoot .chip { background: rgba(13,33,71,0.06) !important; color: #1a1a2e !important; border: 1px solid rgba(13,33,71,0.18) !important; }
-    #pdfExportRoot h1, #pdfExportRoot h2, #pdfExportRoot h3, #pdfExportRoot h4, #pdfExportRoot .sec-eye, #pdfExportRoot .lbl { color: #0d2147 !important; }
-  `;
-  clone.insertBefore(styleEl, clone.firstChild);
-
-  document.body.appendChild(clone);
-  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-
-  const opt = {
-    margin: [8, 6, 8, 6],
-    filename: 'Deeksharambh-2026-Response.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false, windowWidth: 760, letterRendering: true, scrollX: 0, scrollY: 0 },
-    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
-    pagebreak: { mode: ['css', 'legacy'], avoid: ['.ty-hero', '.sec', '.avatar-section'] }
-  };
-
-  try {
-    await html2pdf().set(opt).from(clone).save();
-    btn.innerHTML = '<span class="pdf-icon">✓</span><span class="pdf-text">Downloaded!</span>';
-  } catch (err) {
-    console.error('PDF generation error:', err);
-    try { window.print(); } catch(e) {}
-  } finally {
-    clone.remove();
-    btn.disabled = false;
-    setTimeout(() => { btn.innerHTML = originalHTML; }, 2000);
-  }
-}
+// ── PDF download feature removed ──
 </script>
 </body>
 </html>
